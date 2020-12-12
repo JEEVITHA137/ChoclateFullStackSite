@@ -1,8 +1,6 @@
 import React,{Component} from 'react';
 import './App.css';
 
-const axios = require('axios');
-
 class App extends Component{
   state = {
     name:"",
@@ -10,19 +8,48 @@ class App extends Component{
     pass:"",
     NameError:"",
     EmailError:"",
-    PassError:""
+    PassError:"",
+    signin:[]
   };
 
+
+  // getId = () =>{
+  //   const headers = {
+  //     method:'GET', 
+  //     credentials: 'include',
+  //   };
+
+  // fetch( `http://localhost:3000/users/${this.state.mailId}`, headers)
+  //   .then(response=>response.json())
+  //   .then(response=>this.setState({signin:response}))
+  //   .catch(err=>console.log(err))
+  // }
+
   submit= (e) =>{
-    axios.post(`http://localhost:3000/users`,{
+    // this.getId();
+    
+    
+    const values = {
       name: this.state.name,
       mailId: this.state.mailId,
       passWord: this.state.pass
+    }
+
+    const headers = {
+      method:'POST', 
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(values)
+    };
+
+  fetch( `http://localhost:3000/users`, headers)
+    .then(response=>response.json())
+    .catch((err)=>{
+      console.log(err)
+      this.setState({
+        EmailError:"Already exist"
+      });
     })
-    .then(response=>{
-      console.log(response)
-    })
-    .catch(err=>console.log(err))
   }
 
   handleEmailChange = (e) => {

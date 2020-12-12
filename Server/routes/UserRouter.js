@@ -41,4 +41,15 @@ UserRouter.route('/')
     .catch((err) => next(err));    
 });
 
+UserRouter.route('/:mailId')
+.get((req,res,next) => {
+    User.find({ mailId: req.params.mailId})
+    .then((User) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(User);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+});
+
 module.exports = UserRouter;

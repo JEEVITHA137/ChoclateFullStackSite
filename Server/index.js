@@ -9,9 +9,10 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
 
 app.use(bodyParser.json());
+
 
 const url = "mongodb+srv://Sakthi:Sakthi123@site.rzqsl.mongodb.net/dolls?retryWrites=true&w=majority";
 
