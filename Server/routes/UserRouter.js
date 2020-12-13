@@ -41,9 +41,9 @@ UserRouter.route('/')
     .catch((err) => next(err));    
 });
 
-UserRouter.route('/:mailId')
+UserRouter.route('/:mailId/:pass')
 .get((req,res,next) => {
-    User.find({ mailId: req.params.mailId})
+    User.find({ mailId: req.params.mailId , passWord: req.params.pass})
     .then((User) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
