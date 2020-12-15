@@ -12,22 +12,8 @@ class Signin extends Component{
     login:false,
   };
 
-
-  // getId = () =>{
-  //   const headers = {
-  //     method:'GET', 
-  //     credentials: 'include',
-  //   };
-
-  // fetch( `http://localhost:3000/users/${this.state.mailId}`, headers)
-  //   .then(response=>response.json())
-  //   .then(response=>this.setState({signin:response}))
-  //   .catch(err=>console.log(err))
-  // }
-
   submit= (e) =>{
-    // this.getId();
-    
+
     let error = 0;
     if(this.state.name==="")
     {

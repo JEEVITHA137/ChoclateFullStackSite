@@ -26,6 +26,10 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
+    img:{
+        type: String,
+        required: true
+    }
 });
 
 var Products = mongoose.model('Products',productSchema);

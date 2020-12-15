@@ -1,4 +1,5 @@
 const http = require('http');
+var fs = require('fs');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -11,8 +12,9 @@ const app = express();
 
 app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
 
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-
+app.use('/uploads',express.static('uploads'));
 
 const url = "mongodb+srv://Sakthi:Sakthi123@site.rzqsl.mongodb.net/dolls?retryWrites=true&w=majority";
 
@@ -26,6 +28,9 @@ connect.then(() => {
     console.log('Connected correctly to server');
 })
 .catch((err) => console.log(err));
+
+const ProductRouter = require('./routes/ProductRouter');
+app.use('/products', ProductRouter);
 
 const UserRouter = require('./routes/userRouter');
 app.use('/users', UserRouter);
