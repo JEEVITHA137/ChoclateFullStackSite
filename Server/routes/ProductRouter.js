@@ -38,10 +38,9 @@ ProductRouter.route('/')
     console.log(req.body)
     Product.create({
         name:req.body.name,
-        material:req.body.material,
+        flavour:req.body.flavour,
         cost:req.body.cost,
         quantity:req.body.quantity,
-        color:req.body.color,
         brand:req.body.brand,
         img:req.file.originalname
     })
@@ -65,6 +64,39 @@ ProductRouter.route('/')
         res.json(Product);
     }, (err) => next(err))
     .catch((err) => next(err));    
+});
+
+ProductRouter.route('/:brand/:cost')
+.get((req,res,next) => {
+    Product.find({ brand:req.params.brand,cost:req.params.cost})
+    .then((Product) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(Product);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+});
+
+ProductRouter.route('/brands')
+.get((req,res,next) => {
+    Product.find().distinct('brand')
+    .then((Product) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(Product);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+});
+
+ProductRouter.route('/flavour')
+.get((req,res,next) => {
+    Product.find().distinct('flavour')
+    .then((Product) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(Product);
+    }, (err) => next(err))
+    .catch((err) => next(err));
 });
 
 
