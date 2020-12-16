@@ -4,10 +4,10 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function(req,file,cb){
-      cb(null,'./uploads/');
+      cb(null,'../Client/public/');
     },
     filename: function(req,file,cb){
-      cb(null,new Date().toISOString()+file.originalname);
+      cb(null,file.originalname);
     }
 })
 
@@ -43,7 +43,7 @@ ProductRouter.route('/')
         quantity:req.body.quantity,
         color:req.body.color,
         brand:req.body.brand,
-        img:req.file.path
+        img:req.file.originalname
     })
     .then((Product) => {
         console.log('Customer Created ', Product);

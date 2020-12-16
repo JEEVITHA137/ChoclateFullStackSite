@@ -37,7 +37,7 @@ class Products extends Component{
                         <div>{product.materials}</div>
                         <div>{product.color}</div>
                         <div>{product.cost}</div>
-                        <div>{product.img}</div>
+                        <img src={`/${product.img}`} alt="product-image"></img>
                     </div>
                 )
             })
