@@ -1,14 +1,18 @@
 import React,{Component} from 'react';
 
+
 class Products extends Component{
 
   state = {
         products:[],
-        brand:[],
-        flavour:[],
+        brand:{},
+        flavour:{},
         max:"",
         min:"",
-        productsWithoutFilters:[]
+        productsWithoutFilters:[],
+        isbrandfilter:false,
+        iscostfilter:false,
+        isflavourfilter:false,
   };
 
   componentDidMount(){
@@ -30,47 +34,181 @@ class Products extends Component{
     fetch( `http://localhost:3000/products/brands`, headers)
     .then(response=>response.json())  
     .then(response=>{
-        this.setState({
-          brand:response
-        })
+        let brand={};
+          response.map((res)=>{
+            brand[res] = false;
+            return null;
+          })
+
+          this.setState({
+            brand:brand
+          })
       })
     .catch(err=>console.log(err))
 
     fetch( `http://localhost:3000/products/flavour`, headers)
     .then(response=>response.json())  
     .then(response=>{
-        this.setState({
-          flavour:response
-        })
+      let flavour={};
+      response.map((res)=>{
+        flavour[res] = false;
+        return null;
       })
+
+      this.setState({
+        flavour:flavour
+      })
+  })
     .catch(err=>console.log(err))
+  }
+
+  // filter() {
+  //   console.log(this.state.iscostfilter)
+  //   let {productsWithoutFilters} = this.state;
+
+  //   if(this.state.iscostfilter)
+  //   {
+  //     let costproducts = [];
+  //     let i = 0 ;
     
+  //     for(let j=0;j<productsWithoutFilters.length;j++){
+  //       if(productsWithoutFilters[j].cost >= this.state.min && productsWithoutFilters[j].cost <= this.state.max)
+  //       {
+  //           costproducts[i] = productsWithoutFilters[j];
+  //           i = i+1;
+  //       }   
+  //     }
+
+  //     this.setState({
+  //       products:costproducts
+  //     })
+  //   }
+
+  // }
+
+  flavourFilter = (e) => {
+    
+    let {productsWithoutFilters,flavour,isflavourfilter} = this.state;
+
+    if(this.state.iscostfilter || this.state.isbrandfilter)
+    {
+      productsWithoutFilters = this.state.products
+    }
+    isflavourfilter= false;
+
+    flavour[e.target.value] = e.target.checked;
+
+    let flavourproducts=[];
+    let i = 0;
+
+    Object.keys(flavour).map(function(key){
+      if(flavour[key])
+      {
+        for(let j=0;j<productsWithoutFilters.length;j++)
+        {
+          if(productsWithoutFilters[j].flavour === key)
+          {
+            isflavourfilter=true; 
+            flavourproducts[i] = productsWithoutFilters[j];
+            i=i+1;
+          }
+        }
+      }
+      return null;
+    })
+
+    this.setState({
+      flavour:flavour,
+      isflavourfilter:isflavourfilter
+    })
+
+    console.log(productsWithoutFilters)
+    if(isflavourfilter)
+    {
+      this.setState({
+        products:flavourproducts
+      })
+    }
+    else{
+      this.setState({
+        products:productsWithoutFilters
+      })
+    }
   }
 
   costFilter = () => {
+    this.setState({
+      iscostfilter:true
+    })
+    // this.filter();
 
     const {productsWithoutFilters} = this.state;
-    this.setState({
-      products: productsWithoutFilters
-    })
-
-    console.log(productsWithoutFilters,this.state.products)
-    console.log(this.state.min,this.state.max)
 
     let costproducts=[];
     let i = 0 ;
-    this.state.products.map((products)=>{
-        if(products.cost >= this.state.min && products.cost <= this.state.max)
+    
+    for(let j=0;j<productsWithoutFilters.length;j++){
+        if(productsWithoutFilters[j].cost >= this.state.min && productsWithoutFilters[j].cost <= this.state.max)
         {
-            costproducts[i] = products;
+            costproducts[i] = productsWithoutFilters[j];
             i = i+1;
-        }
-    })
+        }   
+    }
 
     this.setState({
       products:costproducts
     })
 
+  }
+
+  brandFilter = (e) => {
+
+    let {productsWithoutFilters,brand,isbrandfilter} = this.state;
+
+    if(this.state.iscostfilter  || this.state.isflavourfilter)
+    {
+      productsWithoutFilters = this.state.products
+    }
+    isbrandfilter= false;
+
+    brand[e.target.value] = e.target.checked;
+
+    let brandproducts=[];
+    let i = 0;
+
+    Object.keys(brand).map(function(key){
+      if(brand[key])
+      {
+        for(let j=0;j<productsWithoutFilters.length;j++)
+        {
+          if(productsWithoutFilters[j].brand === key)
+          {
+            isbrandfilter=true; 
+            brandproducts[i] = productsWithoutFilters[j];
+            i=i+1;
+          }
+        }
+      }
+      return null;
+    })
+
+    this.setState({
+      brand:brand,
+      isbrandfilter:isbrandfilter
+    })
+
+    if(isbrandfilter)
+    {
+      this.setState({
+        products:brandproducts
+      })
+    }
+    else{
+      this.setState({
+        products:productsWithoutFilters
+      })
+    }
+    
   }
 
   render(){
@@ -80,10 +218,10 @@ class Products extends Component{
         <div>
         <h3>Brand</h3>
         {
-          this.state.brand.map((brands,i)=>{
+            Object.keys(this.state.brand).map((brands,i)=>{
             return(
               <div key={i}>
-              <input key={i} type="checkbox"/><label>{brands}</label>
+              <input type="checkbox" onChange={this.brandFilter} value={brands}/><label>{brands}</label>
               </div>
             )
           })
@@ -92,19 +230,19 @@ class Products extends Component{
         <div>
         <h3>Flavour</h3>
         {
-          this.state.flavour.map((flavour,i)=>{
+          Object.keys(this.state.flavour).map((flavour,i)=>{
             return(
               <div key={i}>
-              <input key={i} type="checkbox"/><label>{flavour}</label>
+              <input type="checkbox" onChange={this.flavourFilter} value={flavour}/><label>{flavour}</label>
               </div>
-            )
+            )     
           })
         }
         </div>
         <div>
         <h3>Cost</h3>
-        <label>Max</label><input type="number" value={this.state.max} onChange={(e)=>{this.setState({max:e.target.value})}}/>
-        <label>Min</label><input type="number" value={this.state.min} onChange={(e)=>{this.setState({min:e.target.value})}}/>
+        <label>Min</label><input type="number" value={this.state.min} onChange={(e)=>{this.setState({min:e.target.value,iscostfilter:false})}}/>
+        <label>Max</label><input type="number" value={this.state.max} onChange={(e)=>{this.setState({max:e.target.value,iscostfilter:false})}}/>
         <button onClick={this.costFilter}>Go</button>
         </div>
         <h1>Products</h1>
