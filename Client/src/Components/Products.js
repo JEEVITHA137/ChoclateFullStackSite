@@ -13,6 +13,7 @@ class Products extends Component{
         isbrandfilter:false,
         iscostfilter:false,
         isflavourfilter:false,
+        isnoresults:false
   };
 
   componentDidMount(){
@@ -62,53 +63,25 @@ class Products extends Component{
     .catch(err=>console.log(err))
   }
 
-  // filter() {
-  //   console.log(this.state.iscostfilter)
-  //   let {productsWithoutFilters} = this.state;
+  filter = () => {
+    let {productsWithoutFilters,flavour,isflavourfilter,brand,isbrandfilter,iscostfilter} = this.state;
 
-  //   if(this.state.iscostfilter)
-  //   {
-  //     let costproducts = [];
-  //     let i = 0 ;
-    
-  //     for(let j=0;j<productsWithoutFilters.length;j++){
-  //       if(productsWithoutFilters[j].cost >= this.state.min && productsWithoutFilters[j].cost <= this.state.max)
-  //       {
-  //           costproducts[i] = productsWithoutFilters[j];
-  //           i = i+1;
-  //       }   
-  //     }
+    let flavourproducts = [];
 
-  //     this.setState({
-  //       products:costproducts
-  //     })
-  //   }
-
-  // }
-
-  flavourFilter = (e) => {
-    
-    let {productsWithoutFilters,flavour,isflavourfilter} = this.state;
-
-    if(this.state.iscostfilter || this.state.isbrandfilter)
-    {
-      productsWithoutFilters = this.state.products
-    }
-    isflavourfilter= false;
-
-    flavour[e.target.value] = e.target.checked;
-
-    let flavourproducts=[];
     let i = 0;
+
+    isflavourfilter=false;
+    isbrandfilter = false;
+    iscostfilter = false;
 
     Object.keys(flavour).map(function(key){
       if(flavour[key])
       {
+        isflavourfilter = true;
         for(let j=0;j<productsWithoutFilters.length;j++)
         {
           if(productsWithoutFilters[j].flavour === key)
           {
-            isflavourfilter=true; 
             flavourproducts[i] = productsWithoutFilters[j];
             i=i+1;
           }
@@ -117,73 +90,21 @@ class Products extends Component{
       return null;
     })
 
-    this.setState({
-      flavour:flavour,
-      isflavourfilter:isflavourfilter
-    })
-
-    console.log(productsWithoutFilters)
     if(isflavourfilter)
     {
-      this.setState({
-        products:flavourproducts
-      })
-    }
-    else{
-      this.setState({
-        products:productsWithoutFilters
-      })
-    }
-  }
-
-  costFilter = () => {
-    this.setState({
-      iscostfilter:true
-    })
-    // this.filter();
-
-    const {productsWithoutFilters} = this.state;
-
-    let costproducts=[];
-    let i = 0 ;
-    
-    for(let j=0;j<productsWithoutFilters.length;j++){
-        if(productsWithoutFilters[j].cost >= this.state.min && productsWithoutFilters[j].cost <= this.state.max)
-        {
-            costproducts[i] = productsWithoutFilters[j];
-            i = i+1;
-        }   
+      productsWithoutFilters = flavourproducts
     }
 
-    this.setState({
-      products:costproducts
-    })
-
-  }
-
-  brandFilter = (e) => {
-
-    let {productsWithoutFilters,brand,isbrandfilter} = this.state;
-
-    if(this.state.iscostfilter  || this.state.isflavourfilter)
-    {
-      productsWithoutFilters = this.state.products
-    }
-    isbrandfilter= false;
-
-    brand[e.target.value] = e.target.checked;
-
-    let brandproducts=[];
-    let i = 0;
-
+    let brandproducts = [];
+    i=0;
     Object.keys(brand).map(function(key){
       if(brand[key])
       {
+        isbrandfilter=true; 
         for(let j=0;j<productsWithoutFilters.length;j++)
         {
           if(productsWithoutFilters[j].brand === key)
           {
-            isbrandfilter=true; 
             brandproducts[i] = productsWithoutFilters[j];
             i=i+1;
           }
@@ -192,23 +113,79 @@ class Products extends Component{
       return null;
     })
 
+    let costproducts = [];
+    if(this.state.min !== "" && this.state.max !== "")
+    {
+      if((isflavourfilter && isbrandfilter) || isbrandfilter)
+      {
+        productsWithoutFilters = brandproducts;
+      }
+      else if(isflavourfilter)
+      {
+        productsWithoutFilters = flavourproducts
+      }
+  
+
+      i = 0 ;
+      iscostfilter = true;
+      for(let j=0;j<productsWithoutFilters.length;j++){
+          if(productsWithoutFilters[j].cost >= this.state.min && productsWithoutFilters[j].cost <= this.state.max)
+          {
+              costproducts[i] = productsWithoutFilters[j];
+              i = i+1;
+          }   
+      }
+    }
+  
     this.setState({
-      brand:brand,
-      isbrandfilter:isbrandfilter
+      isbrandfilter:isbrandfilter,
+      iscostfilter:iscostfilter,
+      isflavourfilter:isflavourfilter
     })
 
-    if(isbrandfilter)
+    if((isflavourfilter && isbrandfilter && iscostfilter) || (isbrandfilter && iscostfilter) || (isflavourfilter && iscostfilter) || iscostfilter)
+    {
+      this.setState({
+        products:costproducts
+      })
+    }
+    else if((isbrandfilter && isflavourfilter) || isbrandfilter)
     {
       this.setState({
         products:brandproducts
       })
     }
-    else{
+    else
+    {
       this.setState({
-        products:productsWithoutFilters
+        products:flavourproducts
       })
     }
     
+  }
+
+  flavourFilter = (e) => {
+    let {flavour} = this.state
+    flavour[e.target.value] = e.target.checked;
+
+    this.setState({
+      flavour:flavour
+    })
+
+    this.filter();
+  }
+
+  brandFilter = (e) => {
+
+    let {brand} = this.state;
+    brand[e.target.value] = e.target.checked;
+
+    this.setState({
+      brand:brand
+    })
+
+    this.filter();
+
   }
 
   render(){
@@ -243,21 +220,24 @@ class Products extends Component{
         <h3>Cost</h3>
         <label>Min</label><input type="number" value={this.state.min} onChange={(e)=>{this.setState({min:e.target.value,iscostfilter:false})}}/>
         <label>Max</label><input type="number" value={this.state.max} onChange={(e)=>{this.setState({max:e.target.value,iscostfilter:false})}}/>
-        <button onClick={this.costFilter}>Go</button>
+        <button onClick={this.filter}>Go</button>
         </div>
         <h1>Products</h1>
+        <div className="row d-flex">
         {
-          this.state.products.map((product,i)=>{
-          return(
-            <div key={i}>
-              <div>{product.name}</div>
-                <div>{product.brand}</div>
-                <div>{product.flavour}</div>
-                <div>{product.cost}</div>
-                <img src={`/${product.img}`} style={{width:"180px",height:"180px"}} alt="product-image"></img>
-              </div>
-          )})
+          this.state.products.length === 0  ? <div>No results found</div>
+              :  this.state.products.map((product,i)=>{
+                  return(
+                    <div key={i}>
+                    <div>{product.name}</div>
+                    <div>{product.brand}</div>
+                    <div>{product.flavour}</div>
+                    <div>{product.cost}</div>
+                    <img src={`/${product.img}`} style={{width:"180px",height:"180px"}} alt="product-image"></img>
+                  </div>
+                )})
         }
+        </div>
       </div>
     );
   }
