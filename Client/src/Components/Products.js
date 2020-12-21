@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 
-
 class Products extends Component{
 
   state = {
@@ -155,10 +154,15 @@ class Products extends Component{
         products:brandproducts
       })
     }
-    else
+    else if(isflavourfilter)
     {
       this.setState({
         products:flavourproducts
+      })
+    }
+    else{
+      this.setState({
+        products:productsWithoutFilters
       })
     }
     
@@ -176,7 +180,6 @@ class Products extends Component{
   }
 
   brandFilter = (e) => {
-
     let {brand} = this.state;
     brand[e.target.value] = e.target.checked;
 
@@ -185,7 +188,11 @@ class Products extends Component{
     })
 
     this.filter();
+  }
 
+  viewProduct = (product) => {
+    this.props.getViewProduct(product);
+    this.props.history.push("/view")
   }
 
   render(){
@@ -223,17 +230,17 @@ class Products extends Component{
         <button onClick={this.filter}>Go</button>
         </div>
         <h1>Products</h1>
-        <div className="row d-flex">
+        <div className="d-flex">
         {
           this.state.products.length === 0  ? <div>No results found</div>
               :  this.state.products.map((product,i)=>{
                   return(
-                    <div key={i}>
+                    <div key={i} onClick={()=>{this.viewProduct(product)}}>
+                    <img src={`/${product.img}`} style={{width:"180px",height:"180px"}} alt="product-image"></img>
                     <div>{product.name}</div>
                     <div>{product.brand}</div>
                     <div>{product.flavour}</div>
                     <div>{product.cost}</div>
-                    <img src={`/${product.img}`} style={{width:"180px",height:"180px"}} alt="product-image"></img>
                   </div>
                 )})
         }

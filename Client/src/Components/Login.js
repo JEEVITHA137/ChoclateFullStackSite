@@ -44,8 +44,13 @@ class Login extends Component{
                         loginError:"Incorrect username and password"
                     })
                 }
+                else{
+                  this.props.getEmail(this.state.mailId);
+                }
             })
             .catch(err=>console.log(err))
+
+        this.props.history.push('./');
     }
   }
 
@@ -71,7 +76,7 @@ class Login extends Component{
           <p>Email-Id:<input type="text" value={this.state.mailId} onChange={this.handleEmailChange}/><span>{this.state.EmailError}</span></p>
           <p>Password:<input type="text" value={this.state.pass} onChange={this.handlePassChange}/><span>{this.state.PassError}</span></p>
           <button onClick={this.submit}>Submit</button>
-          <p>New user?<a href="/">Signin</a></p>
+          <p>New user?<a href="/signin">Signin</a></p>
       </div>
     );
   }

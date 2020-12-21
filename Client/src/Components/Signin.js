@@ -39,6 +39,7 @@ class Signin extends Component{
 
     if(error===0)
     {
+        this.props.getEmail(this.state.mailId);
         const values = {
         name: this.state.name,
         mailId: this.state.mailId,
@@ -60,6 +61,8 @@ class Signin extends Component{
             EmailError:"Already exist"
         });
         })
+
+        this.props.history.push('./');
     }
   }
 
