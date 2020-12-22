@@ -40,17 +40,18 @@ class Signin extends Component{
     if(error===0)
     {
         this.props.getEmail(this.state.mailId);
+        
         const values = {
-        name: this.state.name,
-        mailId: this.state.mailId,
-        passWord: this.state.pass
+          name: this.state.name,
+          mailId: this.state.mailId,
+          passWord: this.state.pass
         }
 
         const headers = {
-        method:'POST', 
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values)
+          method:'POST', 
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values)
         };
 
     fetch( `http://localhost:3000/users`, headers)

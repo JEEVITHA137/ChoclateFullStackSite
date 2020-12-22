@@ -198,6 +198,7 @@ class Products extends Component{
   render(){
     return (
       <div>
+        <div onClick={()=>{this.props.history.push('./cart')}}>Cart</div>
         <h2>Filters</h2>
         <div>
         <h3>Brand</h3>

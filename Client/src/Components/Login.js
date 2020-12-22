@@ -38,19 +38,18 @@ class Login extends Component{
         fetch( `http://localhost:3000/users/${this.state.mailId}/${this.state.pass}`, headers)
             .then(response=>response.json())
             .then(response=>{
-                if(response.length === 0)
+                if(response.length > 0)
                 {
-                    this.setState({
-                        loginError:"Incorrect username and password"
-                    })
+                  this.props.getEmail(this.state.mailId);
+                  this.props.history.push('./');
                 }
                 else{
-                  this.props.getEmail(this.state.mailId);
+                  this.setState({
+                    loginError:"Incorrect username and password"
+                  })
                 }
             })
             .catch(err=>console.log(err))
-
-        this.props.history.push('./');
     }
   }
 
