@@ -35,7 +35,6 @@ ProductRouter.route('/')
     .catch((err) => next(err));
 })
 .post(upload.single('productimage'),(req, res, next) => {
-    console.log(req.body)
     Product.create({
         name:req.body.name,
         flavour:req.body.flavour,
@@ -51,10 +50,6 @@ ProductRouter.route('/')
         res.json(Product);
     }, (err) => next(err))
     .catch((err) => next(err));
-})
-.put((req, res) => {
-    res.statusCode = 403;
-    res.end('PUT operation not supported on /Customers');
 })
 .delete((req, res, next) => {
     Product.remove({})
@@ -91,6 +86,17 @@ ProductRouter.route('/brands')
 ProductRouter.route('/flavour')
 .get((req,res,next) => {
     Product.find().distinct('flavour')
+    .then((Product) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(Product);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+});
+
+ProductRouter.route('/:id')
+.get((req,res,next) => {
+    Product.find({_id:req.params.id}).select("quantity")
     .then((Product) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');

@@ -7,6 +7,18 @@ const UserRouter = express.Router();
 
 UserRouter.use(bodyParser.json());
 
+UserRouter.route('/')
+.post((req, res, next) => {
+    User.create(req.body)
+    .then((User) => {
+        console.log('Customer Created ', User);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(User);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+})
+
 UserRouter.route('/:mailId/:pass')
 .get((req,res,next) => {
     User.find({ mailId: req.params.mailId , passWord: req.params.pass})
@@ -20,7 +32,7 @@ UserRouter.route('/:mailId/:pass')
 
 UserRouter.route('/:mailId')
 .get((req,res,next) => {
-    User.find({ mailId: req.params.mailId}).select("myCart")
+    User.find({ mailId: req.params.mailId}).select("myCart myorders")
     .then((User) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
@@ -40,9 +52,20 @@ UserRouter.route('/addtocart')
         res.json(User);
     }, (err) => next(err))
     .catch((err) => next(err));
+})
+
+UserRouter.route('/order')
+.put((req,res,next) => {
+    const mailid = req.body.mailId;
+    const order = req.body.order;
+    User.updateOne({mailId: mailid},{$set: {myorders:order }})
+    .then((User) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(User);
+    }, (err) => next(err))
+    .catch((err) => next(err));
 });
-
-
 
 
 module.exports = UserRouter;

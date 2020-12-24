@@ -24,13 +24,11 @@ class ProductView extends Component{
       .catch(err=>console.log(err))
     }
 
-    
   }
 
   ispresentincart = (e) => {
-    const {cart} =  this.state.cart;
-    let existingproduct = this.state.cart.filter(p => p._id === e)
 
+    let existingproduct = this.state.cart.filter(p => p._id === e)
     if(existingproduct.length > 0)
     {
       return true;
@@ -44,8 +42,7 @@ class ProductView extends Component{
   AddCart=(e)=>{
     if(this.props.emailId !== "")
     {
-      
-      console.log(this.state.cart)
+      e.quantity = 1;
       this.setState({
         cart:[...this.state.cart,e]
       });

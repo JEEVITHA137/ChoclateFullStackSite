@@ -29,11 +29,15 @@ connect.then(() => {
 })
 .catch((err) => console.log(err));
 
+const OrderRouter = require('./routes/OrderRouter');
+app.use('/order', OrderRouter);
+
 const ProductRouter = require('./routes/ProductRouter');
 app.use('/products', ProductRouter);
 
 const UserRouter = require('./routes/userRouter');
 app.use('/users', UserRouter);
+
 
 app.get('*' ,(req,res) => {
   res.statusCode = 400;

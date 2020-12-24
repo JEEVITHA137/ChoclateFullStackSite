@@ -1,18 +1,47 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
+const addressSchema = new Schema({
+    HouseNo:{
+        type: String
+    },
+    Street:{
+        type:String,
+        required: true
+    },
+    LandMark:{
+        type:String,
+        required: true
+    },
+    Town:{
+        type:String,
+        required: true
+    },
+    District:{
+        type:String,
+        required: true
+    },
+    Pincode:{
+        type:Number,
+        required: true
+    }
+})
+
 const orderSchema = new Schema({
     UserId:{
         type: String,
         required: true
     },
     Tracking:{
-        type: String,
+        type: Boolean,
         required: true,
     },
     ProductId:{
         type: String,
         required: true
+    },
+    Address:{
+        type:addressSchema
     }
 });
 
