@@ -32,7 +32,7 @@ UserRouter.route('/:mailId/:pass')
 
 UserRouter.route('/:mailId')
 .get((req,res,next) => {
-    User.find({ mailId: req.params.mailId}).select("myCart")
+    User.find({ mailId: req.params.mailId})
     .then((User) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
