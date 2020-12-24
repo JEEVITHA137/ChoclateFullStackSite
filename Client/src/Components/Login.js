@@ -31,25 +31,25 @@ class Login extends Component{
     if(error === 0)
     {
         const headers = {
-                method:'GET', 
-                credentials: 'include'
+          method:'GET', 
+          credentials: 'include'
         };
           
         fetch( `http://localhost:3000/users/${this.state.mailId}/${this.state.pass}`, headers)
-            .then(response=>response.json())
-            .then(response=>{
-                if(response.length > 0)
-                {
-                  this.props.getEmail(this.state.mailId);
-                  this.props.history.push('./');
-                }
-                else{
-                  this.setState({
-                    loginError:"Incorrect username and password"
-                  })
-                }
-            })
-            .catch(err=>console.log(err))
+          .then(response=>response.json())
+          .then(response=>{
+            if(response.length > 0)
+            {
+              this.props.getEmail(this.state.mailId);
+              this.props.history.push('./');
+            }
+            else{
+              this.setState({
+                loginError:"Incorrect username and password"
+              })
+            }
+          })
+          .catch(err=>console.log(err))
     }
   }
 

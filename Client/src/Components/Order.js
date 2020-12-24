@@ -61,7 +61,6 @@ class Order extends Component{
     };
 
     fetch( `http://localhost:3000/order`, headers)
-    .then(response=>response.json())
     .then(response=>response)
     .catch(err=>console.log(err))
 
@@ -84,7 +83,7 @@ class Order extends Component{
                         <div>{product[0].name}</div>
                         <div>{product[0].flavour}</div>
                         <div>Quantity : {order.quantity}</div>
-                        {order.Tracking !== "delivered" ? <button onClick={()=>{this.cancel(order.ProductId)}}>Cancel</button>:<div></div>}
+                        {order.Tracking !== "delivered" ?<div>{order.Tracking} <button onClick={()=>{this.cancel(order.ProductId)}}>Cancel</button></div>:<div>{order.Tracking}</div>}
                       </div>
                       :<div  key={i}></div>
                 )

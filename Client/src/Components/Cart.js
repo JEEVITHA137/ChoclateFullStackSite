@@ -26,6 +26,42 @@ class Cart extends Component{
     } 
   }
 
+  availablePlus = (id,i,quantity) => {
+    let {cart} = this.state;
+
+    const headers = {
+      method:'GET', 
+      credentials: 'include'
+    };
+
+    fetch( `http://localhost:3000/products/${id}`, headers)
+    .then(response=>response.json())
+    .then(response=>{
+      if(quantity+1 <= response[0].quantity)
+      {
+        cart[i].quantity += 1;
+      }
+    })
+    .catch(err=>console.log(err))
+
+    this.setState({
+      cart:cart
+    })
+  }
+
+  availableMinus = (i,quantity) => {
+    let {cart} = this.state;
+
+    if(quantity-1 > 0)
+    {
+      cart[i].quantity -= 1;
+    }
+
+    this.setState({
+      cart:cart
+    })
+  }
+
   order = (e) => {
     let cartproduct=[];
     cartproduct = this.state.cart.filter(p => p._id !== e._id)
@@ -121,9 +157,7 @@ class Cart extends Component{
                     <div>{product.flavour}</div>
                     <div>{product.cost}</div>
                     <div className="d-flex">
-                       <button>+</button>
-                       <div>{product.quantity}</div>
-                       <button>-</button>
+                      <button onClick={()=>{this.availablePlus(product._id,i,product.quantity)}}>+</button><div>{product.quantity}</div><button onClick={()=>{this.availableMinus(i,product.quantity)}}>-</button>
                     </div>
                     <button onClick={()=>{this.order(product)}}>Buy Now</button><br/>
                     <button onClick={()=>{this.delete(product)}}>Delete</button>
