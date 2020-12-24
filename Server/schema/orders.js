@@ -33,12 +33,16 @@ const orderSchema = new Schema({
         required: true
     },
     Tracking:{
-        type: Boolean,
+        type: String,
         required: true,
     },
     ProductId:{
         type: String,
         required: true
+    },
+    quantity:{
+        type:Number,
+        required:true
     },
     Address:{
         type:addressSchema

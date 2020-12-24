@@ -47,13 +47,10 @@ class ProductView extends Component{
         cart:[...this.state.cart,e]
       });
 
-
       const values = {
         mailId:this.props.emailId,
         cart:this.state.cart.concat(e)
       }
-
-      console.log(values)
 
       const headers = {
         method:'PUT', 

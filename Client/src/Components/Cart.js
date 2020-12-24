@@ -19,58 +19,25 @@ class Cart extends Component{
       .then(response=>response.json())
       .then(response=>{
         this.setState({
-          cart:response[0].myCart,
-          orders:response[0].myorders
+          cart:response[0].myCart
         })
       })
       .catch(err=>console.log(err))
     } 
   }
 
-  // available = (quantity,id,i) =>{
-  //   let {cart} = this.state;
-
-  //   const headers = {
-  //     method:'GET', 
-  //     credentials: 'include'
-  //   };
-
-  //   fetch( `http://localhost:3000/products/${id}`, headers)
-  //   .then(response=>response.json())
-  //   .then(response=>{
-  //     if(quantity+1 <= response[0].quantity)
-  //     {
-  //       cart[i].quantity += 1;
-  //     }
-  //     else
-  //     {
-  //       console.log("unavailable")
-  //     }
-  //   })
-  //   .catch(err=>console.log(err))
-
-  //   this.setState({
-  //     cart:cart
-  //   })
-
-
-  // }
-
   order = (e) => {
     let cartproduct=[];
     cartproduct = this.state.cart.filter(p => p._id !== e._id)
 
-    console.log(e);
-
     this.setState({
-      order:[...this.state.orders,e],
       cart:cartproduct
     })
-
-    console.log(this.state.cart)
+    
     const values = {
       UserId:this.props.emailId,
-      Tracking:false,
+      Tracking:"ordered",
+      quantity:e.quantity,
       ProductId:e._id,
       Address:{
         Street:" River",
@@ -93,31 +60,10 @@ class Cart extends Component{
     .then(response=>response)
     .catch(err=>console.log(err))
 
-
-    const orderValues = {
-      mailId:this.props.emailId,
-      order:this.state.orders.concat(e)
-    }
-
-    const orderHeaders = {
-      method:'PUT', 
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(orderValues)
-    };
-    
-    console.log(orderHeaders.body)
-
-    fetch( `http://localhost:3000/users/order`, orderHeaders)
-    .then(response=>response.json())
-    .then(response=>response)
-    .catch(err=>console.log(err))
-
     const cartValues = {
       mailId:this.props.emailId,
       cart:cartproduct
     }
-
 
     const cartHeaders = {
       method:'PUT', 

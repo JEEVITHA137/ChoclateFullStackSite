@@ -32,7 +32,7 @@ UserRouter.route('/:mailId/:pass')
 
 UserRouter.route('/:mailId')
 .get((req,res,next) => {
-    User.find({ mailId: req.params.mailId}).select("myCart myorders")
+    User.find({ mailId: req.params.mailId}).select("myCart")
     .then((User) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
@@ -54,18 +54,6 @@ UserRouter.route('/addtocart')
     .catch((err) => next(err));
 })
 
-UserRouter.route('/order')
-.put((req,res,next) => {
-    const mailid = req.body.mailId;
-    const order = req.body.order;
-    User.updateOne({mailId: mailid},{$set: {myorders:order }})
-    .then((User) => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json(User);
-    }, (err) => next(err))
-    .catch((err) => next(err));
-});
 
 
 module.exports = UserRouter;
