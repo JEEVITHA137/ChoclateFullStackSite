@@ -51,6 +51,17 @@ ProductRouter.route('/')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
+.put((req,res,next) => {
+    const id = req.body.id;
+    const quantity = req.body.quantity;
+    Product.updateOne({_id:id},{$set: {quantity:quantity}})
+    .then((Product) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(Product);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+})
 .delete((req, res, next) => {
     Product.remove({})
     .then(( Product) => {
@@ -104,7 +115,5 @@ ProductRouter.route('/:id')
     }, (err) => next(err))
     .catch((err) => next(err));
 });
-
-
 
 module.exports =  ProductRouter;

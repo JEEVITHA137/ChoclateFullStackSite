@@ -39,7 +39,7 @@ class Order extends Component{
     } 
   }
 
-  cancel = (e) => {
+  cancel = (e,quantity) => {
 
     let product = this.state.orders.filter(p => p.ProductId !== e)
 
@@ -64,6 +64,35 @@ class Order extends Component{
     .then(response=>response)
     .catch(err=>console.log(err))
 
+    const quantityOfHeaders = {
+      method:'GET', 
+      credentials: 'include'
+    };
+
+    let quantityValues = {
+      id: e,
+      quantity:0
+    }
+
+    fetch( `http://localhost:3000/products/${e}`, quantityOfHeaders)
+    .then(response=>response.json())
+    .then(response=>{
+        quantityValues.quantity = response[0].quantity+quantity
+
+        const quantityHeaders = {
+          method:'PUT', 
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body:JSON.stringify(quantityValues)
+        };
+
+        fetch( `http://localhost:3000/products/`, quantityHeaders)
+        .then(response=>response.json())
+        .then(response=>response)
+        .catch(err=>console.log(err))
+    })
+    .catch(err=>console.log(err))
+
   }
 
   render(){
@@ -83,7 +112,7 @@ class Order extends Component{
                         <div>{product[0].name}</div>
                         <div>{product[0].flavour}</div>
                         <div>Quantity : {order.quantity}</div>
-                        {order.Tracking !== "delivered" ?<div>{order.Tracking} <button onClick={()=>{this.cancel(order.ProductId)}}>Cancel</button></div>:<div>{order.Tracking}</div>}
+                        {order.Tracking !== "delivered" ?<div>{order.Tracking} <button onClick={()=>{this.cancel(order.ProductId,order.quantity)}}>Cancel</button></div>:<div>{order.Tracking}</div>}
                       </div>
                       :<div  key={i}></div>
                 )

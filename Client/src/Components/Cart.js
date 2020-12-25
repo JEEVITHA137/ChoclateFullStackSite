@@ -39,7 +39,7 @@ class Cart extends Component{
     .then(response=>{
       if(quantity+1 <= response[0].quantity)
       {
-        cart[i].quantity += 1;
+        cart[i].quantity = cart[i].quantity + 1;
       }
     })
     .catch(err=>console.log(err))
@@ -112,6 +112,36 @@ class Cart extends Component{
     .then(response=>response.json())
     .then(response=>response)
     .catch(err=>console.log(err))
+
+    const quantityHeaders = {
+      method:'GET', 
+      credentials: 'include'
+    };
+
+    let quantityValues = {
+      id:e._id,
+      quantity:0
+    }
+
+    fetch( `http://localhost:3000/products/${e._id}`, quantityHeaders)
+    .then(response=>response.json())
+    .then(response=>{
+        quantityValues.quantity = response[0].quantity-e.quantity
+
+        const quantityHeaders = {
+          method:'PUT', 
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body:JSON.stringify(quantityValues)
+        };
+
+        fetch( `http://localhost:3000/products/`, quantityHeaders)
+        .then(response=>response.json())
+        .then(response=>response)
+        .catch(err=>console.log(err))
+    })
+    .catch(err=>console.log(err))
+
   }
 
 

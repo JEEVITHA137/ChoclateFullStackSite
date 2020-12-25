@@ -77,7 +77,8 @@ class ProductView extends Component{
         <div>{this.props.viewproduct.flavour}</div>
         <div>{this.props.viewproduct.cost}</div>
         {
-          this.ispresentincart(this.props.viewproduct._id) === true ?<button>In Cart</button> : <button onClick={()=>{this.AddCart(this.props.viewproduct)}}>AddtoCart</button>
+        
+          this.ispresentincart(this.props.viewproduct._id) === true ?<button>In Cart</button> : this.props.viewproduct.quantity !== 0 ? <button onClick={()=>{this.AddCart(this.props.viewproduct)}}>AddtoCart</button> : <div>Out Of Stock</div>
         }
       </div>
     );
