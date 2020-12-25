@@ -45,7 +45,12 @@ const orderSchema = new Schema({
         required:true
     },
     Address:{
-        type:addressSchema
+        type:addressSchema,
+        required:true
+    },
+    phoneNo:{
+        type:Number,
+        required:true
     }
 });
 

@@ -9,6 +9,8 @@ import ProductView from './Components/ProductView.js';
 import Cart from './Components/Cart.js';
 import Profile from './Components/Profile.js';
 import Order from './Components/Order.js';
+import AdminProducts from './Components/AdminProducts.js';
+import CheckOrders from './Components/CheckOrders.js';
 import './App.css';
 
 class App extends Component{
@@ -34,7 +36,7 @@ class App extends Component{
     return (
       <div>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
-        <Menu/>
+        <Menu emailId={this.state.emailId}/>
         <BrowserRouter>
             <Route exact path="/signin" render={(props) => <Signin {...props}  getEmail={this.getEmail} />}></Route>
             <Route exact path="/login" render={(props) => <Login {...props}  getEmail={this.getEmail} />}></Route>
@@ -44,6 +46,8 @@ class App extends Component{
             <Route exact path="/cart" render={(props) => <Cart {...props}  emailId={this.state.emailId}/>}></Route>
             <Route exact path="/profile" render={(props) => <Profile {...props}  emailId={this.state.emailId}/>}></Route>
             <Route exact path="/orders" render={(props) => <Order {...props}  emailId={this.state.emailId}/>}></Route>
+            <Route exact path="/adminproducts" render={(props) => <AdminProducts {...props}  emailId={this.state.emailId}/>}></Route>
+            <Route exact path="/checkorders" render={(props) => <CheckOrders {...props}  emailId={this.state.emailId}/>}></Route>
           </BrowserRouter>
       </div>
     );

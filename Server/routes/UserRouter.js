@@ -54,6 +54,19 @@ UserRouter.route('/addtocart')
     .catch((err) => next(err));
 })
 
+UserRouter.route('/profile')
+.put((req,res,next) => {
+    console.log(req.body)
+    User.updateOne({mailId: req.body.mailId},{$set: {phoneNo:req.body.phoneNo,name:req.body.name,address:req.body.address,phoneNo:req.body.phoneNo }})
+    .then((User) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(User);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+})
+
+
 
 
 module.exports = UserRouter;

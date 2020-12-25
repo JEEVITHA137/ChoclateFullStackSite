@@ -1,8 +1,25 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
  
-const OrderSchema = new Schema({
-    
+const addressSchema = new Schema({
+    HouseNo:{
+        type: String
+    },
+    Street:{
+        type:String
+    },
+    LandMark:{
+        type:String
+    },
+    Town:{
+        type:String
+    },
+    District:{
+        type:String
+    },
+    Pincode:{
+        type:Number
+    }
 })
 
 const userSchema = new Schema({
@@ -19,7 +36,12 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    address:[],
+    phoneNo:{
+        type:Number
+    },
+    address:{
+        type:addressSchema
+    },
     myCart : []
 });
 

@@ -3,7 +3,15 @@ import React,{Component} from 'react';
 class Cart extends Component{
   state={
     cart:[],
-    orders:[]
+    orders:[],
+    HouseNo:"",
+    Street:"",
+    LandMark:"",
+    Town:"",
+    District:"",
+    Pincode:"",
+    phoneNo:"",
+    error:""
   }
 
 
@@ -44,6 +52,21 @@ class Cart extends Component{
     })
     .catch(err=>console.log(err))
 
+    fetch( `http://localhost:3000/users/${this.props.emailId}`, headers)
+      .then(response=>response.json())
+      .then(response=>{
+        this.setState({
+          phoneNo:response[0].phoneNo,
+          HouseNo:response[0].address.HouseNo,
+          Street:response[0].address.Street,
+          LandMark:response[0].address.LandMark,
+          Town:response[0].address.Town,
+          District:response[0].address.District,
+          Pincode:response[0].address.Pincode,
+        })
+      })
+      .catch(err=>console.log(err))
+
     this.setState({
       cart:cart
     })
@@ -63,85 +86,98 @@ class Cart extends Component{
   }
 
   order = (e) => {
-    let cartproduct=[];
-    cartproduct = this.state.cart.filter(p => p._id !== e._id)
+    if(this.state.Street !== null)
+    {
+      this.setState({
+        error:" "
+      })
+      let cartproduct=[];
+      cartproduct = this.state.cart.filter(p => p._id !== e._id)
 
-    this.setState({
-      cart:cartproduct
-    })
-    
-    const values = {
-      UserId:this.props.emailId,
-      Tracking:"ordered",
-      quantity:e.quantity,
-      ProductId:e._id,
-      Address:{
-        Street:" River",
-        LandMark: "Police Station",
-        Town:"Vellore",
-        District:"Vellore",
-        Pincode:632107
+      this.setState({
+        cart:cartproduct
+      })
+
+      const values = {
+        UserId:this.props.emailId,
+        Tracking:"ordered",
+        quantity:e.quantity,
+        ProductId:e._id,
+        Address:{
+          HouseNo:this.state.HouseNo,
+          Street:this.state.Street,
+          LandMark: this.state.LandMark,
+          Town:this.state.Town,
+          District:this.state.District,
+          Pincode:this.state.Pincode
+        },
+        phoneNo:this.state.phoneNo
+      }
+
+      const headers = {
+        method:'POST', 
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body:JSON.stringify(values)
+      };
+
+      fetch( `http://localhost:3000/order/`, headers)
+      .then(response=>response.json())
+      .then(response=>response)
+      .catch(err=>console.log(err))
+
+      const cartValues = {
+        mailId:this.props.emailId,
+        cart:cartproduct
+      }
+
+      const cartHeaders = {
+        method:'PUT', 
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cartValues)
+      };
+
+      fetch( `http://localhost:3000/users/addtocart`, cartHeaders)
+      .then(response=>response.json())
+      .then(response=>response)
+      .catch(err=>console.log(err))
+
+      const quantityHeaders = {
+        method:'GET', 
+        credentials: 'include'
+      };
+
+      let quantityValues = {
+        id:e._id,
+        quantity:0
+      }
+
+      fetch( `http://localhost:3000/products/${e._id}`, quantityHeaders)
+      .then(response=>response.json())
+      .then(response=>{
+          quantityValues.quantity = response[0].quantity-e.quantity
+
+          const quantityHeaders = {
+            method:'PUT', 
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body:JSON.stringify(quantityValues)
+          };
+
+          fetch( `http://localhost:3000/products/`, quantityHeaders)
+          .then(response=>response.json())
+          .then(response=>response)
+          .catch(err=>console.log(err))
+      })
+      .catch(err=>console.log(err))
     }
+    else
+    {
+      this.setState({
+        error:"Add the Address in Profile"
+      })
     }
-
-    const headers = {
-      method:'POST', 
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body:JSON.stringify(values)
-    };
-
-    fetch( `http://localhost:3000/order/`, headers)
-    .then(response=>response.json())
-    .then(response=>response)
-    .catch(err=>console.log(err))
-
-    const cartValues = {
-      mailId:this.props.emailId,
-      cart:cartproduct
-    }
-
-    const cartHeaders = {
-      method:'PUT', 
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(cartValues)
-    };
-
-    fetch( `http://localhost:3000/users/addtocart`, cartHeaders)
-    .then(response=>response.json())
-    .then(response=>response)
-    .catch(err=>console.log(err))
-
-    const quantityHeaders = {
-      method:'GET', 
-      credentials: 'include'
-    };
-
-    let quantityValues = {
-      id:e._id,
-      quantity:0
-    }
-
-    fetch( `http://localhost:3000/products/${e._id}`, quantityHeaders)
-    .then(response=>response.json())
-    .then(response=>{
-        quantityValues.quantity = response[0].quantity-e.quantity
-
-        const quantityHeaders = {
-          method:'PUT', 
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-          body:JSON.stringify(quantityValues)
-        };
-
-        fetch( `http://localhost:3000/products/`, quantityHeaders)
-        .then(response=>response.json())
-        .then(response=>response)
-        .catch(err=>console.log(err))
-    })
-    .catch(err=>console.log(err))
-
   }
 
 
@@ -175,6 +211,7 @@ class Cart extends Component{
     return (
       <div>
         <h1>Cart</h1>
+        <div>{this.state.error}</div>
         <div className="d-flex">
         {
           this.state.cart.length === 0  ? <div>Cart is Empty</div>
