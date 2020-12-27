@@ -41,7 +41,12 @@ class Login extends Component{
             if(response.length > 0)
             {
               this.props.getEmail(this.state.mailId);
-              this.props.history.push('./');
+              if(this.state.mailId === "Admin@gmail.com")
+              {
+                this.props.history.push('./adminproducts');
+              }
+              else
+                 this.props.history.push('./');
             }
             else{
               this.setState({

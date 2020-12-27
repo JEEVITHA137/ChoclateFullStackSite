@@ -12,7 +12,7 @@ class Menu extends Component{
             ?<ul>
               <li><a href="/login">Login</a></li>
               <li><a href="/adminproducts">Products</a></li>
-              <li><a href="/checkorders">CheckOrders</a></li>
+              <li><div onClick={()=>{this.props.history.push('./checkorders')}}>CheckOrders</div></li>
              </ul>
             :<ul>
               <li><a href="/signin">Signin</a></li>

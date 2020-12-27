@@ -27,6 +27,15 @@ OrderRouter.route('/')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
+.put((req,res,next) => {
+    Order.updateOne({_id:req.body.id},{$set: {Tracking: req.body.Tracking}})
+    .then((Order) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(Order);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+})
 .delete((req, res, next) => {
     Order.deleteOne({UserId:req.body.mailId,ProductId:req.body.ProductId})
     .then(( Order) => {
@@ -46,6 +55,6 @@ OrderRouter.route('/:mailId')
         res.json(Order);
     }, (err) => next(err))
     .catch((err) => next(err));
-})
+});
 
 module.exports = OrderRouter;
