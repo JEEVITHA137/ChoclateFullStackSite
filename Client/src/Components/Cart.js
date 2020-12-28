@@ -218,7 +218,7 @@ class Cart extends Component{
               :  this.state.cart.map((product,i)=>{
                   return(
                     <div key={i}>
-                    <img src={`/${product.img}`} style={{width:"180px",height:"180px"}} alt="product-image"></img>
+                    <img src={`/${product.img}`} style={{width:"180px",height:"180px"}} alt="product-img"></img>
                     <div>{product.name}</div>
                     <div>{product.brand}</div>
                     <div>{product.flavour}</div>
