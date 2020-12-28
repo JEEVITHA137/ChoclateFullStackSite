@@ -72,15 +72,19 @@ class Login extends Component{
 
   render(){
     return (
-      <div>
-        <header>
+      <div className="">
+        <img className="login" src="./Home.jpg"></img>
+      <div className="container row justify-content-center text-center">
+          <div className="col-md-12" >
           <h1>Login</h1>
+          <h3>Welcome To our Site</h3>
           <span>{this.state.loginError}</span>
-        </header>
           <p>Email-Id:<input type="text" value={this.state.mailId} onChange={this.handleEmailChange}/><span>{this.state.EmailError}</span></p>
-          <p>Password:<input type="text" value={this.state.pass} onChange={this.handlePassChange}/><span>{this.state.PassError}</span></p>
+          <p>Password:<input type="password" value={this.state.pass} onChange={this.handlePassChange}/><span>{this.state.PassError}</span></p>
           <button onClick={this.submit}>Submit</button>
           <p>New user?<a href="/signin">Signin</a></p>
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import {withRouter} from 'react-router-dom';
 
 class CheckOrders extends Component{
 
@@ -88,4 +87,4 @@ class CheckOrders extends Component{
   }
 }
 
-export default withRouter(CheckOrders);
+export default CheckOrders;

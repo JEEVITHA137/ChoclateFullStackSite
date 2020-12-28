@@ -237,7 +237,7 @@ class Products extends Component{
           this.state.products.length === 0  ? <div>No results found</div>
               :  this.state.products.map((product,i)=>{
                   return(
-                    <div key={i} onClick={()=>{this.viewProduct(product)}}>
+                    <div className="card shadow-lg p-3 m-3 bg-white rounded" key={i} onClick={()=>{this.viewProduct(product)}}>
                     <img src={`/${product.img}`} style={{width:"180px",height:"180px"}} alt="product-image"></img>
                     <div>{product.name}</div>
                     <div>{product.brand}</div>
