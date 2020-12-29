@@ -74,7 +74,7 @@ class Login extends Component{
   render(){
     return (
       <div className="container">
-      <Form className="form" onSubmit={(e) => this.submitForm(e)}>
+      <Form className="form" onSubmit={(e) => this.submit(e)}>
           <h3 className="m-2" >Login</h3>
           <FormGroup row className="p-2">
               <Label className="col-4 text-center" for="EmailId" ><h5>Email-Id:</h5></Label>

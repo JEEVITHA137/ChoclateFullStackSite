@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {  Button, Form, FormGroup, Label, Input,FormText } from 'reactstrap';
+import {  Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class AddProduct extends Component{
 
@@ -13,7 +13,6 @@ class AddProduct extends Component{
   };
 
   submit = (e) =>{
-   
     e.preventDefault();
     console.log(this.state.imagefile);
     let imageFormObj = new FormData();
