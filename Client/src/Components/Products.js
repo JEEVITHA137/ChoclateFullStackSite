@@ -1,4 +1,8 @@
 import React,{Component} from 'react';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 
 class Products extends Component{
 
@@ -197,55 +201,84 @@ class Products extends Component{
 
   render(){
     return (
-      <div>
-        <div onClick={()=>{this.props.history.push('./cart')}}>Cart</div>
-        <div onClick={()=>{this.props.history.push('./profile')}}>Profile</div>
-        <h2>Filters</h2>
-        <div>
-        <h3>Brand</h3>
+      <div className="container ">
+        <h3 >Filters</h3>
+      <div className="row p-2">
+        <div className="col-12 col-md-4 p-2" >
+        <h4>Brand</h4>
         {
             Object.keys(this.state.brand).map((brands,i)=>{
             return(
-              <div key={i}>
-              <input type="checkbox" onChange={this.brandFilter} value={brands}/><label>{brands}</label>
+              <div key={i} className="row" >
+              <div className="col-2 p-2" >
+              <input type="checkbox" onChange={this.brandFilter} value={brands}/>
+              </div>
+              <div className="col-10 p-1" ><label>{brands}</label>
+              </div>
               </div>
             )
           })
         }
         </div>
-        <div>
-        <h3>Flavour</h3>
+        <div className="col-12 col-md-4 p-2" >
+        <h4>Flavour</h4>
         {
           Object.keys(this.state.flavour).map((flavour,i)=>{
             return(
-              <div key={i}>
-              <input type="checkbox" onChange={this.flavourFilter} value={flavour}/><label>{flavour}</label>
+              <div key={i} className="row" >
+              <div className="col-2 p-2" >
+              <input type="checkbox" onChange={this.flavourFilter} value={flavour}/>
               </div>
-            )     
+              <div className="col-10 p-1" > <label>{flavour}</label>
+              </div>
+              </div>
+            ) 
           })
         }
         </div>
-        <div>
-        <h3>Cost</h3>
-        <label>Min</label><input type="number" value={this.state.min} onChange={(e)=>{this.setState({min:e.target.value,iscostfilter:false})}}/>
-        <label>Max</label><input type="number" value={this.state.max} onChange={(e)=>{this.setState({max:e.target.value,iscostfilter:false})}}/>
-        <button onClick={this.filter}>Go</button>
+        <div className="col-12 col-md-4 p-2" >
+        <h4>Cost</h4>
+        <div className="row" >
+        <div className="col-6 p-2" >
+        <label>Min</label>
         </div>
-        <h1>Products</h1>
-        <div className="d-flex">
+        <div className="col-6 p-2" >
+        <input type="number" value={this.state.min} onChange={(e)=>{this.setState({min:e.target.value,iscostfilter:false})}}/>
+        </div>
+        </div>
+        <div className="row" >
+        <div className="col-6 p-2" >
+        <label>Max</label>
+        </div>
+        <div className="col-6 p-2" >
+        <input type="number" value={this.state.max} onChange={(e)=>{this.setState({max:e.target.value,iscostfilter:false})}}/>
+        </div>
+        </div>
+        <div className="col-4 offset-7">
+                  <Button style={{backgroundColor:"rgb(50,50,50)",color:"floralWhite"}}
+                      onClick={this.filter}>Apply</Button>
+        </div>
+        </div>
+        <h3>Products</h3>
+     <div className="container" >
+      <div className="row p-2">
         {
           this.state.products.length === 0  ? <div>No results found</div>
               :  this.state.products.map((product,i)=>{
-                  return(
-                    <div className="card shadow-lg p-3 m-3 bg-white rounded" key={i} onClick={()=>{this.viewProduct(product)}}>
-                    <img src={`/${product.img}`} style={{width:"180px",height:"180px"}} alt="product-image"></img>
-                    <div>{product.name}</div>
-                    <div>{product.brand}</div>
-                    <div>{product.flavour}</div>
-                    <div>{product.cost}</div>
-                  </div>
-                )})
+        return(
+        <Card  key={i} className="col-5 col-md-2 m-1" onClick={()=>{this.viewProduct(product)}}>
+        <CardImg top width="100%" height="35%" className="p-3" src={`/${product.img}`} alt="product-img" />
+        <CardBody>
+          <CardTitle tag="h5">{product.name}</CardTitle>
+          <CardSubtitle tag="h6" className="mb-2 text-muted">{product.brand}</CardSubtitle>
+          <CardText><div>{product.flavour}</div>
+                    <h5 className="p-3">₹ {product.cost}</h5></CardText>
+        </CardBody>
+      </Card>   
+      )})
         }
+        </div>
+        </div>
         </div>
       </div>
     );

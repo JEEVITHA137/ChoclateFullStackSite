@@ -1,4 +1,8 @@
 import React,{Component} from 'react';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 
 class ProductView extends Component{
   state={
@@ -68,18 +72,26 @@ class ProductView extends Component{
 
   render(){
     return (
-      <div>
-        <h1>Product View</h1>
-        <div onClick={()=>{this.props.history.push('./cart')}}>Cart</div>
-        <img src={`/${this.props.viewproduct.img}`} style={{width:"180px",height:"180px"}} alt="product-image"></img>
-        <div>{this.props.viewproduct.name}</div>
-        <div>{this.props.viewproduct.brand}</div>
-        <div>{this.props.viewproduct.flavour}</div>
-        <div>{this.props.viewproduct.cost}</div>
-        {
-        
-          this.ispresentincart(this.props.viewproduct._id) === true ?<button>In Cart</button> : this.props.viewproduct.quantity !== 0 ? <button onClick={()=>{this.AddCart(this.props.viewproduct)}}>AddtoCart</button> : <div>Out Of Stock</div>
+      <div className="container" >
+        <h3>Product View</h3>
+    <div className="row p-2">
+        <Card className="col-6 col-offset-1 m-1">
+        <CardImg top width="100%" className="p-3" src={`/${this.props.viewproduct.img}`} alt="product-img" />
+        <CardBody>
+          <CardTitle tag="h5">{this.props.viewproduct.name}</CardTitle>
+          <CardSubtitle tag="h6" className="mb-2 text-muted">{this.props.viewproduct.brand}</CardSubtitle>
+          <CardText><div>{this.props.viewproduct.flavour}</div>
+                    <div>{this.props.viewproduct.cost}</div></CardText>
+          {
+          this.ispresentincart(this.props.viewproduct._id) === true ?
+          <Button disabled="true" >In Cart</Button> 
+          : this.props.viewproduct.quantity !== 0 ?
+           <Button onClick={()=>{this.AddCart(this.props.viewproduct)}}>Add to Cart</Button> :
+           <Button disabled="true" >Out of Stock</Button> 
         }
+        </CardBody>
+      </Card>  
+      </div> 
       </div>
     );
   }

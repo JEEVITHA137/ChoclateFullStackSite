@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import {  Button, Form, FormGroup, Label, Input,FormText } from 'reactstrap';
 
 class Signin extends Component{
   state = {
@@ -13,7 +14,7 @@ class Signin extends Component{
   };
 
   submit= (e) =>{
-
+    e.preventDefault();
     let error = 0;
     if(this.state.name==="")
     {
@@ -141,16 +142,57 @@ class Signin extends Component{
 
   render(){
     return (
-      <div>
-        <header>
-          <h1>Signin</h1>
-        </header>
-          <p>Email-Id:<input type="text" value={this.state.mailId} onChange={this.handleEmailChange}/><span>{this.state.EmailError}</span></p>
-          <p>UserName:<input type="text" value={this.state.name} onChange={this.handleNameChange}/><span>{this.state.NameError}</span></p>
-          <p>Password:<input type="text" value={this.state.pass} onChange={this.handlePassChange}/><span>{this.state.PassError}</span></p>
-          <button onClick={this.submit}>Submit</button>
-          <p>Already user?<a href="/login">Login</a></p>
-      </div>
+      <div className="container">
+      <Form className="form" onSubmit={(e) => this.submitForm(e)}>
+          <h3 className="m-2">Signin</h3>
+          <FormGroup row className="p-2">
+              <Label className="col-4 text-center" for="EmailId" ><h5>Email-Id:</h5></Label>
+              <div className="col-8 col-md-6 justify-content-center">
+                  <Input type="string" style={{height:"2rem"}} id="EmailId" placeholder="Give your Email Id"
+                     value={this.state.mailId} onChange={this.handleEmailChange} />
+              </div>
+          </FormGroup>
+          <FormText>
+              {this.state.EmailError}
+          </FormText>
+
+          <FormGroup row className="p-2">
+              <Label className="col-4 text-center" for="Username" ><h5>Username:</h5></Label>
+              <div className="col-8 col-md-6 justify-content-center">
+                  <Input type="string" style={{height:"2rem"}} id="Username" placeholder="Give your Username"
+                     value={this.state.name} onChange={this.handleNameChange}/>
+              </div>
+          </FormGroup>
+          <FormText>
+              {this.state.NameError}
+          </FormText>
+
+          <FormGroup row className="p-2">
+              <Label className="col-4 text-center" for="Password" ><h5>Password:</h5></Label>
+              <div className="col-8 col-md-6 justify-content-center">
+                  <Input type="password" style={{height:"2rem"}} id="Password" placeholder="Give your Password"
+                     value={this.state.pass} onChange={this.handlePassChange} />
+                  <FormText>
+                      {this.state.passError === '' ? null : <h6 style={{color:"floralWhite"}}>{this.state.passError}</h6>}
+                  </FormText>
+              </div>
+          </FormGroup>
+          <FormText>
+          {this.state.PassError}
+          </FormText>
+          <FormText>
+              {this.state.loginError}
+          </FormText>
+          <FormGroup className="row p-2">
+              <div className="col-4 offset-7">
+                  <Button style={{backgroundColor:"rgb(50,50,50)",color:"floralWhite"}}
+                      type = "submit" onClick={this.submit}>Login</Button>
+              </div>
+          </FormGroup>
+          <h5>Already user?<a href="/login"> Login</a></h5>
+      </Form>
+  
+  </div>
     );
   }
 }

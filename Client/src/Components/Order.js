@@ -108,7 +108,7 @@ class Order extends Component{
                   return(
                     product.length !== 0 ? 
                       <div key={i}>
-                        <img src={`/${product[0].img}`} alt="product-image" style={{width:"180px",height:"180px"}} ></img>
+                        <img src={`/${product[0].img}`} alt="product-img" style={{width:"180px",height:"180px"}} ></img>
                         <div>{product[0].name}</div>
                         <div>{product[0].flavour}</div>
                         <div>Quantity : {order.quantity}</div>
