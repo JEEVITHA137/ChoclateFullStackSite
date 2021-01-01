@@ -261,18 +261,18 @@ class Products extends Component{
         </div>
         <h3>Products</h3>
      <div className="container" >
-      <div className="row p-2">
+      <div className="row justify-content-center">
         {
           this.state.products.length === 0  ? <div>No results found</div>
               :  this.state.products.map((product,i)=>{
         return(
-        <Card  key={i} className="col-5 col-md-2 m-1" onClick={()=>{this.viewProduct(product)}}>
-        <CardImg top width="100%" height="35%" className="p-3" src={`/${product.img}`} alt="product-img" />
+        <Card  key={i} className="col-sm-3 m-2 card shadow-lg bg-white text-center" onClick={()=>{this.viewProduct(product)}}>
+        <CardImg top style={{width:"100%",height:"200px"}} className="pt-4" src={`/${product.img}`} alt="product-img" />
         <CardBody>
-          <CardTitle tag="h5">{product.name}</CardTitle>
-          <CardSubtitle tag="h6" className="mb-2 text-muted">{product.brand}</CardSubtitle>
+          <CardTitle>{product.name}</CardTitle>
+          <CardSubtitle className="text-muted">{product.brand}</CardSubtitle>
           <CardText><div>{product.flavour}</div>
-                    <h5 className="p-3">₹ {product.cost}</h5></CardText>
+                    <h5>₹ {product.cost}</h5></CardText>
         </CardBody>
       </Card>   
       )})
