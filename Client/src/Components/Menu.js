@@ -51,7 +51,7 @@ class Menu extends Component{
       <div>   
         <Navbar dark expand="md">
             <div className="container">
-            <NavbarBrand className="mr-auto" onClick={() =>  this.props.history.push("/")} >Ours Choclates</NavbarBrand>
+            <NavbarBrand className="mr-auto" onClick={() =>  this.props.history.push("/")} ><img src="./logo.png" className="logo" alt="Logo"></img></NavbarBrand>
             <NavbarToggler onClick={() => this.toggleNav()} />
             <Collapse isOpen={this.state.isNavOpen} navbar>
             
