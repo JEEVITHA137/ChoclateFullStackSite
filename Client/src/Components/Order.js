@@ -10,10 +10,6 @@ class Order extends Component{
   componentDidMount(){
     if(this.props.emailId !== "")
     {
-      const values = {
-        mailId:this.props.emailId
-      } 
-
       const headers = {
         method:'GET', 
         credentials: 'include'

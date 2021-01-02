@@ -6,8 +6,7 @@ import {
 
 class ProductView extends Component{
   state={
-    cart:[],
-    cartvalue:[]
+    cart:[]
   }
 
   componentDidMount(){
@@ -22,7 +21,8 @@ class ProductView extends Component{
       .then(response=>response.json())
       .then(response=>{
         this.setState({
-          cart:response[0].myCart
+          cart:response[0].myCart,
+          islogin:true
         })
       })
       .catch(err=>console.log(err))
@@ -67,6 +67,10 @@ class ProductView extends Component{
       .then(response=>response.json())
       .then(response=>response)
       .catch(err=>console.log(err))
+    }
+    else{
+      e.quantity=1;
+      this.props.getCart(e);
     }
   }
 
