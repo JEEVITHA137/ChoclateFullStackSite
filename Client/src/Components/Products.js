@@ -259,7 +259,6 @@ class Products extends Component{
                       onClick={this.filter}>Apply</Button>
         </div>
         </div>
-        <h3>Products</h3>
      <div className="container" >
       <div className="row justify-content-center">
         {

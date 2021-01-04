@@ -79,16 +79,20 @@ class Menu extends Component{
       </Collapse>
       </div>
       </Navbar>
+
+      <div className="bg">
             <Route exact path="/signin" render={(props) => <Signin {...props}  getEmail={this.getEmail} />}></Route>
             <Route exact path="/login" render={(props) => <Login {...props}  getEmail={this.getEmail} />}></Route>
+      </div>
             <Route exact path="/"  render={(props) => <Products {...props}  emailId={this.state.emailId} getViewProduct={this.getViewProduct}/>}></Route>
             <Route exact path="/addproducts" render={(props) => <AddProducts {...props}  emailId={this.state.emailId} />}></Route>
-            <Route exact path="/view" render={(props) => <ProductView {...props}  emailId={this.state.emailId}  getCart={this.getCart} viewproduct={this.state.viewproduct}/>}></Route>
+            <Route exact path="/view" render={(props) => <ProductView {...props}  emailId={this.state.emailId} cart={this.state.cart} getCart={this.getCart} viewproduct={this.state.viewproduct}/>}></Route>
             <Route exact path="/cart" render={(props) => <Cart {...props}  emailId={this.state.emailId} cart={this.state.cart}/>}></Route>
             <Route exact path="/profile" render={(props) => <Profile {...props}  emailId={this.state.emailId}/>}></Route>
             <Route exact path="/orders" render={(props) => <Order {...props}  emailId={this.state.emailId}/>}></Route>
             <Route exact path="/adminproducts" render={(props) => <AdminProducts {...props}  emailId={this.state.emailId}/>}></Route>
             <Route exact path="/checkorders" render={(props) => <CheckOrders {...props}  emailId={this.state.emailId}/>}></Route>
+      
       </div>
     );
   }

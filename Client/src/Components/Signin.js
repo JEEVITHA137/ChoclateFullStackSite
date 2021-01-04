@@ -154,7 +154,7 @@ class Signin extends Component{
 
   render(){
     return (
-      <div className="container">
+      <div className="container pt-5">
       <Form className="login" onSubmit={(e) => this.submit(e)}>
           <h3 className="m-2">Signin</h3>
           
@@ -188,8 +188,7 @@ class Signin extends Component{
           </FormGroup>
           <FormGroup className="row p-2">
               <div className="col-4 offset-7">
-                  <Button style={{backgroundColor:"rgb(50,50,50)",color:"floralWhite"}}
-                      type = "submit" onClick={this.submit}>Signin</Button>
+                  <div className="buton" type = "submit" onClick={this.submit}>Signin</div>
               </div>
           </FormGroup>
           <h5>Already user?<a href="/login"> Login</a></h5>
