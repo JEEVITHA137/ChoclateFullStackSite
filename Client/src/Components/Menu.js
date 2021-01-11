@@ -80,10 +80,10 @@ class Menu extends Component{
       </div>
       </Navbar>
 
-      <div className="bg">
+      
             <Route exact path="/signin" render={(props) => <Signin {...props}  getEmail={this.getEmail} />}></Route>
             <Route exact path="/login" render={(props) => <Login {...props}  getEmail={this.getEmail} />}></Route>
-      </div>
+  
             <Route exact path="/"  render={(props) => <Products {...props}  emailId={this.state.emailId} getViewProduct={this.getViewProduct}/>}></Route>
             <Route exact path="/addproducts" render={(props) => <AddProducts {...props}  emailId={this.state.emailId} />}></Route>
             <Route exact path="/view" render={(props) => <ProductView {...props}  emailId={this.state.emailId} cart={this.state.cart} getCart={this.getCart} viewproduct={this.state.viewproduct}/>}></Route>
