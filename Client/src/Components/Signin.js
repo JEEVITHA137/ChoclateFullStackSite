@@ -158,14 +158,14 @@ class Signin extends Component{
       <Form className="login" onSubmit={(e) => this.submit(e)}>
           <h3 className="m-2">Signin</h3>
           
-          <FormText style={{color:"whiite"}}>{this.state.loginError}</FormText>
+          <FormText color="white">{this.state.loginError}</FormText>
 
           <FormGroup row className="p-2">
               <Label className="col-4 text-center" for="EmailId" ><h5>Email-Id:</h5></Label>
               <div className="col-8 col-md-6 justify-content-center">
                   <Input type="string" style={{height:"2rem"}} id="EmailId" placeholder="Give your Email Id"
                      value={this.state.mailId} onChange={this.handleEmailChange} valid={this.state.EmailValid}/>
-                  <FormText>{this.state.EmailError}</FormText>
+                  <FormText color="white">{this.state.EmailError}</FormText>
               </div>
           </FormGroup>
         
@@ -174,7 +174,7 @@ class Signin extends Component{
               <div className="col-8 col-md-6 justify-content-center">
                   <Input type="string" style={{height:"2rem"}} id="Username" placeholder="Give your Username"
                      value={this.state.name} onChange={this.handleNameChange} valid={this.state.NameValid}/>
-                  <FormText>{this.state.NameError}</FormText>
+                  <FormText color="white">{this.state.NameError}</FormText>
               </div>
           </FormGroup>
           
@@ -183,7 +183,7 @@ class Signin extends Component{
               <div className="col-8 col-md-6 justify-content-center">
                   <Input type="password" style={{height:"2rem"}} id="Password" placeholder="Give your Password"
                      value={this.state.pass} onChange={this.handlePassChange}  valid={this.state.PassValid}/>
-                  <FormText>{this.state.PassError}</FormText>
+                  <FormText color="white">{this.state.PassError}</FormText>
               </div>
           </FormGroup>
           <FormGroup className="row p-2">
@@ -191,7 +191,7 @@ class Signin extends Component{
                   <div className="buton" type = "submit" onClick={this.submit}>Signin</div>
               </div>
           </FormGroup>
-          <h5>Already user?<a href="/login"> Login</a></h5>
+          <h5>Already user?<a href="/login" style={{color:"#1a2980"}}> Login</a></h5>
       </Form>
   
   </div>

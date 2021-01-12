@@ -12,6 +12,7 @@ import AdminProducts from './AdminProducts.js';
 import CheckOrders from './CheckOrders.js';
 import {Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem,} from 'reactstrap';
 
+
 class Menu extends Component{
 
   state={
@@ -93,7 +94,18 @@ class Menu extends Component{
             <Route exact path="/adminproducts" render={(props) => <AdminProducts {...props}  emailId={this.state.emailId}/>}></Route>
             <Route exact path="/checkorders" render={(props) => <CheckOrders {...props}  emailId={this.state.emailId}/>}></Route>
       
+            <div className="footer mt-2">
+            <div className="container">       
+              
+                <div className="row justify-content-center">             
+                    <div className="col-auto m-0 mt-2">
+                        <p>Designed by <a href="https://www.linkedin.com/in/jeyansaran620">Jeevitha Venkatesan</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>     
       </div>
+
     );
   }
 }

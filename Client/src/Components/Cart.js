@@ -257,7 +257,7 @@ class Cart extends Component{
   render(){
     return (
       <div className="container background">
-        <h1>Cart</h1>
+        <h3 className="p-2" style={{color:"#0b498f"}}>Cart</h3>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
         <ModalHeader toggle={this.toggle}>You need to login to buy product</ModalHeader>
         <ModalFooter>

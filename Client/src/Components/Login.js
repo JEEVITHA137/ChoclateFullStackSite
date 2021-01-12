@@ -77,14 +77,14 @@ class Login extends Component{
       <Form className="login" onSubmit={(e) => this.submit(e)}>
           <h3 className="m-2" >Login</h3>
 
-          <FormText>{this.state.loginError}</FormText>
+          <FormText color="white">{this.state.loginError}</FormText>
           
           <FormGroup row className="p-2">
-              <Label className="col-4 text-center" for="EmailId" ><h5>Email-Id:</h5></Label>
+              <Label className="col-4 text-center" for="EmailId"  ><h5>Email-Id:</h5></Label>
               <div className="col-8 col-md-6 justify-content-center">
                   <Input type="string" style={{height:"2rem"}} id="EmailId" placeholder="Give your Email Id"
                      value={this.state.mailId} onChange={this.handleEmailChange} />
-                  <FormText>{this.state.EmailError}</FormText>
+                  <FormText color="white">{this.state.EmailError}</FormText>
               </div>
           </FormGroup>
           
@@ -93,7 +93,7 @@ class Login extends Component{
               <div className="col-8 col-md-6 justify-content-center">
                   <Input  type="password" style={{height:"2rem"}} id="Password" placeholder="Give your Password"
                      value={this.state.pass} onChange={this.handlePassChange} />
-                  <FormText className="text-center p-1">{this.state.PassError}</FormText>
+                  <FormText color="white" className="text-center p-1">{this.state.PassError}</FormText>
               </div>
           </FormGroup>
          
@@ -102,9 +102,9 @@ class Login extends Component{
                   <div className="buton" type = "submit" onClick={this.submit}>Login</div>
               </div>
           </FormGroup>
-          <h5>New user?<a href="/signin"> Signin</a></h5>
+          <h5>New user?<a href="/signin" style={{color:"#1a2980"}}> Signin</a></h5>
       </Form>
-  
+      
   </div>
     );
   }

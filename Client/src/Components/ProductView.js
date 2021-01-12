@@ -85,7 +85,7 @@ class ProductView extends Component{
   render(){
     return (
       <div className="container" >
-        <h3 className="mt-3">Product View</h3>
+        <h3 className="mt-3" style={{color:"#0b498f"}}>Product View</h3>
         <div className="row">
         <Card className="col-4 m-2" >
         <CardImg top width="100%" src={`/${this.props.viewproduct.img}`} alt="product-img" />
@@ -97,9 +97,9 @@ class ProductView extends Component{
                     <div>{this.props.viewproduct.cost}</div></CardText>
           {
           this.ispresentincart(this.props.viewproduct._id) === true ?
-          <div disabled="true" className="buton" >In Cart<img src='/images(2).jpeg' alt="cart" className="pl-2" style={{width:"30px",height:"30px"}}></img></div> 
+          <div disabled="true" className="buton" >In Cart<img src='../cart.svg' alt="cart" className="pl-1" style={{width:"40px",height:"40px"}}></img></div> 
           : this.props.viewproduct.quantity !== 0 ?
-           <div className="buton" onClick={()=>{this.AddCart(this.props.viewproduct)}}>Add to Cart<img src='../cart.svg' alt="cart" className="pl-2" style={{width:"30px",height:"30px"}}></img></div> :
+           <div className="buton" onClick={()=>{this.AddCart(this.props.viewproduct)}}>Add to Cart<img src='../cart.svg' alt="cart" className="pl-1" style={{width:"40px",height:"40px"}}></img></div> :
            <div disabled="true" className="buton">Out of Stock</div> 
         }
         </CardBody>

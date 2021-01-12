@@ -7,8 +7,8 @@
 
 .logo
 {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
 }
 
@@ -65,10 +65,11 @@
 
 .login{
   font-family:  'Righteous', cursive;
-  background:  linear-gradient(to left, #c0392b, #8e44ad);
+  background:  linear-gradient(90deg,#1a2980,#26d0ce);
   padding: 10px;
   box-shadow: 10px 10px 5px #aaaaaa;
   text-align: center;
+  color: white;
 }
 
 input{
@@ -82,4 +83,15 @@ input{
   font-size: 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   text-align: center;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(90deg,#1a2980,#26d0ce);         
+}
+
+.text-muted{
+  color: white;
 }

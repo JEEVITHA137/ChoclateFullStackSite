@@ -202,10 +202,10 @@ class Products extends Component{
   render(){
     return (
       <div className="container">
-        <h3 className="mt-3">Filters</h3>
+        <h4 className="mt-3" style={{color:"#0b498f"}}>Filters</h4>
       <div className="row p-2">
         <div className="col-12 col-md-4 p-2" >
-        <h4>Brand</h4>
+        <h5>Brand</h5>
         {
             Object.keys(this.state.brand).map((brands,i)=>{
             return(
@@ -221,7 +221,7 @@ class Products extends Component{
         }
         </div>
         <div className="col-12 col-md-4 p-2" >
-        <h4>Flavour</h4>
+        <h5>Flavour</h5>
         {
           Object.keys(this.state.flavour).map((flavour,i)=>{
             return(
@@ -237,7 +237,7 @@ class Products extends Component{
         }
         </div>
         <div className="col-12 col-md-4 p-2" >
-        <h4>Cost</h4>
+        <h5>Cost</h5>
         <div className="row" >
         <div className="col-6 p-2" >
         <label>Min</label>
@@ -267,10 +267,10 @@ class Products extends Component{
           <Card  key={i}  className="col-md-3 m-3 card shadow bg-white text-center" onClick={()=>{this.viewProduct(product)}}>
           <CardImg top style={{height:"190px"}} src={`/${product.img}`} alt="product-img" />
           <CardBody>
-            <CardTitle tag="h5">{product.name}</CardTitle>
+            <CardTitle tag="h5" style={{color:"#0b498f"}}>{product.name}</CardTitle>
             <CardSubtitle tag="h6" className="text-muted">{product.brand}</CardSubtitle>
             <CardText><div>{product.flavour}</div>
-                      <h5>₹ {product.cost}</h5></CardText>
+                      <h5 style={{color:"#0b498f"}}>₹ {product.cost}</h5></CardText>
           </CardBody>
           </Card>   
         )})
