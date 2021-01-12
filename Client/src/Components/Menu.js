@@ -17,7 +17,8 @@ class Menu extends Component{
   state={
     emailId:"",
     viewproduct:[],
-    isNavOpen: false
+    isNavOpen: false,
+    cart:[]
   };
 
   getEmail = (e) => {
@@ -31,6 +32,14 @@ class Menu extends Component{
       viewproduct:e
     })
   }
+
+  getCart = (e) => {
+    console.log(e)
+    this.setState({
+      cart:[...this.state.cart,e]
+    })
+  }
+
   toggleNav() {
         this.setState({
             isNavOpen: !this.state.isNavOpen
@@ -38,12 +47,11 @@ class Menu extends Component{
     }
 
   render(){
-    console.log(this.state.emailId)
     return (
       <div>   
         <Navbar dark expand="md">
             <div className="container">
-            <NavbarBrand className="mr-auto" onClick={() =>  this.props.history.push("/")} >Ours Choclates</NavbarBrand>
+            <NavbarBrand className="mr-auto" onClick={() =>  this.props.history.push("/")} ><img src="./logo.png" className="logo" alt="Logo"></img></NavbarBrand>
             <NavbarToggler onClick={() => this.toggleNav()} />
             <Collapse isOpen={this.state.isNavOpen} navbar>
             
@@ -60,26 +68,32 @@ class Menu extends Component{
               <NavItem className="m-1"> <Link className="nav-link" to="/profile"> <span className={`fa fa-login fa-md`}></span>  Profile</ Link></NavItem>
               <NavItem className="m-1"> <Link className="nav-link" to="/orders"> <span className={`fa fa-login fa-md`}></span>  Orders</ Link></NavItem>
               <NavItem className="m-1"> <a className="nav-link" href="/"> <span className={`fa fa-login fa-md`}></span> Logout</a></NavItem>
+              <NavItem className="m-1"> <a className="nav-link" href="./"> <span className={`fa fa-login fa-md`}></span>  Logout</ a></NavItem>
               </Nav>
            :
            <Nav navbar className="ml-auto">
+            <NavItem className="m-1"> <Link className="nav-link" to="/cart"> <span className={`fa fa-login fa-md`}></span>  Cart</ Link></NavItem>
             <NavItem className="m-1"> < Link className="nav-link" to="/login"> <span className={`fa fa-login fa-md`}></span>  Login</ Link></NavItem>
-              <NavItem className="m-1"> < Link className="nav-link" to="/signin"> <span className={`fa fa-login fa-md`}></span>  Signin</ Link></NavItem>
-             </Nav>
+            <NavItem className="m-1"> < Link className="nav-link" to="/signin"> <span className={`fa fa-login fa-md`}></span>  Signin</ Link></NavItem>
+           </Nav>
       } 
       </Collapse>
       </div>
       </Navbar>
+s
+      
             <Route exact path="/signin" render={(props) => <Signin {...props}  getEmail={this.getEmail} />}></Route>
             <Route exact path="/login" render={(props) => <Login {...props}  getEmail={this.getEmail} />}></Route>
+  
             <Route exact path="/"  render={(props) => <Products {...props}  emailId={this.state.emailId} getViewProduct={this.getViewProduct}/>}></Route>
             <Route exact path="/addproducts" render={(props) => <AddProducts {...props}  emailId={this.state.emailId} />}></Route>
-            <Route exact path="/view" render={(props) => <ProductView {...props}  emailId={this.state.emailId} viewproduct={this.state.viewproduct}/>}></Route>
-            <Route exact path="/cart" render={(props) => <Cart {...props}  emailId={this.state.emailId}/>}></Route>
+            <Route exact path="/view" render={(props) => <ProductView {...props}  emailId={this.state.emailId} cart={this.state.cart} getCart={this.getCart} viewproduct={this.state.viewproduct}/>}></Route>
+            <Route exact path="/cart" render={(props) => <Cart {...props}  emailId={this.state.emailId} cart={this.state.cart}/>}></Route>
             <Route exact path="/profile" render={(props) => <Profile {...props}  emailId={this.state.emailId}/>}></Route>
             <Route exact path="/orders" render={(props) => <Order {...props}  emailId={this.state.emailId}/>}></Route>
             <Route exact path="/adminproducts" render={(props) => <AdminProducts {...props}  emailId={this.state.emailId}/>}></Route>
             <Route exact path="/checkorders" render={(props) => <CheckOrders {...props}  emailId={this.state.emailId}/>}></Route>
+      
       </div>
     );
   }

@@ -1,37 +1,85 @@
-body {
+*{
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  text-decoration: none;
+  font-family:  'Righteous', cursive;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.logo
+{
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
 }
 
 .navbar-dark {
-  border: 3px solid #C3073F;
-  background-color: #1A1A1D;
-  border-radius: 5px;
-  margin: 2px;
-}
-.navbarbrand {
-  font-size: 2rem;
-  color : rgb(228, 27, 27);
-  font-weight: bold;
+  background:linear-gradient(90deg,#1a2980,#26d0ce);
 }
 
-
-.form
+.bg
 {
-  background-color: #1F2833;
+  background-image: url('./bg.jpg');
+  background-repeat: repeat;
+  position: relative;
+  height: 86.5vh;
+}
+
+.cardbackground
+{
+  background-color: url('./card.jpg');
+}
+
+/* .form
+{
+  background:  linear-gradient(to left, #c0392b, #8e44ad);
   font-size: 0.7rem;
   color: floralwhite;
   margin: 10px;
   border-radius: 5px;
   text-align: center;
   box-shadow: 0 0 0 rgb(0,0,0), 0 0 5px rgb(245, 245, 245),0 0 0 rgb(0,0,0), 0 0 5px rgb(245, 245, 245);
+} */
+
+.buton{
+  background: linear-gradient(90deg,#1a2980,#26d0ce);
+  box-shadow: -2px -2px 3px rgba(30, 161, 179,0.2),
+  3px 3px 3px rgba(0,0,0,0.2);
+  color: white;
+  width: 150px;
+  text-align: center;
+  border-radius: 15px;
+  padding:5px;
+  cursor: pointer;
+}
+
+.buton:hover
+{
+    color: white;
+    background: linear-gradient(90deg, #36e5eb ,#0162c8);
+    text-decoration: none;
+}
+
+.buton:hover{
+  background-color: coral;
+}
+
+.login{
+  font-family:  'Righteous', cursive;
+  background:  linear-gradient(to left, #c0392b, #8e44ad);
+  padding: 10px;
+  box-shadow: 10px 10px 5px #aaaaaa;
+  text-align: center;
+}
+
+input{
+  display: block;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  margin-top: 5px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  text-align: center;
 }

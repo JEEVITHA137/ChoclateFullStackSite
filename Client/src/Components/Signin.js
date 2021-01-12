@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {  Button, Form, FormGroup, Label, Input,FormText } from 'reactstrap';
+import {  Button, Form, FormGroup, Label, Input,FormText} from 'reactstrap';
 
 class Signin extends Component{
   state = {
@@ -11,6 +11,9 @@ class Signin extends Component{
     PassError:"",
     signin:[],
     login:false,
+    EmailValid:"",
+    NameValud:"",
+    PassValid:""
   };
 
   submit= (e) =>{
@@ -38,7 +41,7 @@ class Signin extends Component{
       })
     }
 
-    if(error===0)
+    if(error===0 && this.state.EmailError === "" && this.state.NameError === "" && this.state.PassError === "")
     {
         this.props.getEmail(this.state.mailId);
         
@@ -84,14 +87,17 @@ class Signin extends Component{
     if(this.state.mailId.length<5)
     {
       this.setState({
-      EmailError:"Email must be at the Correct format"
+      EmailError:"Email must be at the Correct format",
+      EmailValid:""
       })
     }
     else {
       this.setState({
-      EmailError:""
+      EmailError:"",
+      EmailValid:"valid"
       })
     }
+
   }
 
   handleNameChange = (e) => {
@@ -102,17 +108,20 @@ class Signin extends Component{
     if(this.state.name.length<4)
     {
       this.setState({
-      NameError:"Username needs to be atleast 5 characters long"
+      NameError:"Username needs to be atleast 5 characters long",
+      NameValid:""
       })
     }
     else if(!(alph.test(this.state.name))){
       this.setState({
-      NameError:"Must be an alphabetics only"
+      NameError:"Must be an alphabetics only",
+      NameValid:"",
       })
     }
     else{
       this.setState({
-      NameError:""
+      NameError:"",
+      NameValid:"valid"
       })
     }
   }
@@ -125,68 +134,61 @@ class Signin extends Component{
     if(this.state.pass.length<6)
     {
       this.setState({
-        PassError:"Must 6 letters"
+        PassError:"Must 6 letters",
+        PassValid:""
       })
     }
     else if(!(passRegex.test(this.state.pass))){
       this.setState({
-        PassError:"Must had Capital,Small and Numeric letters"
+        PassError:"Must had Capital,Small and Numeric letters",
+        PassValid:""
       })
     }
     else {
       this.setState({
-         PassError:""
+         PassError:"",
+         PassValid:"valid"
       })
     }
   }
 
   render(){
     return (
-      <div className="container">
-      <Form className="form" onSubmit={(e) => this.submit(e)}>
+      <div className="container pt-5">
+      <Form className="login" onSubmit={(e) => this.submit(e)}>
           <h3 className="m-2">Signin</h3>
+          
+          <FormText style={{color:"whiite"}}>{this.state.loginError}</FormText>
+
           <FormGroup row className="p-2">
               <Label className="col-4 text-center" for="EmailId" ><h5>Email-Id:</h5></Label>
               <div className="col-8 col-md-6 justify-content-center">
                   <Input type="string" style={{height:"2rem"}} id="EmailId" placeholder="Give your Email Id"
-                     value={this.state.mailId} onChange={this.handleEmailChange} />
+                     value={this.state.mailId} onChange={this.handleEmailChange} valid={this.state.EmailValid}/>
+                  <FormText>{this.state.EmailError}</FormText>
               </div>
           </FormGroup>
-          <FormText>
-              {this.state.EmailError}
-          </FormText>
-
+        
           <FormGroup row className="p-2">
               <Label className="col-4 text-center" for="Username" ><h5>Username:</h5></Label>
               <div className="col-8 col-md-6 justify-content-center">
                   <Input type="string" style={{height:"2rem"}} id="Username" placeholder="Give your Username"
-                     value={this.state.name} onChange={this.handleNameChange}/>
+                     value={this.state.name} onChange={this.handleNameChange} valid={this.state.NameValid}/>
+                  <FormText>{this.state.NameError}</FormText>
               </div>
           </FormGroup>
-          <FormText>
-              {this.state.NameError}
-          </FormText>
-
+          
           <FormGroup row className="p-2">
               <Label className="col-4 text-center" for="Password" ><h5>Password:</h5></Label>
               <div className="col-8 col-md-6 justify-content-center">
                   <Input type="password" style={{height:"2rem"}} id="Password" placeholder="Give your Password"
-                     value={this.state.pass} onChange={this.handlePassChange} />
-                  <FormText>
-                      {this.state.passError === '' ? null : <h6 style={{color:"floralWhite"}}>{this.state.passError}</h6>}
-                  </FormText>
+                     value={this.state.pass} onChange={this.handlePassChange}  valid={this.state.PassValid}/>
+                  <FormText>{this.state.PassError}</FormText>
               </div>
           </FormGroup>
-          <FormText>
-          {this.state.PassError}
-          </FormText>
-          <FormText>
-              {this.state.loginError}
-          </FormText>
           <FormGroup className="row p-2">
               <div className="col-4 offset-7">
-                  <Button style={{backgroundColor:"rgb(50,50,50)",color:"floralWhite"}}
-                      type = "submit" onClick={this.submit}>Login</Button>
+                  <div className="buton" type = "submit" onClick={this.submit}>Signin</div>
               </div>
           </FormGroup>
           <h5>Already user?<a href="/login"> Login</a></h5>

@@ -1,13 +1,12 @@
 import React,{Component} from 'react';
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  CardTitle, CardSubtitle, Input
 } from 'reactstrap';
 
 class ProductView extends Component{
   state={
-    cart:[],
-    cartvalue:[]
+    cart:[]
   }
 
   componentDidMount(){
@@ -22,12 +21,18 @@ class ProductView extends Component{
       .then(response=>response.json())
       .then(response=>{
         this.setState({
-          cart:response[0].myCart
+          cart:response[0].myCart,
+          islogin:true
         })
       })
       .catch(err=>console.log(err))
     }
-
+    else
+    {
+      this.setState({
+        cart:this.props.cart
+      })
+    }
   }
 
   ispresentincart = (e) => {
@@ -68,15 +73,23 @@ class ProductView extends Component{
       .then(response=>response)
       .catch(err=>console.log(err))
     }
+    else{
+      e.quantity=1;
+      this.setState({
+        cart:[...this.state.cart,e]
+      });
+      this.props.getCart(e);
+    }
   }
 
   render(){
     return (
       <div className="container" >
-        <h3>Product View</h3>
-    <div className="row p-2">
-        <Card className="col-6 col-offset-1 m-1">
-        <CardImg top width="100%" className="p-3" src={`/${this.props.viewproduct.img}`} alt="product-img" />
+        <h3 className="mt-3">Product View</h3>
+        <div className="row">
+        <Card className="col-4 m-2" >
+        <CardImg top width="100%" src={`/${this.props.viewproduct.img}`} alt="product-img" />
+        </Card>  
         <CardBody>
           <CardTitle tag="h5">{this.props.viewproduct.name}</CardTitle>
           <CardSubtitle tag="h6" className="mb-2 text-muted">{this.props.viewproduct.brand}</CardSubtitle>
@@ -84,14 +97,15 @@ class ProductView extends Component{
                     <div>{this.props.viewproduct.cost}</div></CardText>
           {
           this.ispresentincart(this.props.viewproduct._id) === true ?
-          <Button disabled="true" >In Cart</Button> 
+          <div disabled="true" className="buton" >In Cart<img src='/images(2).jpeg' alt="cart" className="pl-2" style={{width:"30px",height:"30px"}}></img></div> 
           : this.props.viewproduct.quantity !== 0 ?
-           <Button onClick={()=>{this.AddCart(this.props.viewproduct)}}>Add to Cart</Button> :
-           <Button disabled="true" >Out of Stock</Button> 
+           <div className="buton" onClick={()=>{this.AddCart(this.props.viewproduct)}}>Add to Cart<img src='../cart.svg' alt="cart" className="pl-2" style={{width:"30px",height:"30px"}}></img></div> :
+           <div disabled="true" className="buton">Out of Stock</div> 
         }
         </CardBody>
-      </Card>  
-      </div> 
+        </div> 
+        <p>Reviews</p>
+        <Input type="string" style={{height:"7rem",width:"80%"}} />
       </div>
     );
   }

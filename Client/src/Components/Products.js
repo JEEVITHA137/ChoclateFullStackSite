@@ -201,8 +201,8 @@ class Products extends Component{
 
   render(){
     return (
-      <div className="container ">
-        <h3 >Filters</h3>
+      <div className="container">
+        <h3 className="mt-3">Filters</h3>
       <div className="row p-2">
         <div className="col-12 col-md-4 p-2" >
         <h4>Brand</h4>
@@ -255,18 +255,23 @@ class Products extends Component{
         </div>
         </div>
         <div className="col-4 offset-7">
-                  <Button style={{backgroundColor:"rgb(50,50,50)",color:"floralWhite"}}
-                      onClick={this.filter}>Apply</Button>
+                  <div className="buton" onClick={this.filter}>Apply</div>
         </div>
         </div>
+<<<<<<< HEAD
         <h3>Products</h3>
         <div className="container ">
         <div className=" row d-flex justify-content-center">
  
+=======
+     <div className="container" >
+      <div className="row justify-content-center">
+>>>>>>> 4610be3349f8cb622180ef67887a6aec8f563331
         {
           this.state.products.length === 0  ? <div>No results found</div>
               :  this.state.products.map((product,i)=>{
         return(
+<<<<<<< HEAD
           <Card  key={i}  className="col-md-3 m-3 card shadow bg-white text-center" onClick={()=>{this.viewProduct(product)}}>
           <CardImg top style={{height:"190px"}} src={`/${product.img}`} alt="product-img" />
           <CardBody>
@@ -277,6 +282,18 @@ class Products extends Component{
           </CardBody>
           </Card>   
         )})
+=======
+        <Card  key={i} className="col-8 offset-2 col-sm-3 m-1 card shadow-lg bg-white text-center" onClick={()=>{this.viewProduct(product)}}>
+        <CardImg top style={{width:"100%",height:"200px"}} className="pt-4" src={`/${product.img}`} alt="product-img" />
+        <CardBody>
+          <CardTitle>{product.name}</CardTitle>
+          <CardSubtitle style={{color:"blue"}}>{product.brand}</CardSubtitle>
+          <CardText><p>{product.flavour}</p></CardText>
+          <CardText><p>₹ {product.cost}</p></CardText>
+        </CardBody>
+      </Card>   
+      )})
+>>>>>>> 4610be3349f8cb622180ef67887a6aec8f563331
         }
         </div>
         </div>
