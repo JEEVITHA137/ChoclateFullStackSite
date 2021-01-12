@@ -80,7 +80,6 @@ class Menu extends Component{
       </Collapse>
       </div>
       </Navbar>
-s
       
             <Route exact path="/signin" render={(props) => <Signin {...props}  getEmail={this.getEmail} />}></Route>
             <Route exact path="/login" render={(props) => <Login {...props}  getEmail={this.getEmail} />}></Route>

@@ -15,11 +15,7 @@
     "react-popper": "^2.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
-<<<<<<< HEAD
     "reactstrap": "^8.8.1",
-=======
-    "reactstrap": "^8.7.0",
->>>>>>> 4610be3349f8cb622180ef67887a6aec8f563331
     "web-vitals": "^0.2.4"
   },
   "scripts": {
