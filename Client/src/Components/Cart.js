@@ -1,4 +1,8 @@
 import React,{Component} from 'react';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button, ButtonGroup
+} from 'reactstrap';
 
 class Cart extends Component{
   state={
@@ -209,30 +213,40 @@ class Cart extends Component{
 
   render(){
     return (
-      <div>
+      <div className="container ">
         <h1>Cart</h1>
         <div>{this.state.error}</div>
-        <div className="d-flex">
+        <div className="row p-2">
         {
-          this.state.cart.length === 0  ? <div>Cart is Empty</div>
+          this.state.cart.length === 0  ? <h4>Cart is Empty</h4>
               :  this.state.cart.map((product,i)=>{
                   return(
-                    <div key={i}>
-                    <img src={`/${product.img}`} style={{width:"180px",height:"180px"}} alt="product-img"></img>
-                    <div>{product.name}</div>
-                    <div>{product.brand}</div>
-                    <div>{product.flavour}</div>
-                    <div>{product.cost}</div>
-                    <div className="d-flex">
-                      <button onClick={()=>{this.availablePlus(product._id,i,product.quantity)}}>+</button><div>{product.quantity}</div><button onClick={()=>{this.availableMinus(i,product.quantity)}}>-</button>
-                    </div>
-                    <button onClick={()=>{this.order(product)}}>Buy Now</button><br/>
-                    <button onClick={()=>{this.delete(product)}}>Delete</button>
-                  </div>
+
+                    <Card  key={i} className="col-5 col-md-2 m-1" >
+                    <CardImg top width="100%" height="35%" className="p-3" src={`/${product.img}`} alt="product-img" />
+                    <CardBody>
+                      <CardTitle tag="h5">{product.name}</CardTitle>
+                      <CardSubtitle tag="h6" className="mb-2 text-muted">{product.brand}</CardSubtitle>
+                      <CardText><div>{product.flavour}</div>
+                                <h5 className="p-3">₹ {product.cost}</h5></CardText>
+                        <ButtonGroup className="m-2">
+                        <Button onClick={()=>{this.availableMinus(i,product.quantity)}}>-</Button>
+                        <Button disabled="true">{product.quantity}</Button>
+                        <Button onClick={()=>{this.availablePlus(product._id,i,product.quantity)}}>+</Button>    
+                        </ButtonGroup>
+                        
+                        <ButtonGroup>
+                       
+                        <Button  className="m-1 p-2" onClick={()=>{this.order(product)}}>Buy Now</Button>
+                        <Button  className="m-1 p-2" onClick={()=>{this.delete(product)}}>Delete</Button>
+                        
+                        </ButtonGroup>
+                    </CardBody>
+                  </Card>      
+                  
                 )})
         }
         </div>
-        <div onClick={()=>{this.props.history.push('./orders')}}>Order</div>
       </div>
     );
   }
