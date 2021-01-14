@@ -45,7 +45,7 @@
   box-shadow: -2px -2px 3px rgba(30, 161, 179,0.2),
   3px 3px 3px rgba(0,0,0,0.2);
   color: white;
-  width: 150px;
+  width: 110px;
   text-align: center;
   border-radius: 15px;
   padding:5px;
@@ -59,9 +59,26 @@
     text-decoration: none;
 }
 
-.buton:hover{
-  background-color: coral;
+.buton1{
+  background: linear-gradient(90deg,#1a2980,#26d0ce);
+  box-shadow: -2px -2px 3px rgba(30, 161, 179,0.2),
+  3px 3px 3px rgba(0,0,0,0.2);
+  color: white;
+  width: 35px;
+  text-align: center;
+  border-radius: 20px;
+  padding:5px;
+  cursor: pointer;
 }
+
+.buton1:hover
+{
+    color: white;
+    background: linear-gradient(90deg, #36e5eb ,#0162c8);
+    text-decoration: none;
+}
+
+
 
 .login{
   font-family:  'Righteous', cursive;

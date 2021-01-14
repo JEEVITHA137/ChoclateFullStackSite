@@ -1,4 +1,8 @@
 import React,{Component} from 'react';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, ButtonGroup
+} from 'reactstrap';
 
 class Order extends Component{
   state={
@@ -39,7 +43,6 @@ class Order extends Component{
 
     let product = this.state.orders.filter(p => p.ProductId !== e)
 
-    console.log(product)
     this.setState({
       orders:product
     })
@@ -93,22 +96,25 @@ class Order extends Component{
 
   render(){
     return (
-      <div>
-        <h1>Your Orders</h1>
-        <div className="d-flex">
+      <div className="container">
+        <h4 className="mt-3" style={{color:"#0b498f"}}>Your Orders</h4>
+        <div className="row">
         {
           this.state.orders.length === 0  ? <div>Order is Empty</div>
               :  this.state.orders.map((order,i)=>{
                 let product= this.state.products.filter(p => p._id === order.ProductId)
                   return(
                     product.length !== 0 ? 
-                      <div key={i}>
-                        <img src={`/${product[0].img}`} alt="product-img" style={{width:"180px",height:"180px"}} ></img>
-                        <div>{product[0].name}</div>
-                        <div>{product[0].flavour}</div>
-                        <div>Quantity : {order.quantity}</div>
-                        {order.Tracking !== "delivered" ?<div>{order.Tracking} <button onClick={()=>{this.cancel(order.ProductId,order.quantity)}}>Cancel</button></div>:<div>{order.Tracking}</div>}
-                      </div>
+                      <Card  key={i} className="col-md-3 m-4 card shadow bg-white text-center justify-content-center" >
+                        <CardImg style={{height:"190px"}} className="p-3" src={`/${product[0].img}`} alt="product-img" />
+                        <CardBody>
+                          <CardTitle tag="h5" style={{color:"#0c73c2"}}>{product[0].name}</CardTitle>
+                          <CardSubtitle tag="h6" className="mb-2 text-muted">{product[0].flavour}</CardSubtitle>
+                          <CardText><div>Quantity : {order.quantity}</div>
+                          {order.Tracking !== "delivered" ?<ButtonGroup><div style={{color:"#0b498f"}}>{order.Tracking}<br/> <div className="buton" onClick={()=>{this.cancel(order.ProductId,order.quantity)}}>Cancel</div></div></ButtonGroup>:<div style={{color:"#0b498f"}}>{order.Tracking}</div>}
+                                <h5 className="p-3" style={{color:"#068899"}}>₹ {product[0].cost}</h5></CardText>
+                        </CardBody>
+                      </Card>
                       :<div  key={i}></div>
                 )
              })

@@ -37,6 +37,21 @@ class Cart extends Component{
         })
       })
       .catch(err=>console.log(err))
+
+      fetch( `http://localhost:3000/users/${this.props.emailId}`, headers)
+      .then(response=>response.json())
+      .then(response=>{
+        this.setState({
+          phoneNo:response[0].phoneNo,
+          HouseNo:response[0].address.HouseNo,
+          Street:response[0].address.Street,
+          LandMark:response[0].address.LandMark,
+          Town:response[0].address.Town,
+          District:response[0].address.District,
+          Pincode:response[0].address.Pincode,
+        })
+      })
+      .catch(err=>console.log(err))
     } 
     else{
       this.setState({
@@ -77,21 +92,6 @@ class Cart extends Component{
       })
       .catch(err=>console.log(err))
 
-      fetch( `http://localhost:3000/users/${this.props.emailId}`, headers)
-        .then(response=>response.json())
-        .then(response=>{
-          this.setState({
-            phoneNo:response[0].phoneNo,
-            HouseNo:response[0].address.HouseNo,
-            Street:response[0].address.Street,
-            LandMark:response[0].address.LandMark,
-            Town:response[0].address.Town,
-            District:response[0].address.District,
-            Pincode:response[0].address.Pincode,
-          })
-        })
-        .catch(err=>console.log(err))
-
       this.setState({
         cart:cart
       })
@@ -126,7 +126,7 @@ class Cart extends Component{
     if(this.props.emailId !== "")
     {
       console.log(this.state.Street)
-      if(this.state.Street !== null && this.state.Street !== "")
+      if(this.state.Street !== null || this.state.Street !== "")
       {
         let cartproduct=[];
         cartproduct = this.state.cart.filter(p => p._id !== e._id)
@@ -257,17 +257,17 @@ class Cart extends Component{
   render(){
     return (
       <div className="container background">
-        <h3 className="p-2" style={{color:"#0b498f"}}>Cart</h3>
+        <h4 className="mt-3" style={{color:"#0b498f"}}>Cart</h4>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
         <ModalHeader toggle={this.toggle}>You need to login to buy product</ModalHeader>
         <ModalFooter>
-          <Button  onClick={()=>{this.props.history.push('./login')}}>Login</Button>{' '}
+          <div className="buton"  onClick={()=>{this.props.history.push('./login')}}>Login</div>{' '}
         </ModalFooter>
         </Modal>
         <Modal isOpen={this.state.profilemodal} toggleprofile={this.toggleprofile}>
         <ModalHeader toggleprofile={this.toggleprofile}>Add the address in profile</ModalHeader>
         <ModalFooter>
-          <Button  onClick={()=>{this.props.history.push('./profile')}}>Go to Profile</Button>{' '}
+          <div className="buton"  onClick={()=>{this.props.history.push('./profile')}}>Go to Profile</div>{' '}
         </ModalFooter>
         </Modal>
         <div className="row p-2">
@@ -275,23 +275,22 @@ class Cart extends Component{
           this.state.cart.length === 0  ? <h4>Cart is Empty</h4>
               :  this.state.cart.map((product,i)=>{
                   return(
-
-                    <Card  key={i} className="col-5 col-md-2 m-1" >
-                    <CardImg top width="100%" height="35%" className="p-3" src={`/${product.img}`} alt="product-img" />
+                    <Card  key={i} className="col-md-3 m-3 card shadow bg-white text-center" >
+                    <CardImg style={{height:"190px"}} className="p-3" src={`/${product.img}`} alt="product-img" />
                     <CardBody>
-                      <CardTitle tag="h5">{product.name}</CardTitle>
+                      <CardTitle tag="h5" style={{color:"#0c73c2"}}>{product.name}</CardTitle>
                       <CardSubtitle tag="h6" className="mb-2 text-muted">{product.brand}</CardSubtitle>
                       <CardText><div>{product.flavour}</div>
-                                <h5 className="p-3">₹ {product.cost}</h5></CardText>
+                                <h5 className="p-3" style={{color:"#068899"}}>₹ {product.cost}</h5></CardText>
                         <ButtonGroup className="m-2">
-                        <Button onClick={()=>{this.availableMinus(i,product.quantity)}}>-</Button>
-                        <Button disabled="true">{product.quantity}</Button>
-                        <Button onClick={()=>{this.availablePlus(product._id,i,product.quantity)}}>+</Button>    
+                        <div className="buton1" onClick={()=>{this.availableMinus(i,product.quantity)}}>-</div>
+                        <div className="p-1" style={{color:"#0b498f"}}>{product.quantity}</div>
+                        <div className="buton1" onClick={()=>{this.availablePlus(product._id,i,product.quantity)}}>+</div>    
                         </ButtonGroup>
                         
                         <ButtonGroup>
-                        <Button  className="m-1 p-2" onClick={()=>{this.order(product)}}>Buy Now</Button>
-                        <Button  className="m-1 p-2" onClick={()=>{this.delete(product)}}>Delete</Button>
+                        <div  className="buton m-1 p-2" onClick={()=>{this.order(product)}}>Buy Now</div>
+                        <div  className="buton m-1 p-2" onClick={()=>{this.delete(product)}}>Delete</div>
                         </ButtonGroup>
                     </CardBody>
                   </Card>      

@@ -85,27 +85,27 @@ class ProductView extends Component{
   render(){
     return (
       <div className="container" >
-        <h3 className="mt-3" style={{color:"#0b498f"}}>Product View</h3>
+        <h3 className="mt-3" style={{color:"#0c73c2"}}>Product View</h3>
         <div className="row">
-        <Card className="col-4 m-2" >
-        <CardImg top width="100%" src={`/${this.props.viewproduct.img}`} alt="product-img" />
+        <Card className="col-4 m-2 shadow bg-white " >
+        <CardImg top width="100%" style={{height:"250px"}} src={`/${this.props.viewproduct.img}`} alt="product-img" />
         </Card>  
         <CardBody>
-          <CardTitle tag="h5">{this.props.viewproduct.name}</CardTitle>
+          <CardTitle tag="h5" style={{color:"#068899"}}>{this.props.viewproduct.name}</CardTitle>
           <CardSubtitle tag="h6" className="mb-2 text-muted">{this.props.viewproduct.brand}</CardSubtitle>
           <CardText><div>{this.props.viewproduct.flavour}</div>
-                    <div>{this.props.viewproduct.cost}</div></CardText>
+                    <div style={{color:"#0c73c2"}}>₹ {this.props.viewproduct.cost}</div></CardText>
           {
           this.ispresentincart(this.props.viewproduct._id) === true ?
           <div disabled="true" className="buton" >In Cart<img src='../cart.svg' alt="cart" className="pl-1" style={{width:"40px",height:"40px"}}></img></div> 
           : this.props.viewproduct.quantity !== 0 ?
-           <div className="buton" onClick={()=>{this.AddCart(this.props.viewproduct)}}>Add to Cart<img src='../cart.svg' alt="cart" className="pl-1" style={{width:"40px",height:"40px"}}></img></div> :
+           <div className="buton" onClick={()=>{this.AddCart(this.props.viewproduct)}}>Add to Cart<img src='../cart.svg' alt="cart" style={{width:"30px",height:"30px"}}></img></div> :
            <div disabled="true" className="buton">Out of Stock</div> 
         }
         </CardBody>
         </div> 
         <p>Reviews</p>
-        <Input type="string" style={{height:"7rem",width:"80%"}} />
+        <Input type="string" style={{height:"7rem",width:"80%"}} placeholder="Write Your Reviews" />
       </div>
     );
   }

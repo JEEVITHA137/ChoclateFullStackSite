@@ -68,7 +68,6 @@ class Menu extends Component{
               <NavItem className="m-1"> <Link className="nav-link" to="/cart"> <span className={`fa fa-login fa-md`}></span>  Cart</ Link></NavItem>
               <NavItem className="m-1"> <Link className="nav-link" to="/profile"> <span className={`fa fa-login fa-md`}></span>  Profile</ Link></NavItem>
               <NavItem className="m-1"> <Link className="nav-link" to="/orders"> <span className={`fa fa-login fa-md`}></span>  Orders</ Link></NavItem>
-              <NavItem className="m-1"> <a className="nav-link" href="/"> <span className={`fa fa-login fa-md`}></span> Logout</a></NavItem>
               <NavItem className="m-1"> <a className="nav-link" href="./"> <span className={`fa fa-login fa-md`}></span>  Logout</ a></NavItem>
               </Nav>
            :
@@ -99,7 +98,7 @@ class Menu extends Component{
               
                 <div className="row justify-content-center">             
                     <div className="col-auto m-0 mt-2">
-                        <p>Designed by <a href="https://www.linkedin.com/in/jeyansaran620">Jeevitha Venkatesan</a></p>
+                        <p>Designed by <a href="https://www.linkedin.com/in/jeevithavenkatesan137"  style={{color:"#0b498f"}}>Jeevitha Venkatesan</a></p>
                     </div>
                 </div>
             </div>
