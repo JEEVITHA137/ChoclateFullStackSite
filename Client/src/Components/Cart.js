@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, ButtonGroup,
+  CardTitle, CardSubtitle, ButtonGroup,
   Modal,ModalHeader,ModalFooter
 } from 'reactstrap';
 
@@ -17,7 +17,7 @@ class Cart extends Component{
     Pincode:"",
     phoneNo:"",
     modal:false,
-    profilemodal:false,
+    profilemodal:false
   }
 
 
@@ -126,8 +126,9 @@ class Cart extends Component{
     if(this.props.emailId !== "")
     {
       console.log(this.state.Street)
-      if(this.state.Street !== null || this.state.Street !== "")
+      if(this.state.Street !== null && this.state.Street !== "")
       {
+
         let cartproduct=[];
         cartproduct = this.state.cart.filter(p => p._id !== e._id)
 
@@ -275,7 +276,7 @@ class Cart extends Component{
           this.state.cart.length === 0  ? <h4>Cart is Empty</h4>
               :  this.state.cart.map((product,i)=>{
                   return(
-                    <Card  key={i} className="col-md-3 m-3 card shadow bg-white text-center" >
+                    <Card  key={i} className="col-md-3 m-4 card shadow bg-white text-center" >
                     <CardImg style={{height:"190px"}} className="p-3" src={`/${product.img}`} alt="product-img" />
                     <CardBody>
                       <CardTitle tag="h5" style={{color:"#0c73c2"}}>{product.name}</CardTitle>

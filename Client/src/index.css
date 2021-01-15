@@ -78,8 +78,6 @@
     text-decoration: none;
 }
 
-
-
 .login{
   font-family:  'Righteous', cursive;
   background:  linear-gradient(90deg,#1a2980,#26d0ce);
@@ -100,6 +98,18 @@ input{
   font-size: 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   text-align: center;
+}
+
+.profile label{
+  font-size: 17px;
+  color: #0162c8;
+}
+
+.profile input{
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  color: #26d0ce;
 }
 
 .footer {

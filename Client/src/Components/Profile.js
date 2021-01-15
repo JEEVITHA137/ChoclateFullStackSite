@@ -102,81 +102,79 @@ class Profile extends Component{
           <h4 className=" col-8" style={{color:"#0b498f"}}>Profile</h4>
           {this.state.edit
                   ? null :
-          <div className="buton  text-center"
+          <div className="buton" 
                   onClick={this.editProfile}>Edit Profile</div>}
         </div>
           {this.state.edit
              ? 
-             <Card  className="col-10 m-1 card shadow bg-white">
+             <Card  className="col-10 profile card shadow bg-white">
                 <Form className="form" onSubmit={(e) => this.uploadProfile(e)}>
 
-                    <h3 className="m-2">Edit Profile</h3>
-                    <FormGroup row className="p-2">
-                        <Label className="col-4 text-center" for="UName" ><h5>Name:</h5></Label>
+                    <h4 className="p-2" style={{color:"#0b498f"}}>Edit Profile</h4>
+                    <FormGroup row >
+                        <Label className="col-4 text-center" for="UName" >Name:</Label>
                         <div className="col-8 col-md-6 justify-content-center">
                             <Input type="string" style={{height:"2rem"}} id="EmailUNameId" placeholder="Give your Name"
                               value={this.state.name} onChange={(e)=>{this.setState({name:e.target.value})}}/>
                         </div>
                     </FormGroup>
-                    <h6>Address: </h6>
-
-                    <FormGroup row className="p-2">
-                        <Label className="col-4 text-center" for="HNo" ><h5>HouseNo/FlatNo</h5></Label>
+                    <FormGroup row >
+                        <Label className="col-4 text-center" for="HNo" >HouseNo/FlatNo</Label>
                         <div className="col-8 col-md-6 justify-content-center">
                             <Input type="string" style={{height:"2rem"}} id="HNo" placeholder="Give your Flat No"
                             value={this.state.HouseNo} onChange={(e)=>{this.setState({HouseNo:e.target.value})}}/>
                         </div>
                     </FormGroup>
                     
-                    <FormGroup row className="p-2">
-                        <Label className="col-4 text-center" for="Street" ><h5>Street</h5></Label>
+                    <FormGroup row >
+                        <Label className="col-4 text-center" for="Street" >Street</Label>
                         <div className="col-8 col-md-6 justify-content-center">
                             <Input type="string" style={{height:"2rem"}} id="Street" placeholder="Give your Street"
                             value={this.state.Street} onChange={(e)=>{this.setState({Street:e.target.value})}}/>
                         </div>
                     </FormGroup>
 
-                    <FormGroup row className="p-2">
-                        <Label className="col-4 text-center" for="LandMark" ><h5>LandMark</h5></Label>
+                    <FormGroup row>
+                        <Label className="col-4 text-center" for="LandMark" >LandMark</Label>
                         <div className="col-8 col-md-6 justify-content-center">
                             <Input type="string" style={{height:"2rem"}} id="LandMark" placeholder="Give your LandMark"
                             value={this.state.LandMark} onChange={(e)=>{this.setState({LandMark:e.target.value})}}/>
                         </div>
                     </FormGroup>
 
-                    <FormGroup row className="p-2">
-                        <Label className="col-4 text-center" for="Town" ><h5>Town</h5></Label>
+                    <FormGroup row>
+                        <Label className="col-4 text-center" for="Town" >Town</Label>
                         <div className="col-8 col-md-6 justify-content-center">
                             <Input type="string" style={{height:"2rem"}} id="Town" placeholder="Give your Town"
                             value={this.state.Town} onChange={(e)=>{this.setState({Town:e.target.value})}}/>
                         </div>
                     </FormGroup>
 
-                    <FormGroup row className="p-2">
-                        <Label className="col-4 text-center" for="District" ><h5>District</h5></Label>
+                    <FormGroup row>
+                        <Label className="col-4 text-center" for="District" >District</Label>
                         <div className="col-8 col-md-6 justify-content-center">
                             <Input type="string" style={{height:"2rem"}} id="District" placeholder="Give your District"
                             value={this.state.District} onChange={(e)=>{this.setState({District:e.target.value})}}/>
                         </div>
                     </FormGroup>
 
-                    <FormGroup row className="p-2">
-                        <Label className="col-4 text-center" for="Pincode" ><h5>Pincode</h5></Label>
+                    <FormGroup row >
+                        <Label className="col-4 text-center" for="Pincode" >Pincode</Label>
                         <div className="col-8 col-md-6 justify-content-center">
                             <Input type="string" style={{height:"2rem"}} id="Pincode" placeholder="Give your Pincode"
                           value={this.state.Pincode} onChange={(e)=>{this.setState({Pincode:e.target.value})}}/>
                         </div>
                     </FormGroup>
 
-                    <FormGroup row className="p-2">
-                        <Label className="col-4 text-center" for="phoneNo" ><h5>phoneNo</h5></Label>
+                    <FormGroup row >
+                        <Label className="col-4 text-center" for="phoneNo" >PhoneNo</Label>
                         <div className="col-8 col-md-6 justify-content-center">
                             <Input type="string" style={{height:"2rem"}} id="phoneNo" placeholder="Give your phoneNo"
                           value={this.state.phoneNo} onChange={(e)=>{this.setState({phoneNo:e.target.value})}}/>
                         </div>
                     </FormGroup>
                     <FormText><h5>{this.state.error}</h5></FormText>
-                    <FormGroup className="row p-2">
+                    <FormGroup className="row p-1">
                         <div className="col-4 offset-7">
                             <div className="buton"
                                 type = "submit" onClick={(e) => this.uploadProfile(e)}>Update</div>
@@ -187,20 +185,20 @@ class Profile extends Component{
              : 
 
              <Card  className="col-10 m-1 card shadow bg-white">
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Name : </div> <div style={{color:"#068899"}}>{this.state.name}</div></div>
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Email-Id : </div> <div style={{color:"#068899"}}>{this.state.mailId}</div></div>
+               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Name : </div><div className="pl-2" style={{color:"#068899"}}>{this.state.name}</div></div>
+               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Email-Id : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.mailId}</div></div>
 
-               <h5 className="row p-2 m-1 text-center" style={{color:"#0b498f"}}>Address: </h5>
+               <h5 className="row p-2 m-1 text-center" style={{color:"#0b498f"}}>Address</h5>
 
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>HouseNo/FlatNo : </div> <div style={{color:"#068899"}}>{this.state.HouseNo}</div></div>
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Street : </div> <div style={{color:"#068899"}}>{this.state.Street}</div></div>
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>LandMark : </div> <div style={{color:"#068899"}}>{this.state.LandMark}</div></div>
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Town : </div> <div style={{color:"#068899"}}>{this.state.Town}</div></div>
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>District : </div> <div style={{color:"#068899"}}>{this.state.District}</div></div>
-               {this.state.Pincode !==0 ? <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Pincode : </div> <div style={{color:"#068899"}}>{this.state.Pincode}</div></div>:
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Pincode : </div> <div style={{color:"#068899"}}>-</div></div>}
-                 {this.state.phoneNo !==0 ? <div className="row p-2 m-1" > <div style={{color:"#0b498f"}}>PhoneNo : </div> <div style={{color:"#068899"}}>{this.state.phoneNo}</div></div>:
-                      <div className="row p-2 m-1" > <div style={{color:"#0b498f"}}>PhoneNo : </div> <div style={{color:"#068899"}}>-</div></div>}
+               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>HouseNo/FlatNo : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.HouseNo}</div></div>
+               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Street : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.Street}</div></div>
+               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>LandMark : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.LandMark}</div></div>
+               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Town : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.Town}</div></div>
+               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>District : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.District}</div></div>
+               {this.state.Pincode !==0 ? <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Pincode : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.Pincode}</div></div>:
+               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Pincode : </div> <div className="pl-2" style={{color:"#068899"}}>-</div></div>}
+                 {this.state.phoneNo !==0 ? <div className="row p-2 m-1" > <div style={{color:"#0b498f"}}>PhoneNo : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.phoneNo}</div></div>:
+                      <div className="row p-2 m-1" > <div style={{color:"#0b498f"}}>PhoneNo : </div> <div className="pl-2" style={{color:"#068899"}}>-</div></div>}
 
                 </Card>
           }

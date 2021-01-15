@@ -62,6 +62,7 @@ class Menu extends Component{
               <NavItem className="m-1"> < Link className="nav-link" to="/adminproducts"> <span className={`fa fa-login fa-md`}></span>  Products</ Link></NavItem>
               <NavItem className="m-1"> < Link className="nav-link" to="/checkorders"> <span className={`fa fa-login fa-md`}></span>  Check Orders</ Link></NavItem>
               <NavItem className="m-1"> < Link className="nav-link" to="/addproducts"> <span className={`fa fa-login fa-md`}></span> Add Product</ Link></NavItem>
+              <NavItem className="m-1"> <a className="nav-link" href="./"> <span className={`fa fa-login fa-md`}></span>  Logout</ a></NavItem>
              </Nav>
             :<Nav navbar className="ml-auto">
               <NavItem className="m-1"> <Link className="nav-link" to="/"> <span className={`fa fa-login fa-md`}></span> Products</ Link></NavItem>

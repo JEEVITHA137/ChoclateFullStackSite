@@ -25,7 +25,8 @@ const productSchema = new Schema({
     img:{
         type: String,
         required: true
-    }
+    },
+    reviews:[]
 });
 
 var Products = mongoose.model('Products',productSchema);
