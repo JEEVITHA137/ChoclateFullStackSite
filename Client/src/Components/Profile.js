@@ -1,7 +1,5 @@
 import React,{Component} from 'react';
-import {
-  Card, Button, Form, FormGroup, Label, Input,FormText
-} from 'reactstrap';
+import {Card, Form, FormGroup, Label, Input,FormText} from 'reactstrap';
 
 class Profile extends Component{
   state = {

@@ -1,8 +1,5 @@
 import React,{Component} from 'react';
-import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle
-} from 'reactstrap';
+import {Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle} from 'reactstrap';
 
 class Products extends Component{
 
@@ -25,7 +22,7 @@ class Products extends Component{
         credentials: 'include'
     };
               
-    fetch( `http://localhost:3000/products`, headers)
+    fetch( `https://choclatesite.herokuapp.com/products`, headers)
       .then(response=>response.json())
       .then(response=>{
         this.setState({
