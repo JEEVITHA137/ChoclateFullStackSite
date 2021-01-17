@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {  Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {  Form, FormGroup, Label, Input } from 'reactstrap';
 
 class AddProduct extends Component{
 
@@ -29,7 +29,7 @@ class AddProduct extends Component{
         body: imageFormObj
     };
 
-    fetch( `http://localhost:3000/products/`,headers)
+    fetch( `https://choclatesite.herokuapp.com/products/`,headers)
     .then(response=>response.json())
     .catch(err=>console.log(err))
 

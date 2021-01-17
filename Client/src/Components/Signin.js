@@ -62,12 +62,11 @@ class Signin extends Component{
 
         const headers = {
           method:'POST', 
-          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(values)
         };
 
-    fetch( `http://localhost:3000/users`, headers)
+    fetch( `https://choclatesite.herokuapp.com/users`, headers)
         .then(response=>response.json())
         .catch((err)=>{
         console.log(err)

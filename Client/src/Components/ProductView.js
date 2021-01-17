@@ -13,11 +13,10 @@ class ProductView extends Component{
     if(this.props.emailId !== "")
     {
       const headers = {
-        method:'GET', 
-        credentials: 'include'
+        method:'GET'
       };
   
-      fetch( `http://localhost:3000/users/${this.props.emailId}`, headers)
+      fetch( `https://choclatesite.herokuapp.com/users/${this.props.emailId}`, headers)
       .then(response=>response.json())
       .then(response=>{
         this.setState({
@@ -63,12 +62,11 @@ class ProductView extends Component{
 
       const headers = {
         method:'PUT', 
-        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values)
       };
   
-      fetch( `http://localhost:3000/users/addtocart`, headers)
+      fetch( `https://choclatesite.herokuapp.com/users/addtocart`, headers)
       .then(response=>response.json())
       .then(response=>response)
       .catch(err=>console.log(err))

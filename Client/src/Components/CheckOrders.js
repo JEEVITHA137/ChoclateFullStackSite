@@ -9,11 +9,10 @@ class CheckOrders extends Component{
 
   componentDidMount(){
     const headers = {
-        method:'GET', 
-        credentials: 'include'
+        method:'GET'
     };
               
-    fetch( `http://localhost:3000/order/`, headers)
+    fetch( `https://choclatesite.herokuapp.com/order/`, headers)
       .then(response=>response.json())
       .then(response=>{
         this.setState({
@@ -44,7 +43,7 @@ class CheckOrders extends Component{
       body: JSON.stringify(values)
     };
 
-    fetch( `http://localhost:3000/order`, headers)
+    fetch( `https://choclatesite.herokuapp.com/order`, headers)
     .then(response=>response.json())
     .then(response=>response)
     .catch(err=>console.log(err))

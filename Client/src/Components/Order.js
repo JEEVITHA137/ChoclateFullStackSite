@@ -15,11 +15,10 @@ class Order extends Component{
     if(this.props.emailId !== "")
     {
       const headers = {
-        method:'GET', 
-        credentials: 'include'
+        method:'GET'
       };
 
-      fetch( `http://localhost:3000/order/${this.props.emailId}`, headers)
+      fetch( `https://choclatesite.herokuapp.com/order/${this.props.emailId}`, headers)
         .then(response=>response.json())
         .then(response=>{
           this.setState({
@@ -28,7 +27,7 @@ class Order extends Component{
         })
         .catch(err=>console.log(err))
 
-      fetch( `http://localhost:3000/products`, headers)
+      fetch( `https://choclatesite.herokuapp.com/products`, headers)
         .then(response=>response.json())
         .then(response=>{
           this.setState({
@@ -59,7 +58,7 @@ class Order extends Component{
       body: JSON.stringify(values)
     };
 
-    fetch( `http://localhost:3000/order`, headers)
+    fetch( `https://choclatesite.herokuapp.com/order`, headers)
     .then(response=>response)
     .catch(err=>console.log(err))
 
@@ -73,7 +72,7 @@ class Order extends Component{
       quantity:0
     }
 
-    fetch( `http://localhost:3000/products/${e}`, quantityOfHeaders)
+    fetch( `https://choclatesite.herokuapp.com/products/${e}`, quantityOfHeaders)
     .then(response=>response.json())
     .then(response=>{
         quantityValues.quantity = response[0].quantity+quantity
@@ -85,7 +84,7 @@ class Order extends Component{
           body:JSON.stringify(quantityValues)
         };
 
-        fetch( `http://localhost:3000/products/`, quantityHeaders)
+        fetch( `https://choclatesite.herokuapp.com/products/`, quantityHeaders)
         .then(response=>response.json())
         .then(response=>response)
         .catch(err=>console.log(err))

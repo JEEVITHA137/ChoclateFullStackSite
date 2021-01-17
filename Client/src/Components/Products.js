@@ -18,8 +18,7 @@ class Products extends Component{
 
   componentDidMount(){
     const headers = {
-        method:'GET', 
-        credentials: 'include'
+        method:'GET'
     };
               
     fetch( `https://choclatesite.herokuapp.com/products`, headers)
@@ -32,7 +31,7 @@ class Products extends Component{
       })
       .catch(err=>console.log(err))
 
-    fetch( `http://localhost:3000/products/brands`, headers)
+    fetch( `https://choclatesite.herokuapp.com/products/brands`, headers)
     .then(response=>response.json())  
     .then(response=>{
         let brand={};
@@ -47,7 +46,7 @@ class Products extends Component{
       })
     .catch(err=>console.log(err))
 
-    fetch( `http://localhost:3000/products/flavour`, headers)
+    fetch( `https://choclatesite.herokuapp.com/products/flavour`, headers)
     .then(response=>response.json())  
     .then(response=>{
       let flavour={};

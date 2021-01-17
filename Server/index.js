@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
-app.use(cors({credentials: true}));
+app.use(cors());
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -35,7 +35,7 @@ app.use('/order', OrderRouter);
 const ProductRouter = require('./routes/ProductRouter');
 app.use('/products', ProductRouter);
 
-const UserRouter = require('./routes/userRouter');
+const UserRouter = require('./routes/UserRouter');
 app.use('/users', UserRouter);
 
 

@@ -12,11 +12,10 @@ class AdminProducts extends Component{
 
   componentDidMount(){
     const headers = {
-        method:'GET', 
-        credentials: 'include'
+        method:'GET'
     };
               
-    fetch( `http://localhost:3000/products`, headers)
+    fetch( `https://choclatesite.herokuapp.com/products`, headers)
       .then(response=>response.json())
       .then(response=>{
         this.setState({
@@ -38,7 +37,7 @@ class AdminProducts extends Component{
       quantity:0
     }
 
-    fetch( `http://localhost:3000/products/${id}`, quantityHeaders)
+    fetch( `https://choclatesite.herokuapp.com/products/${id}`, quantityHeaders)
     .then(response=>response.json())
     .then(response=>{
       if(isplus)
@@ -56,7 +55,7 @@ class AdminProducts extends Component{
           body:JSON.stringify(quantityValues)
         };
 
-        fetch( `http://localhost:3000/products/`, quantityHeaders)
+        fetch( `https://choclatesite.herokuapp.com/products/`, quantityHeaders)
         .then(response=>response.json())
         .then(response=>response)
         .catch(err=>console.log(err))
