@@ -3,6 +3,7 @@ import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle,ButtonGroup
 } from 'reactstrap';
+import { hostname } from './hostname';
 
 class AdminProducts extends Component{
 
@@ -15,7 +16,7 @@ class AdminProducts extends Component{
         method:'GET'
     };
               
-    fetch( `https://choclatesite.herokuapp.com/products`, headers)
+    fetch( `${hostname}products`, headers)
       .then(response=>response.json())
       .then(response=>{
         this.setState({
@@ -37,7 +38,7 @@ class AdminProducts extends Component{
       quantity:0
     }
 
-    fetch( `https://choclatesite.herokuapp.com/products/${id}`, quantityHeaders)
+    fetch( `${hostname}products/${id}`, quantityHeaders)
     .then(response=>response.json())
     .then(response=>{
       if(isplus)
@@ -55,7 +56,7 @@ class AdminProducts extends Component{
           body:JSON.stringify(quantityValues)
         };
 
-        fetch( `https://choclatesite.herokuapp.com/products/`, quantityHeaders)
+        fetch( `${hostname}products/`, quantityHeaders)
         .then(response=>response.json())
         .then(response=>response)
         .catch(err=>console.log(err))

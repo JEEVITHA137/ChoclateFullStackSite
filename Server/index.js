@@ -22,7 +22,7 @@ const connect = mongoose.connect(url,{
     useUnifiedTopology: true,
     useCreateIndex: true,
     useNewUrlParser: true
-  });
+});
 
 connect.then(() => {
     console.log('Connected correctly to server');

@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import { hostname } from './hostname';
 
 class CheckOrders extends Component{
 
@@ -12,7 +13,7 @@ class CheckOrders extends Component{
         method:'GET'
     };
               
-    fetch( `https://choclatesite.herokuapp.com/order/`, headers)
+    fetch( `${hostname}order/`, headers)
       .then(response=>response.json())
       .then(response=>{
         this.setState({
@@ -43,7 +44,7 @@ class CheckOrders extends Component{
       body: JSON.stringify(values)
     };
 
-    fetch( `https://choclatesite.herokuapp.com/order`, headers)
+    fetch( `${hostname}order`, headers)
     .then(response=>response.json())
     .then(response=>response)
     .catch(err=>console.log(err))

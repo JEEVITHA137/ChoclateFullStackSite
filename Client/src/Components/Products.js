@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle} from 'reactstrap';
+import { hostname } from './hostname';
 
 class Products extends Component{
 
@@ -21,7 +22,7 @@ class Products extends Component{
         method:'GET'
     };
               
-    fetch( `https://choclatesite.herokuapp.com/products`, headers)
+    fetch( `${hostname}products`, headers)
       .then(response=>response.json())
       .then(response=>{
         this.setState({
@@ -31,7 +32,7 @@ class Products extends Component{
       })
       .catch(err=>console.log(err))
 
-    fetch( `https://choclatesite.herokuapp.com/products/brands`, headers)
+    fetch( `${hostname}products/brands`, headers)
     .then(response=>response.json())  
     .then(response=>{
         let brand={};
@@ -46,7 +47,7 @@ class Products extends Component{
       })
     .catch(err=>console.log(err))
 
-    fetch( `https://choclatesite.herokuapp.com/products/flavour`, headers)
+    fetch( `${hostname}products/flavour`, headers)
     .then(response=>response.json())  
     .then(response=>{
       let flavour={};

@@ -4,6 +4,7 @@ import {
   CardTitle, CardSubtitle, ButtonGroup,
   Modal,ModalHeader,ModalFooter
 } from 'reactstrap';
+import { hostname } from './hostname';
 
 class Cart extends Component{
   state={
@@ -28,7 +29,7 @@ class Cart extends Component{
         method:'GET'
       };
   
-      fetch( `https://choclatesite.herokuapp.com/users/${this.props.emailId}`, headers)
+      fetch( `${hostname}users/${this.props.emailId}`, headers)
       .then(response=>response.json())
       .then(response=>{
         this.setState({
@@ -37,7 +38,7 @@ class Cart extends Component{
       })
       .catch(err=>console.log(err))
 
-      fetch( `https://choclatesite.herokuapp.com/users/${this.props.emailId}`, headers)
+      fetch( `${hostname}users/${this.props.emailId}`, headers)
       .then(response=>response.json())
       .then(response=>{
         this.setState({
@@ -80,7 +81,7 @@ class Cart extends Component{
         method:'GET'
       };
 
-      fetch( `https://choclatesite.herokuapp.com/products/${id}`, headers)
+      fetch( `${hostname}products/${id}`, headers)
       .then(response=>response.json())
       .then(response=>{
         if(quantity+1 <= response[0].quantity)
@@ -157,7 +158,7 @@ class Cart extends Component{
           body:JSON.stringify(values)
         };
 
-        fetch( `https://choclatesite.herokuapp.com/order/`, headers)
+        fetch( `${hostname}order/`, headers)
         .then(response=>response.json())
         .then(response=>response)
         .catch(err=>console.log(err))
@@ -174,7 +175,7 @@ class Cart extends Component{
           body: JSON.stringify(cartValues)
         };
 
-        fetch( `https://choclatesite.herokuapp.com/users/addtocart`, cartHeaders)
+        fetch( `${hostname}users/addtocart`, cartHeaders)
         .then(response=>response.json())
         .then(response=>response)
         .catch(err=>console.log(err))
@@ -189,7 +190,7 @@ class Cart extends Component{
           quantity:0
         }
 
-        fetch( `https://choclatesite.herokuapp.com/products/${e._id}`, quantityHeaders)
+        fetch( `${hostname}products/${e._id}`, quantityHeaders)
         .then(response=>response.json())
         .then(response=>{
             quantityValues.quantity = response[0].quantity-e.quantity
@@ -201,7 +202,7 @@ class Cart extends Component{
               body:JSON.stringify(quantityValues)
             };
 
-            fetch( `https://choclatesite.herokuapp.com/products/`, quantityHeaders)
+            fetch( `${hostname}products/`, quantityHeaders)
             .then(response=>response.json())
             .then(response=>response)
             .catch(err=>console.log(err))
@@ -241,7 +242,7 @@ class Cart extends Component{
         body: JSON.stringify(cartValues)
       };
 
-      fetch( `https://choclatesite.herokuapp.com/users/addtocart`, cartHeaders)
+      fetch( `${hostname}users/addtocart`, cartHeaders)
       .then(response=>response.json())
       .then(response=>response)
       .catch(err=>console.log(err))

@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import { Form, FormGroup, Label, Input,FormText} from 'reactstrap';
+import { hostname } from './hostname';
 
 class Signin extends Component{
   state = {
@@ -66,7 +67,7 @@ class Signin extends Component{
           body: JSON.stringify(values)
         };
 
-    fetch( `https://choclatesite.herokuapp.com/users`, headers)
+    fetch( `${hostname}users`, headers)
         .then(response=>response.json())
         .catch((err)=>{
         console.log(err)

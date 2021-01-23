@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
 import {Form, FormGroup, Label, Input,FormText } from 'reactstrap';
+import { hostname } from './hostname';
+
 class Login extends Component{
   state = {
     mailId:"",
@@ -32,11 +34,10 @@ class Login extends Component{
     if(error === 0)
     {
         const headers = {
-          method:'GET', 
-          credentials: 'include'
+          method:'GET'
         };
           
-        fetch( `https://choclatesite.herokuapp.com/users/${this.state.mailId}/${this.state.pass}`, headers)
+        fetch( `${hostname}users/${this.state.mailId}/${this.state.pass}`, headers)
           .then(response=>response.json())
           .then(response=>{
             if(response.length > 0)

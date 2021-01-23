@@ -3,6 +3,7 @@ import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, ButtonGroup
 } from 'reactstrap';
+import { hostname } from './hostname';
 
 class Order extends Component{
   state={
@@ -18,7 +19,7 @@ class Order extends Component{
         method:'GET'
       };
 
-      fetch( `https://choclatesite.herokuapp.com/order/${this.props.emailId}`, headers)
+      fetch( `${hostname}order/${this.props.emailId}`, headers)
         .then(response=>response.json())
         .then(response=>{
           this.setState({
@@ -27,7 +28,7 @@ class Order extends Component{
         })
         .catch(err=>console.log(err))
 
-      fetch( `https://choclatesite.herokuapp.com/products`, headers)
+      fetch( `${hostname}products`, headers)
         .then(response=>response.json())
         .then(response=>{
           this.setState({
@@ -58,7 +59,7 @@ class Order extends Component{
       body: JSON.stringify(values)
     };
 
-    fetch( `https://choclatesite.herokuapp.com/order`, headers)
+    fetch( `${hostname}order`, headers)
     .then(response=>response)
     .catch(err=>console.log(err))
 
@@ -72,7 +73,7 @@ class Order extends Component{
       quantity:0
     }
 
-    fetch( `https://choclatesite.herokuapp.com/products/${e}`, quantityOfHeaders)
+    fetch( `${hostname}products/${e}`, quantityOfHeaders)
     .then(response=>response.json())
     .then(response=>{
         quantityValues.quantity = response[0].quantity+quantity
@@ -84,7 +85,7 @@ class Order extends Component{
           body:JSON.stringify(quantityValues)
         };
 
-        fetch( `https://choclatesite.herokuapp.com/products/`, quantityHeaders)
+        fetch( `${hostname}products/`, quantityHeaders)
         .then(response=>response.json())
         .then(response=>response)
         .catch(err=>console.log(err))

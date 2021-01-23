@@ -3,6 +3,7 @@ import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Input
 } from 'reactstrap';
+import { hostname } from './hostname';
 
 class ProductView extends Component{
   state={
@@ -16,7 +17,7 @@ class ProductView extends Component{
         method:'GET'
       };
   
-      fetch( `https://choclatesite.herokuapp.com/users/${this.props.emailId}`, headers)
+      fetch( `${hostname}users/${this.props.emailId}`, headers)
       .then(response=>response.json())
       .then(response=>{
         this.setState({
@@ -66,7 +67,7 @@ class ProductView extends Component{
         body: JSON.stringify(values)
       };
   
-      fetch( `https://choclatesite.herokuapp.com/users/addtocart`, headers)
+      fetch( `${hostname}users/addtocart`, headers)
       .then(response=>response.json())
       .then(response=>response)
       .catch(err=>console.log(err))

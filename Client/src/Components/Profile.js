@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import { hostname } from './hostname';
 import {Card, Form, FormGroup, Label, Input,FormText} from 'reactstrap';
 
 class Profile extends Component{
@@ -24,7 +25,7 @@ class Profile extends Component{
         method:'GET'
       };
 
-      fetch( `https://choclatesite.herokuapp.com/users/${this.props.emailId}`, headers)
+      fetch( `${hostname}users/${this.props.emailId}`, headers)
         .then(response=>response.json())
         .then(response=>{
           this.setState({
@@ -73,7 +74,7 @@ class Profile extends Component{
         body: JSON.stringify(values)
       };
 
-      fetch( `https://choclatesite.herokuapp.com/users/profile`, headers)
+      fetch( `${hostname}users/profile`, headers)
       .then(response=>response.json())
       .then(response=>response)
       .catch(err=>console.log(err))
