@@ -11,7 +11,7 @@ import Order from './Order.js';
 import AdminProducts from './AdminProducts.js';
 import CheckOrders from './CheckOrders.js';
 import {Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem,} from 'reactstrap';
-
+import { hostname } from './hostname';
 
 class Menu extends Component{
 
@@ -37,10 +37,65 @@ class Menu extends Component{
   }
 
   getCart = (e) => {
-    console.log(e)
     this.setState({
       cart:[...this.state.cart,e]
     })
+  }
+
+  addToCart = (e) => {
+    if(this.state.cart.length !== 0)
+    {
+      if(e === true)
+      {
+        const headers = {
+          method:'GET'
+        };
+                    
+        fetch( `${hostname}users/${this.state.emailId}`, headers)
+        .then(response=>response.json())
+        .then(response=>{
+          const values = {
+            mailId:this.state.emailId,
+            cart:response[0].myCart.concat(this.state.cart)
+          }
+  
+          const headersPut = {
+            method:'PUT', 
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(values)
+          };
+  
+          fetch( `${hostname}users/addtocart`, headersPut)
+          .then(response=>response.json())
+          .then(response=>response)
+          .catch(err=>console.log(err))
+  
+          console.log(values)
+        })
+        .catch(err=>console.log(err))
+      }
+      else
+      {
+        console.log(this.state.cart)
+        const values = {
+          mailId:this.state.emailId,
+          cart:this.state.cart
+        }
+
+        const headersPut = {
+          method:'PUT', 
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values)
+        };
+
+        fetch( `${hostname}users/addtocart`, headersPut)
+        .then(response=>response.json())
+        .then(response=>response)
+        .catch(err=>console.log(err))
+      }
+      
+    }
+    
   }
 
   toggleNav() {
@@ -84,8 +139,8 @@ class Menu extends Component{
       </div>
       </Navbar>
       
-            <Route exact path="/signin" render={(props) => <Signin {...props}  getEmail={this.getEmail} />}></Route>
-            <Route exact path="/login" render={(props) => <Login {...props}  getEmail={this.getEmail} />}></Route>
+            <Route exact path="/signin" render={(props) => <Signin {...props}  getEmail={this.getEmail} addToCart={this.addToCart}/>}></Route>
+            <Route exact path="/login" render={(props) => <Login {...props}  getEmail={this.getEmail} addToCart={this.addToCart} />}></Route>
   
             <Route exact path="/"  render={(props) => <Products {...props}  emailId={this.state.emailId} getViewProduct={this.getViewProduct}/>}></Route>
             <Route exact path="/addproducts" render={(props) => <AddProducts {...props}  emailId={this.state.emailId} />}></Route>

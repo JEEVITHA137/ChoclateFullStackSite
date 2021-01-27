@@ -1,3 +1,5 @@
-export const hostname = "http://localhost:3000/";
+export const hostname = "https://choclatesite.herokuapp.com/";
 
 // "https://choclatesite.herokuapp.com/";
+
+// "http://localhost:3000/"

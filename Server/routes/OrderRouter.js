@@ -37,7 +37,7 @@ OrderRouter.route('/')
     .catch((err) => next(err));
 })
 .delete((req, res, next) => {
-    Order.deleteOne({UserId:req.body.mailId,ProductId:req.body.ProductId})
+    Order.deleteOne({UserId:req.body.mailId,_id:req.body._id})
     .then(( Order) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');

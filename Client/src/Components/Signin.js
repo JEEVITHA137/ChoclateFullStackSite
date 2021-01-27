@@ -44,8 +44,6 @@ class Signin extends Component{
 
     if(error===0 && this.state.EmailError === "" && this.state.NameError === "" && this.state.PassError === "")
     {
-        this.props.getEmail(this.state.mailId,this.state.name);
-        
         const values = {
           name: this.state.name,
           mailId: this.state.mailId,
@@ -67,16 +65,19 @@ class Signin extends Component{
           body: JSON.stringify(values)
         };
 
-    fetch( `${hostname}users`, headers)
+      fetch( `${hostname}users`, headers)
         .then(response=>response.json())
+        .then(response => {
+          this.props.getEmail(this.state.mailId,this.state.name);
+          this.props.addToCart(false);
+          this.props.history.push('./');
+        })
         .catch((err)=>{
         console.log(err)
         this.setState({
             EmailError:"Already exist"
         });
-        })
-
-        this.props.history.push('./');
+        })        
     }
   }
 

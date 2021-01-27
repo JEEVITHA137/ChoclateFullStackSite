@@ -121,22 +121,22 @@ class ProductView extends Component{
   }
   
   AddCart=(e)=>{
+    const cartproduct = {
+      _id:e._id,
+      name:e.name,
+      flavour:e.flavour,
+      cost:e.cost,
+      quantity:1,
+      brand:e.brand,
+      img:e.img
+    }
+
+    this.setState({
+      cart:[...this.state.cart,cartproduct]
+    });
+
     if(this.props.emailId !== "")
     {
-      const cartproduct = {
-        _id:e._id,
-        name:e.name,
-        flavour:e.flavour,
-        cost:e.cost,
-        quantity:1,
-        brand:e.brand,
-        img:e.img
-      }
-
-      this.setState({
-        cart:[...this.state.cart,cartproduct]
-      });
-
       const values = {
         mailId:this.props.emailId,
         cart:this.state.cart.concat(cartproduct)
@@ -154,16 +154,11 @@ class ProductView extends Component{
       .catch(err=>console.log(err))
     }
     else{
-      e.quantity=1;
-      this.setState({
-        cart:[...this.state.cart,e]
-      });
-      this.props.getCart(e);
+      this.props.getCart(cartproduct);
     }
   }
 
   render(){
-    console.log(this.props.user)
     return (
       <div className="container" style={{minHeight:'77vh'}} >
         <h3 className="mt-3" style={{color:"#0c73c2"}}>Product View</h3>

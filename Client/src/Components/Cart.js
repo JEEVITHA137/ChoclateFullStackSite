@@ -154,7 +154,6 @@ class Cart extends Component{
 
         const headers = {
           method:'POST', 
-          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body:JSON.stringify(values)
         };
@@ -170,8 +169,7 @@ class Cart extends Component{
         }
 
         const cartHeaders = {
-          method:'PUT', 
-          credentials: 'include',
+          method:'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(cartValues)
         };
@@ -183,7 +181,6 @@ class Cart extends Component{
 
         const quantityHeaders = {
           method:'GET', 
-          credentials: 'include'
         };
 
         let quantityValues = {
@@ -198,7 +195,6 @@ class Cart extends Component{
 
             const quantityHeaders = {
               method:'PUT', 
-              credentials: 'include',
               headers: { 'Content-Type': 'application/json' },
               body:JSON.stringify(quantityValues)
             };
