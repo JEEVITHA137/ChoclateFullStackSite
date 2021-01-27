@@ -54,7 +54,6 @@ class Order extends Component{
 
     const headers = {
       method:'DELETE', 
-      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values)
     };
@@ -64,8 +63,7 @@ class Order extends Component{
     .catch(err=>console.log(err))
 
     const quantityOfHeaders = {
-      method:'GET', 
-      credentials: 'include'
+      method:'GET'
     };
 
     let quantityValues = {
@@ -80,7 +78,6 @@ class Order extends Component{
 
         const quantityHeaders = {
           method:'PUT', 
-          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body:JSON.stringify(quantityValues)
         };
@@ -96,7 +93,7 @@ class Order extends Component{
 
   render(){
     return (
-      <div className="container">
+      <div className="container" style={{minHeight:'78vh'}}> 
         <h4 className="mt-3" style={{color:"#0b498f"}}>Your Orders</h4>
         <div className="row">
         {

@@ -17,14 +17,16 @@ class Menu extends Component{
 
   state={
     emailId:"",
+    user:"",
     viewproduct:[],
     isNavOpen: false,
     cart:[]
   };
 
-  getEmail = (e) => {
+  getEmail = (email,name) => {
     this.setState({
-      emailId:e
+      emailId:email,
+      user:name
     })
   }
 
@@ -87,14 +89,14 @@ class Menu extends Component{
   
             <Route exact path="/"  render={(props) => <Products {...props}  emailId={this.state.emailId} getViewProduct={this.getViewProduct}/>}></Route>
             <Route exact path="/addproducts" render={(props) => <AddProducts {...props}  emailId={this.state.emailId} />}></Route>
-            <Route exact path="/view" render={(props) => <ProductView {...props}  emailId={this.state.emailId} cart={this.state.cart} getCart={this.getCart} viewproduct={this.state.viewproduct}/>}></Route>
+            <Route exact path="/view" render={(props) => <ProductView {...props}  emailId={this.state.emailId} cart={this.state.cart} user={this.state.user} getCart={this.getCart} viewproduct={this.state.viewproduct}/>}></Route>
             <Route exact path="/cart" render={(props) => <Cart {...props}  emailId={this.state.emailId} cart={this.state.cart}/>}></Route>
             <Route exact path="/profile" render={(props) => <Profile {...props}  emailId={this.state.emailId}/>}></Route>
             <Route exact path="/orders" render={(props) => <Order {...props}  emailId={this.state.emailId}/>}></Route>
             <Route exact path="/adminproducts" render={(props) => <AdminProducts {...props}  emailId={this.state.emailId}/>}></Route>
             <Route exact path="/checkorders" render={(props) => <CheckOrders {...props}  emailId={this.state.emailId}/>}></Route>
       
-            <div className="footer mt-2">
+            <div className="footer mt-auto">
             <div className="container">       
               
                 <div className="row justify-content-center">             

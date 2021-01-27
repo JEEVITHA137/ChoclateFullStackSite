@@ -44,7 +44,7 @@ class Signin extends Component{
 
     if(error===0 && this.state.EmailError === "" && this.state.NameError === "" && this.state.PassError === "")
     {
-        this.props.getEmail(this.state.mailId);
+        this.props.getEmail(this.state.mailId,this.state.name);
         
         const values = {
           name: this.state.name,
@@ -154,9 +154,9 @@ class Signin extends Component{
 
   render(){
     return (
-      <div className="container pt-5">
-      <Form className="login" onSubmit={(e) => this.submit(e)}>
-          <h3 className="m-2">Signin</h3>
+      <div className="pl-2 pr-2" style={{height:'80vh',transform: "translateY(10%)" }} >
+      <Form className="login container" onSubmit={(e) => this.submit(e)}>
+          <h3 className="m-2 pt-3">Signin</h3>
           
           <FormText color="white">{this.state.loginError}</FormText>
 
@@ -191,7 +191,7 @@ class Signin extends Component{
                   <div className="buton" type = "submit" onClick={this.submit}>Signin</div>
               </div>
           </FormGroup>
-          <h5>Already user?<a href="/login" style={{color:"#1a2980"}}> Login</a></h5>
+          <h5 className="p-3">Already user?<a href="/login" style={{color:"#1a2980"}}> Login</a></h5>
       </Form>
   
   </div>

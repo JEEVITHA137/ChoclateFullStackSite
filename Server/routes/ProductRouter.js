@@ -107,7 +107,7 @@ ProductRouter.route('/flavour')
 
 ProductRouter.route('/:id')
 .get((req,res,next) => {
-    Product.find({_id:req.params.id}).select("quantity")
+    Product.find({_id:req.params.id})
     .then((Product) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
@@ -115,5 +115,20 @@ ProductRouter.route('/:id')
     }, (err) => next(err))
     .catch((err) => next(err));
 });
+
+
+ProductRouter.route('/reviews')
+.put((req,res,next) => {
+    const id = req.body.id;
+    const reviews = req.body.reviews;
+    Product.updateOne({_id:id},{$set: {reviews:reviews}})
+    .then((Product) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(Product);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+});
+
 
 module.exports =  ProductRouter;

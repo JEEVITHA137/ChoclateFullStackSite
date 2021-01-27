@@ -198,7 +198,7 @@ class Products extends Component{
 
   render(){
     return (
-      <div className="container">
+      <div className="container" style={{minHeight:'78vh'}}>
         <h4 className="mt-3" style={{color:"#0b498f"}}>Filters</h4>
       <div className="row p-2">
         <div className="col-12 col-md-4 p-2" >

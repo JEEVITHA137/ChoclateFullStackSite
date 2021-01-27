@@ -42,13 +42,16 @@ class Login extends Component{
           .then(response=>{
             if(response.length > 0)
             {
-              this.props.getEmail(this.state.mailId);
+              
               if(this.state.mailId === "Admin@gmail.com")
               {
                 this.props.history.push('./adminproducts');
               }
               else
+              {
                  this.props.history.push('./');
+              }
+              this.props.getEmail(this.state.mailId,response[0].name);
             }
             else{
               this.setState({
@@ -74,9 +77,10 @@ class Login extends Component{
 
   render(){
     return (
-      <div className="container pt-5">
-      <Form className="login" onSubmit={(e) => this.submit(e)}>
-          <h3 className="m-2" >Login</h3>
+      
+      <div style={{height:'79vh',transform: "translateY(12%)"}} className="pl-2 pr-2">
+      <Form className="container login" onSubmit={(e) => this.submit(e)}>
+          <h3 className="m-2 pt-3" >Login</h3>
 
           <FormText color="white">{this.state.loginError}</FormText>
           
@@ -103,7 +107,7 @@ class Login extends Component{
                   <div className="buton" type = "submit" onClick={this.submit}>Login</div>
               </div>
           </FormGroup>
-          <h5>New user?<a href="/signin" style={{color:"#1a2980"}}> Signin</a></h5>
+          <h5 className="p-3">New user?<a href="/signin" style={{color:"#1a2980"}}> Signin</a></h5>
       </Form>
       
   </div>

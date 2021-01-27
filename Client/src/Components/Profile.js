@@ -94,7 +94,7 @@ class Profile extends Component{
 
   render(){
     return (
-      <div className="container" >
+      <div className="container" style={{minHeight:'78vh'}}>
         <div className="row mt-3">
           <h4 className=" col-8" style={{color:"#0b498f"}}>Profile</h4>
           {this.state.edit
@@ -104,7 +104,7 @@ class Profile extends Component{
         </div>
           {this.state.edit
              ? 
-             <Card  className="col-10 profile card shadow bg-white">
+             <Card  className="col-10 m-2 profile card shadow bg-white">
                 <Form className="form" onSubmit={(e) => this.uploadProfile(e)}>
 
                     <h4 className="p-2" style={{color:"#0b498f"}}>Edit Profile</h4>
@@ -181,7 +181,7 @@ class Profile extends Component{
                 </Card>
              : 
 
-             <Card  className="col-10 m-1 card shadow bg-white">
+             <Card  className="col-10 m-4 card shadow bg-white">
                <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Name : </div><div className="pl-2" style={{color:"#068899"}}>{this.state.name}</div></div>
                <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Email-Id : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.mailId}</div></div>
 

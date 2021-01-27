@@ -84,6 +84,7 @@ class Cart extends Component{
       fetch( `${hostname}products/${id}`, headers)
       .then(response=>response.json())
       .then(response=>{
+        console.log(response[0])
         if(quantity+1 <= response[0].quantity)
         {
           cart[i].quantity = cart[i].quantity + 1;
@@ -255,7 +256,7 @@ class Cart extends Component{
 
   render(){
     return (
-      <div className="container background">
+      <div className="container background" style={{minHeight:'78vh'}}>
         <h4 className="mt-3" style={{color:"#0b498f"}}>Cart</h4>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
         <ModalHeader toggle={this.toggle}>You need to login to buy product</ModalHeader>
