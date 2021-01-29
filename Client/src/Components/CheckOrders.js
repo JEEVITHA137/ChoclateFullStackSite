@@ -37,9 +37,10 @@ class CheckOrders extends Component{
       Tracking:e
     }
 
+    console.log(values)
+
     const headers = {
       method:'PUT', 
-      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values)
     };
@@ -51,7 +52,6 @@ class CheckOrders extends Component{
   }
 
   render(){
-    console.log(this.state.orders)
     return (
       <div className="container">
       <h4  className="mt-3" style={{color:"#0b498f"}}>CheckOrders</h4>

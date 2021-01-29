@@ -272,7 +272,7 @@ class Cart extends Component{
               :  this.state.cart.map((product,i)=>{
                   return(
                     <Card  key={i} className="col-md-3 m-4 card shadow bg-white text-center" >
-                    <CardImg style={{height:"190px"}} className="p-3" src={`/${product.img}`} alt="product-img" />
+                    <CardImg style={{height:"190px"}} className="p-3" src={`${hostname}${product.img}`} alt="product-img" />
                     <CardBody>
                       <CardTitle tag="h5" style={{color:"#0c73c2"}}>{product.name}</CardTitle>
                       <CardSubtitle tag="h6" className="mb-2 text-muted">{product.brand}</CardSubtitle>

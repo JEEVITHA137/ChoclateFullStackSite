@@ -164,7 +164,7 @@ class ProductView extends Component{
         <h3 className="mt-3" style={{color:"#0c73c2"}}>Product View</h3>
         <div className="row ml-3">
         <Card className="col-5 p-3 shadow bg-white " >
-        <CardImg  width="100%" style={{height:"350px"}} src={`/${this.props.viewproduct.img}`} alt="product-img" />
+        <CardImg  width="100%" style={{height:"350px"}} src={`${hostname}${this.props.viewproduct.img}`} alt="product-img" />
         </Card>  
         <CardBody>
           <CardTitle tag="h5" style={{color:"#068899"}}>{this.props.viewproduct.name}</CardTitle>

@@ -29,8 +29,7 @@ class AdminProducts extends Component{
 
   changeQuantity = (id,isplus) => {
     const quantityHeaders = {
-      method:'GET', 
-      credentials: 'include'
+      method:'GET'
     };
 
     let quantityValues = {
@@ -51,7 +50,6 @@ class AdminProducts extends Component{
       }
         const quantityHeaders = {
           method:'PUT', 
-          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body:JSON.stringify(quantityValues)
         };
@@ -103,7 +101,7 @@ class AdminProducts extends Component{
               :  this.state.products.map((product,i)=>{
                   return(
                    <Card  key={i} className="col-md-3 m-3 card shadow bg-white text-center" >
-                    <CardImg style={{height:"190px"}} className="p-3" src={`/${product.img}`} alt="product-img" />
+                    <CardImg style={{height:"190px"}} className="p-3" src={`${hostname}${product.img}`} alt="product-img" />
                     <CardBody>
                       <CardTitle tag="h5" style={{color:"#0c73c2"}}>{product.name}</CardTitle>
                       <CardSubtitle tag="h6" className="mb-2 text-muted">{product.brand}</CardSubtitle>

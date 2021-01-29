@@ -30,6 +30,7 @@ class AddProduct extends Component{
         body: imageFormObj
     };
 
+    console.log(headers)
     fetch( `${hostname}products/`,headers)
     .then(response=>response.json())
     .catch(err=>console.log(err))

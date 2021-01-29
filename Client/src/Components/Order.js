@@ -103,7 +103,7 @@ class Order extends Component{
                   return(
                     product.length !== 0 ? 
                       <Card  key={i} className="col-md-3 m-4 card shadow bg-white text-center justify-content-center" >
-                        <CardImg style={{height:"190px"}} className="p-3" src={`/${product[0].img}`} alt="product-img" />
+                        <CardImg style={{height:"190px"}} className="p-3" src={`${hostname}${product[0].img}`} alt="product-img" />
                         <CardBody>
                           <CardTitle tag="h5" style={{color:"#0c73c2"}}>{product[0].name}</CardTitle>
                           <CardSubtitle tag="h6" className="mb-2 text-muted">{product[0].flavour}</CardSubtitle>

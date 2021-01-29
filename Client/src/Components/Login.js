@@ -42,13 +42,13 @@ class Login extends Component{
           .then(response=>{
             if(response.length > 0)
             {
+              this.props.getEmail(this.state.mailId,response[0].name);
               if(this.state.mailId === "Admin@gmail.com")
               {
                 this.props.history.push('./adminproducts');
               }
               else
               {
-                this.props.getEmail(this.state.mailId,response[0].name);
                 this.props.addToCart(true);
                 this.props.history.push('./');
               }

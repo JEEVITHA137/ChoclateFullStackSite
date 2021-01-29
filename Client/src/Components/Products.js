@@ -262,7 +262,7 @@ class Products extends Component{
               :  this.state.products.map((product,i)=>{
         return(
           <Card  key={i}  className="col-md-3 m-3 card shadow bg-white text-center" onClick={()=>{this.viewProduct(product)}}>
-          <CardImg className="p-3" style={{height:"190px"}} src={`/${product.img}`} alt="product-img" />
+          <CardImg className="p-3" style={{height:"190px"}} src={`${hostname}${product.img}`} alt="product-img" />
           <CardBody>
             <CardTitle tag="h5" style={{color:"#0b498f"}}>{product.name}</CardTitle>
             <CardSubtitle tag="h6" className="text-muted">{product.brand}</CardSubtitle>
