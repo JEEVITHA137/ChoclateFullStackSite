@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Form, FormGroup, Label, Input,FormText } from 'reactstrap';
+import {Form, FormGroup, Label, FormText } from 'reactstrap';
 import { hostname } from './hostname';
 
 class Login extends Component{
@@ -10,7 +10,8 @@ class Login extends Component{
     PassError:"",
     login:[],
     loginError:"",
-    istrue:false
+    istrue:false,
+    type:"password"
   };
 
   submit= (e) =>{   
@@ -88,7 +89,7 @@ class Login extends Component{
           <FormGroup row className="p-2">
               <Label className="col-4 text-center" for="EmailId"  ><h5>Email-Id:</h5></Label>
               <div className="col-8 col-md-6 justify-content-center">
-                  <Input type="string" style={{height:"2rem"}} id="EmailId" placeholder="Give your Email Id"
+                  <input type="string" style={{height:"2rem",color:"white"}} placeholder="Give your Email Id"
                      value={this.state.mailId} onChange={this.handleEmailChange} />
                   <FormText color="white">{this.state.EmailError}</FormText>
               </div>
@@ -97,12 +98,15 @@ class Login extends Component{
           <FormGroup row className="p-2">
               <Label className="col-4 text-center" for="Password" ><h5>Password:</h5></Label>
               <div className="col-8 col-md-6 justify-content-center">
-                  <Input  type="password" style={{height:"2rem"}} id="Password" placeholder="Give your Password"
-                     value={this.state.pass} onChange={this.handlePassChange} />
-                  <FormText color="white" className="text-center p-1">{this.state.PassError}</FormText>
+                <div className="pass-wrapper">
+                  <input  type={this.state.type} style={{height:"2rem",color:"white"}} placeholder="Give your Password"
+                     value={this.state.pass} onChange={this.handlePassChange}  /> 
+                  <img src={this.state.type === "password" ? "./show-password1.png" : "./show-password.png"} style={{height:"1.5rem"}} onClick={this.state.type === "password" ? () => {this.setState({type:"text"})} : ()=>{this.setState({type:"password"})} }></img>
+                </div>
+                  <FormText color="white" className=" p-1">{this.state.PassError}</FormText>
               </div>
           </FormGroup>
-         
+
           <FormGroup className="row p-2">
               <div className="col-4 offset-7">
                   <div className="buton" type = "submit" onClick={this.submit}>Login</div>

@@ -105,7 +105,6 @@ class Menu extends Component{
     }
 
   render(){
-    console.log(this.state.emailId)
     return (
       <div>   
         <Navbar dark expand="md">

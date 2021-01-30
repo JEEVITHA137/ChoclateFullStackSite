@@ -39,9 +39,9 @@ class Order extends Component{
     } 
   }
 
-  cancel = (e,quantity) => {
+  cancel = (e,order) => {
 
-    let product = this.state.orders.filter(p => p._id !== e)
+    let product = this.state.orders.filter(p => p._id !== order._id)
 
     this.setState({
       orders:product
@@ -49,7 +49,7 @@ class Order extends Component{
 
     const values = {
       mailId:this.props.emailId,
-      _id:e
+      _id:order._id
     }
 
     const headers = {
@@ -74,7 +74,7 @@ class Order extends Component{
     fetch( `${hostname}products/${e}`, quantityOfHeaders)
     .then(response=>response.json())
     .then(response=>{
-        quantityValues.quantity = response[0].quantity+quantity
+        quantityValues.quantity = response[0].quantity+order.quantity
 
         const quantityHeaders = {
           method:'PUT', 
@@ -108,7 +108,7 @@ class Order extends Component{
                           <CardTitle tag="h5" style={{color:"#0c73c2"}}>{product[0].name}</CardTitle>
                           <CardSubtitle tag="h6" className="mb-2 text-muted">{product[0].flavour}</CardSubtitle>
                           <CardText><div>Quantity : {order.quantity}</div>
-                          {order.Tracking !== "delivered" ?<ButtonGroup><div style={{color:"#0b498f"}}>{order.Tracking}<br/> <div className="buton" onClick={()=>{this.cancel(order._id,order.quantity)}}>Cancel</div></div></ButtonGroup>:<div style={{color:"#0b498f"}}>{order.Tracking}</div>}
+                          {order.Tracking !== "delivered" ?<ButtonGroup><div style={{color:"#0b498f"}}>{order.Tracking}<br/> <div className="buton" onClick={()=>{this.cancel(product[0]._id,order)}}>Cancel</div></div></ButtonGroup>:<div style={{color:"#0b498f"}}>{order.Tracking}</div>}
                                 <h5 className="p-3" style={{color:"#068899"}}>₹ {product[0].cost}</h5></CardText>
                         </CardBody>
                       </Card>

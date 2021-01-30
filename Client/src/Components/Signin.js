@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Form, FormGroup, Label, Input,FormText} from 'reactstrap';
+import { Form, FormGroup, Label, FormText} from 'reactstrap';
 import { hostname } from './hostname';
 
 class Signin extends Component{
@@ -14,7 +14,8 @@ class Signin extends Component{
     login:false,
     EmailValid:"",
     NameValud:"",
-    PassValid:""
+    PassValid:"",
+    type:"password"
   };
 
   submit= (e) =>{
@@ -164,7 +165,7 @@ class Signin extends Component{
           <FormGroup row className="p-2">
               <Label className="col-4 text-center" for="EmailId" ><h5>Email-Id:</h5></Label>
               <div className="col-8 col-md-6 justify-content-center">
-                  <Input type="string" style={{height:"2rem"}} id="EmailId" placeholder="Give your Email Id"
+                  <input type="string" style={{height:"2rem",color:"white"}} placeholder="Give your Email Id"
                      value={this.state.mailId} onChange={this.handleEmailChange} valid={this.state.EmailValid}/>
                   <FormText color="white">{this.state.EmailError}</FormText>
               </div>
@@ -173,7 +174,7 @@ class Signin extends Component{
           <FormGroup row className="p-2">
               <Label className="col-4 text-center" for="Username" ><h5>Username:</h5></Label>
               <div className="col-8 col-md-6 justify-content-center">
-                  <Input type="string" style={{height:"2rem"}} id="Username" placeholder="Give your Username"
+                  <input type="string" style={{height:"2rem",color:"white"}} placeholder="Give your Username"
                      value={this.state.name} onChange={this.handleNameChange} valid={this.state.NameValid}/>
                   <FormText color="white">{this.state.NameError}</FormText>
               </div>
@@ -182,8 +183,11 @@ class Signin extends Component{
           <FormGroup row className="p-2">
               <Label className="col-4 text-center" for="Password" ><h5>Password:</h5></Label>
               <div className="col-8 col-md-6 justify-content-center">
-                  <Input type="password" style={{height:"2rem"}} id="Password" placeholder="Give your Password"
+                <div className="pass-wrapper">
+                  <input type={this.state.type} style={{height:"2rem",color:"white"}} placeholder="Give your Password"
                      value={this.state.pass} onChange={this.handlePassChange}  valid={this.state.PassValid}/>
+                  <img src={this.state.type === "password" ? "./show-password1.png" : "./show-password.png"} style={{height:"1.5rem"}} onClick={this.state.type === "password" ? () => {this.setState({type:"text"})} : ()=>{this.setState({type:"password"})} }></img>
+                </div>
                   <FormText color="white">{this.state.PassError}</FormText>
               </div>
           </FormGroup>

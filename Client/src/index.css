@@ -140,3 +140,18 @@ input{
 .text-muted{
   color: white;
 }
+
+.pass-wrapper {
+  position: relative;
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.pass-wrapper img {
+  position: absolute;
+  right: 1%;
+}
+.pass-wrapper img:hover {
+  color: #00fcb6;
+  cursor: pointer;
+}

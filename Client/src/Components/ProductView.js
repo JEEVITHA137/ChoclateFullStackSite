@@ -13,9 +13,6 @@ class ProductView extends Component{
   }
 
   componentDidMount(){
-    const values = {
-      id:this.props.viewproduct._id
-    }
 
     const headers = {
       method:'GET'
@@ -162,8 +159,8 @@ class ProductView extends Component{
     return (
       <div className="container" style={{minHeight:'77vh'}} >
         <h3 className="mt-3" style={{color:"#0c73c2"}}>Product View</h3>
-        <div className="row ml-3">
-        <Card className="col-5 p-3 shadow bg-white " >
+        <div className="row ">
+        <Card className="col-md-5 p-3 m-3 shadow bg-white " >
         <CardImg  width="100%" style={{height:"350px"}} src={`${hostname}${this.props.viewproduct.img}`} alt="product-img" />
         </Card>  
         <CardBody>
@@ -190,7 +187,7 @@ class ProductView extends Component{
                   return(
                       <div key={i} className="m-2 pb-2">
                         <div className="d-flex">
-                          <img src="./user.png" style={{width:"35px",height:"35px"}}></img>
+                          <img src="./user.png" style={{width:"35px",height:"35px"}} alt="User"></img>
                           <h6 className="p-2" style={{color:"#068899"}}>{review.user}</h6>
                         </div>
                         <h6 className="pl-4" style={{color:"grey"}}>{review.reviews}</h6>

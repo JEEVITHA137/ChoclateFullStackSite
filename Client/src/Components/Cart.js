@@ -8,6 +8,8 @@ import { hostname } from './hostname';
 
 class Cart extends Component{
   state={
+    products:[],
+    cartproduct:[],
     cart:[],
     orders:[],
     HouseNo:"",
@@ -18,7 +20,8 @@ class Cart extends Component{
     Pincode:"",
     phoneNo:"",
     modal:false,
-    profilemodal:false
+    profilemodal:false,
+    isAvaliableStock : []
   }
 
 
@@ -38,6 +41,15 @@ class Cart extends Component{
       })
       .catch(err=>console.log(err))
 
+      fetch( `${hostname}products`, headers)
+      .then(response=>response.json())
+      .then(response=>{
+        this.setState({
+          products:response
+        })
+      })
+      .catch(err=>console.log(err))
+
       fetch( `${hostname}users/${this.props.emailId}`, headers)
       .then(response=>response.json())
       .then(response=>{
@@ -52,6 +64,8 @@ class Cart extends Component{
         })
       })
       .catch(err=>console.log(err))
+
+      
     } 
     else{
       this.setState({
@@ -84,7 +98,6 @@ class Cart extends Component{
       fetch( `${hostname}products/${id}`, headers)
       .then(response=>response.json())
       .then(response=>{
-        console.log(response[0])
         if(quantity+1 <= response[0].quantity)
         {
           cart[i].quantity = cart[i].quantity + 1;
@@ -101,6 +114,24 @@ class Cart extends Component{
       this.toggle();
     }
   }
+
+  isAvaliable = (key) => {
+
+    let cartproduct = [];
+    this.state.cart.map((cart,i) =>{
+      this.state.products.map((product)=>{
+        if(cart._id === product._id)
+        {
+          cartproduct[i] = product.quantity
+        }
+        return null;
+      })
+      return null;
+    })
+
+    return cartproduct[key];
+  }
+
 
   availableMinus = (i,quantity) => {
     if(this.props.emailId !== "")
@@ -122,15 +153,22 @@ class Cart extends Component{
     }
   }
 
-  order = (e) => {
+  order = (e,key) => {
     if(this.props.emailId !== "")
     {
-      console.log(this.state.Street)
       if(this.state.Street !== null && this.state.Street !== "")
       {
 
-        let cartproduct=[];
-        cartproduct = this.state.cart.filter(p => p._id !== e._id)
+        let cartproduct = [];
+        let j=0;
+        this.state.cart.map((product,i)=>{
+          if(key !== i)
+          {
+            cartproduct[j] = product;
+            j++;
+          }
+          return null;
+        })
 
         this.setState({
           cart:cartproduct
@@ -218,11 +256,19 @@ class Cart extends Component{
   }
 
 
-  delete = (e) => {
+  delete = (e,key) => {
     if(this.props.emailId !== "")
     {
-      let cartproduct = this.state.cart.filter(p => p._id !== e._id)
-
+      let cartproduct = [];
+      let j=0;
+      this.state.cart.map((product,i)=>{
+          if(key !== i)
+          {
+            cartproduct[j] = product;
+            j++;
+          }
+          return null;
+      })
       this.setState({
         order:[...this.state.orders,e],
         cart:cartproduct
@@ -285,8 +331,9 @@ class Cart extends Component{
                         </ButtonGroup>
                         
                         <ButtonGroup>
-                        <div  className="buton m-1 p-2" onClick={()=>{this.order(product)}}>Buy Now</div>
-                        <div  className="buton m-1 p-2" onClick={()=>{this.delete(product)}}>Delete</div>
+                       
+                        {this.isAvaliable(i) !== 0 ? <div  className="buton m-1 p-2" onClick={()=>{this.order(product,i)}}>Buy Now</div> : <div  className="buton m-1 p-2">Out Of Stock</div>}
+                        <div  className="buton m-1 p-2" onClick={()=>{this.delete(product,i)}}>Delete</div>
                         </ButtonGroup>
                     </CardBody>
                   </Card>      
