@@ -101,7 +101,7 @@ class Login extends Component{
                 <div className="pass-wrapper">
                   <input  type={this.state.type} style={{height:"2rem",color:"white"}} placeholder="Give your Password"
                      value={this.state.pass} onChange={this.handlePassChange}  /> 
-                  <img src={this.state.type === "password" ? "./show-password1.png" : "./show-password.png"} style={{height:"1.5rem"}} onClick={this.state.type === "password" ? () => {this.setState({type:"text"})} : ()=>{this.setState({type:"password"})} }></img>
+                  <img src={this.state.type === "password" ? "./show-password1.png" : "./show-password.png"} alt="show" style={{height:"1.5rem"}} onClick={this.state.type === "password" ? () => {this.setState({type:"text"})} : ()=>{this.setState({type:"password"})} }></img>
                 </div>
                   <FormText color="white" className=" p-1">{this.state.PassError}</FormText>
               </div>

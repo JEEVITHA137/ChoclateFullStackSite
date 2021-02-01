@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle} from 'reactstrap';
+import {Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, UncontrolledCollapse, Button,} from 'reactstrap';
 import { hostname } from './hostname';
 
 class Products extends Component{
@@ -114,6 +114,7 @@ class Products extends Component{
     })
 
     let costproducts = [];
+    
     if(this.state.min !== "" && this.state.max !== "")
     {
       if((isflavourfilter && isbrandfilter) || isbrandfilter)
@@ -125,11 +126,12 @@ class Products extends Component{
         productsWithoutFilters = flavourproducts
       }
   
-
       i = 0 ;
       iscostfilter = true;
+
       for(let j=0;j<productsWithoutFilters.length;j++){
-          if(productsWithoutFilters[j].cost >= this.state.min && productsWithoutFilters[j].cost <= this.state.max)
+        var cost =  parseInt(productsWithoutFilters[j].cost);
+          if(cost >= this.state.min && cost <= this.state.max)
           {
               costproducts[i] = productsWithoutFilters[j];
               i = i+1;
@@ -198,70 +200,73 @@ class Products extends Component{
 
   render(){
     return (
-      <div className="container" style={{minHeight:'78vh'}}>
-        <h4 className="mt-3" style={{color:"#0b498f"}}>Filters</h4>
-      <div className="row p-2">
-        <div className="col-12 col-md-4 p-2" >
-        <h5>Brand</h5>
+      <div className="container pt-4" style={{minHeight:'80vh'}}>
+        <img src="./filter.png" alt="Filter" id="filter" className="filter"></img>
+        <div className="d-flex filters">
+        <UncontrolledCollapse toggler="#filter">
+        <div className="filters">
+        <div>
+        <h6 color="primary" id="brand" style={{ marginBottom: '1rem' }}>Brand</h6>
         {
             Object.keys(this.state.brand).map((brands,i)=>{
             return(
-              <div key={i} className="row" >
+              <UncontrolledCollapse toggler="#brand">
+              <div key={i} className="row" style={{"fontSize":"15px"}}>
               <div className="col-2 p-2" >
-              <input type="checkbox" onChange={this.brandFilter} value={brands}/>
+              <input type="checkbox" style={{"height":"10px"}} onChange={this.brandFilter} value={brands}/>
               </div>
-              <div className="col-10 p-1" ><label>{brands}</label>
+              <div className="col-10" ><label >{brands}</label>
               </div>
-              </div>
+              </div></UncontrolledCollapse>
             )
           })
         }
         </div>
-        <div className="col-12 col-md-4 p-2" >
-        <h5>Flavour</h5>
+        <div className="" >
+        <h6 color="primary" id="flavour" style={{ marginBottom: '1rem' }}>Flavour</h6>
         {
           Object.keys(this.state.flavour).map((flavour,i)=>{
             return(
-              <div key={i} className="row" >
-              <div className="col-2 p-2" >
-              <input type="checkbox" onChange={this.flavourFilter} value={flavour}/>
+              <UncontrolledCollapse toggler="#flavour">
+              <div key={i} className="row" style={{"fontSize":"15px"}}>
+              <div className="col-2 p-1" >
+              <input type="checkbox" style={{"height":"10px"}} onChange={this.flavourFilter} value={flavour}/>
               </div>
-              <div className="col-10 p-1" > <label>{flavour}</label>
+              <div className="col-10" > <label>{flavour}</label>
               </div>
               </div>
+              </UncontrolledCollapse>
             ) 
           })
         }
         </div>
-        <div className="col-12 col-md-4 p-2" >
-        <h5>Cost</h5>
-        <div className="row" >
-        <div className="col-6 p-2" >
-        <label>Min</label>
-        </div>
-        <div className="col-6 p-2" >
+        <div>
+        <h6>Cost</h6>
+        <div className="d-flex" >
+        <label style={{"fontSize":"15px"}} className="p-1">Min</label>
+        <div>
         <input type="number" value={this.state.min} onChange={(e)=>{this.setState({min:e.target.value,iscostfilter:false})}}/>
         </div>
         </div>
-        <div className="row" >
-        <div className="col-6 p-2" >
-        <label>Max</label>
-        </div>
-        <div className="col-6 p-2" >
+        <div className="d-flex" >
+        <label style={{"fontSize":"15px"}} className="p-1">Max</label>
+        <div>
         <input type="number" value={this.state.max} onChange={(e)=>{this.setState({max:e.target.value,iscostfilter:false})}}/>
         </div>
         </div>
-        <div className="col-4 offset-7">
+        <div className="col-4">
                   <div className="buton" onClick={this.filter}>Apply</div>
         </div>
         </div>
-     <div className="container" >
+        </div>
+        </UncontrolledCollapse>
+      <div className="container pt-5" >
       <div className="row justify-content-center">
         {
           this.state.products.length === 0  ? <div>No results found</div>
               :  this.state.products.map((product,i)=>{
         return(
-          <Card  key={i}  className="col-md-3 m-3 card shadow bg-white text-center" onClick={()=>{this.viewProduct(product)}}>
+          <Card  key={i}  className="col-md-3 m-3 product text-center" onClick={()=>{this.viewProduct(product)}}>
           <CardImg className="p-3" style={{height:"190px"}} src={`${hostname}${product.img}`} alt="product-img" />
           <CardBody>
             <CardTitle tag="h5" style={{color:"#0b498f"}}>{product.name}</CardTitle>

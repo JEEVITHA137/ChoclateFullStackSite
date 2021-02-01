@@ -156,7 +156,7 @@ class Signin extends Component{
 
   render(){
     return (
-      <div className="pl-2 pr-2" style={{height:'80vh',transform: "translateY(10%)" }} >
+      <div className="pl-2 pr-2" style={{height:'79vh',transform: "translateY(10%)" }} >
       <Form className="login container" onSubmit={(e) => this.submit(e)}>
           <h3 className="m-2 pt-3">Signin</h3>
           
@@ -186,7 +186,7 @@ class Signin extends Component{
                 <div className="pass-wrapper">
                   <input type={this.state.type} style={{height:"2rem",color:"white"}} placeholder="Give your Password"
                      value={this.state.pass} onChange={this.handlePassChange}  valid={this.state.PassValid}/>
-                  <img src={this.state.type === "password" ? "./show-password1.png" : "./show-password.png"} style={{height:"1.5rem"}} onClick={this.state.type === "password" ? () => {this.setState({type:"text"})} : ()=>{this.setState({type:"password"})} }></img>
+                  <img src={this.state.type === "password" ? "./show-password1.png" : "./show-password.png"} alt="show" style={{height:"1.5rem"}} onClick={this.state.type === "password" ? () => {this.setState({type:"text"})} : ()=>{this.setState({type:"password"})} }></img>
                 </div>
                   <FormText color="white">{this.state.PassError}</FormText>
               </div>
