@@ -29,17 +29,6 @@
   background-color: url('./card.jpg');
 }
 
-/* .form
-{
-  background:  linear-gradient(to left, #c0392b, #8e44ad);
-  font-size: 0.7rem;
-  color: floralwhite;
-  margin: 10px;
-  border-radius: 5px;
-  text-align: center;
-  box-shadow: 0 0 0 rgb(0,0,0), 0 0 5px rgb(245, 245, 245),0 0 0 rgb(0,0,0), 0 0 5px rgb(245, 245, 245);
-} */
-
 .buton{
   background: linear-gradient(90deg,#1a2980,#26d0ce);
   box-shadow: -2px -2px 3px rgba(30, 161, 179,0.2),
@@ -174,4 +163,14 @@ input{
 .product:hover
 {
   transform: translate3D(0,-1px,0) scale(1.03);
+}
+
+.modal-dialog{
+  top:35%
+}
+
+.info{
+  padding: 27px;
+  text-align: center;
+  font-size: 25px;
 }

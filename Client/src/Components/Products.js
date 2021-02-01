@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, UncontrolledCollapse, Button,} from 'reactstrap';
+import {Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, UncontrolledCollapse} from 'reactstrap';
 import { hostname } from './hostname';
 
 class Products extends Component{
@@ -213,7 +213,7 @@ class Products extends Component{
               <UncontrolledCollapse toggler="#brand">
               <div key={i} className="row" style={{"fontSize":"15px"}}>
               <div className="col-2 p-2" >
-              <input type="checkbox" style={{"height":"10px"}} onChange={this.brandFilter} value={brands}/>
+              <input type="checkbox" style={{"height":"13px"}} onChange={this.brandFilter} value={brands}/>
               </div>
               <div className="col-10" ><label >{brands}</label>
               </div>
@@ -230,7 +230,7 @@ class Products extends Component{
               <UncontrolledCollapse toggler="#flavour">
               <div key={i} className="row" style={{"fontSize":"15px"}}>
               <div className="col-2 p-1" >
-              <input type="checkbox" style={{"height":"10px"}} onChange={this.flavourFilter} value={flavour}/>
+              <input type="checkbox" style={{"height":"13px"}} onChange={this.flavourFilter} value={flavour}/>
               </div>
               <div className="col-10" > <label>{flavour}</label>
               </div>

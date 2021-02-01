@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { hostname } from './hostname';
-import {Card, Form, FormGroup, Label, Input,FormText} from 'reactstrap';
+import {Card, Form, FormGroup, Label,FormText} from 'reactstrap';
 
 class Profile extends Component{
   state = {
@@ -111,14 +111,14 @@ class Profile extends Component{
                     <FormGroup row >
                         <Label className="col-4 text-center" for="UName" >Name:</Label>
                         <div className="col-8 col-md-6 justify-content-center">
-                            <Input type="string" style={{height:"2rem"}} id="EmailUNameId" placeholder="Give your Name"
+                            <input type="string" style={{height:"2rem"}} id="EmailUNameId" placeholder="Give your Name"
                               value={this.state.name} onChange={(e)=>{this.setState({name:e.target.value})}}/>
                         </div>
                     </FormGroup>
                     <FormGroup row >
                         <Label className="col-4 text-center" for="HNo" >HouseNo/FlatNo</Label>
                         <div className="col-8 col-md-6 justify-content-center">
-                            <Input type="string" style={{height:"2rem"}} id="HNo" placeholder="Give your Flat No"
+                            <input type="string" style={{height:"2rem"}} id="HNo" placeholder="Give your Flat No"
                             value={this.state.HouseNo} onChange={(e)=>{this.setState({HouseNo:e.target.value})}}/>
                         </div>
                     </FormGroup>
@@ -126,7 +126,7 @@ class Profile extends Component{
                     <FormGroup row >
                         <Label className="col-4 text-center" for="Street" >Street</Label>
                         <div className="col-8 col-md-6 justify-content-center">
-                            <Input type="string" style={{height:"2rem"}} id="Street" placeholder="Give your Street"
+                            <input type="string" style={{height:"2rem"}} id="Street" placeholder="Give your Street"
                             value={this.state.Street} onChange={(e)=>{this.setState({Street:e.target.value})}}/>
                         </div>
                     </FormGroup>
@@ -134,7 +134,7 @@ class Profile extends Component{
                     <FormGroup row>
                         <Label className="col-4 text-center" for="LandMark" >LandMark</Label>
                         <div className="col-8 col-md-6 justify-content-center">
-                            <Input type="string" style={{height:"2rem"}} id="LandMark" placeholder="Give your LandMark"
+                            <input type="string" style={{height:"2rem"}} id="LandMark" placeholder="Give your LandMark"
                             value={this.state.LandMark} onChange={(e)=>{this.setState({LandMark:e.target.value})}}/>
                         </div>
                     </FormGroup>
@@ -142,7 +142,7 @@ class Profile extends Component{
                     <FormGroup row>
                         <Label className="col-4 text-center" for="Town" >Town</Label>
                         <div className="col-8 col-md-6 justify-content-center">
-                            <Input type="string" style={{height:"2rem"}} id="Town" placeholder="Give your Town"
+                            <input type="string" style={{height:"2rem"}} id="Town" placeholder="Give your Town"
                             value={this.state.Town} onChange={(e)=>{this.setState({Town:e.target.value})}}/>
                         </div>
                     </FormGroup>
@@ -150,7 +150,7 @@ class Profile extends Component{
                     <FormGroup row>
                         <Label className="col-4 text-center" for="District" >District</Label>
                         <div className="col-8 col-md-6 justify-content-center">
-                            <Input type="string" style={{height:"2rem"}} id="District" placeholder="Give your District"
+                            <input type="string" style={{height:"2rem"}} id="District" placeholder="Give your District"
                             value={this.state.District} onChange={(e)=>{this.setState({District:e.target.value})}}/>
                         </div>
                     </FormGroup>
@@ -158,7 +158,7 @@ class Profile extends Component{
                     <FormGroup row >
                         <Label className="col-4 text-center" for="Pincode" >Pincode</Label>
                         <div className="col-8 col-md-6 justify-content-center">
-                            <Input type="string" style={{height:"2rem"}} id="Pincode" placeholder="Give your Pincode"
+                            <input type="string" style={{height:"2rem"}} id="Pincode" placeholder="Give your Pincode"
                           value={this.state.Pincode} onChange={(e)=>{this.setState({Pincode:e.target.value})}}/>
                         </div>
                     </FormGroup>
@@ -166,7 +166,7 @@ class Profile extends Component{
                     <FormGroup row >
                         <Label className="col-4 text-center" for="phoneNo" >PhoneNo</Label>
                         <div className="col-8 col-md-6 justify-content-center">
-                            <Input type="string" style={{height:"2rem"}} id="phoneNo" placeholder="Give your phoneNo"
+                            <input type="string" style={{height:"2rem"}} id="phoneNo" placeholder="Give your phoneNo"
                           value={this.state.phoneNo} onChange={(e)=>{this.setState({phoneNo:e.target.value})}}/>
                         </div>
                     </FormGroup>

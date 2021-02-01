@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Input , Modal,ModalHeader,ModalFooter
+  CardTitle, CardSubtitle, Input , Modal
 } from 'reactstrap';
 import { hostname } from './hostname';
 
@@ -94,7 +94,8 @@ class ProductView extends Component{
       }
 
       this.setState({
-        reviewArray:[...this.state.reviewArray,reviewProduct]
+        reviewArray:[...this.state.reviewArray,reviewProduct],
+        review:""
       });
 
       const values = {
@@ -196,10 +197,8 @@ class ProductView extends Component{
                   })
                 :<div></div>}
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-        <ModalHeader toggle={this.toggle}>You need to login to write a review</ModalHeader>
-        <ModalFooter>
-          <div className="buton"  onClick={()=>{this.props.history.push('./login')}}>Login</div>{' '}
-        </ModalFooter>
+          <div className="info" style={{fontSize:"20px"}} toggle={this.toggle}>You need to login to write a review</div>
+          <div className="buton mb-2" style={{transform:"translateX(170%)"}}  onClick={()=>{this.props.history.push('./login')}}>Login</div>{' '}
         </Modal>
       </div>
     );

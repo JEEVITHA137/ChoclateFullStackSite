@@ -1,8 +1,7 @@
 import React,{Component} from 'react';
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, ButtonGroup,
-  Modal,ModalHeader,ModalFooter
+  CardTitle, CardSubtitle, ButtonGroup,Modal
 } from 'reactstrap';
 import { hostname } from './hostname';
 
@@ -300,18 +299,17 @@ class Cart extends Component{
     return (
       <div className="container background" style={{minHeight:'78vh'}}>
         <h4 className="mt-3" style={{color:"#0b498f"}}>Cart</h4>
+
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-        <ModalHeader toggle={this.toggle}>You need to login to buy product</ModalHeader>
-        <ModalFooter>
-          <div className="buton"  onClick={()=>{this.props.history.push('./login')}}>Login</div>{' '}
-        </ModalFooter>
+        <div className="info" style={{fontSize:"20px"}} toggle={this.toggle}>You need to login to buy product</div>
+          <div className="buton mb-2" style={{transform:"translateX(170%)"}} onClick={()=>{this.props.history.push('./login')}}>Login</div>{' '}
         </Modal>
-        <Modal isOpen={this.state.profilemodal} toggleprofile={this.toggleprofile}>
-        <ModalHeader toggleprofile={this.toggleprofile}>Add the address in profile</ModalHeader>
-        <ModalFooter>
-          <div className="buton"  onClick={()=>{this.props.history.push('./profile')}}>Go to Profile</div>{' '}
-        </ModalFooter>
+
+        <Modal isOpen={this.state.profilemodal} toggleprofile={this.toggleprofile} onClick={this.toggleprofile}>
+        <div className="info" style={{fontSize:"20px"}}  toggleprofile={this.toggleprofile}>Add the address in profile</div>
+          <div className="buton mb-2" style={{transform:"translateX(170%)"}} onClick={()=>{this.props.history.push('./profile')}}>Go to Profile</div>{' '}
         </Modal>
+
         <div className="row p-2">
         {
           this.state.cart.length === 0  ? <h4>Cart is Empty</h4>
