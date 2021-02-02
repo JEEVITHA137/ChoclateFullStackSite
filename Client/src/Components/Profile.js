@@ -96,7 +96,7 @@ class Profile extends Component{
     return (
       <div className="container" style={{minHeight:'78vh'}}>
         <div className="row mt-3">
-          <h4 className=" col-8" style={{color:"#0b498f"}}>Profile</h4>
+          <h3 className=" col-8">Profile</h3>
           {this.state.edit
                   ? null :
           <div className="buton" 
@@ -107,7 +107,7 @@ class Profile extends Component{
              <Card  className="col-10 m-2 profile card shadow bg-white">
                 <Form className="form" onSubmit={(e) => this.uploadProfile(e)}>
 
-                    <h4 className="p-2" style={{color:"#0b498f"}}>Edit Profile</h4>
+                    <h3 className="p-2">Edit Profile</h3>
                     <FormGroup row >
                         <Label className="col-4 text-center" for="UName" >Name:</Label>
                         <div className="col-8 col-md-6 justify-content-center">
@@ -181,21 +181,21 @@ class Profile extends Component{
                 </Card>
              : 
 
-             <Card  className="col-10 m-4 card shadow bg-white">
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Name : </div><div className="pl-2" style={{color:"#068899"}}>{this.state.name}</div></div>
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Email-Id : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.mailId}</div></div>
+             <Card  className="col-10 m-4 profileshow card shadow bg-white">
+               <div className="row p-2 m-1"><div>Name : </div><div className="pl-2" style={{color:"black"}}>{this.state.name}</div></div>
+               <div className="row p-2 m-1"><div>Email-Id : </div> <div className="pl-2" style={{color:"black"}}>{this.state.mailId}</div></div>
 
-               <h5 className="row p-2 m-1 text-center" style={{color:"#0b498f"}}>Address</h5>
+               <h5 className="row p-2 m-1 text-center" style={{color:"#400080"}}>Address</h5>
 
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>HouseNo/FlatNo : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.HouseNo}</div></div>
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Street : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.Street}</div></div>
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>LandMark : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.LandMark}</div></div>
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Town : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.Town}</div></div>
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>District : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.District}</div></div>
-               {this.state.Pincode !==0 ? <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Pincode : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.Pincode}</div></div>:
-               <div className="row p-2 m-1"><div style={{color:"#0b498f"}}>Pincode : </div> <div className="pl-2" style={{color:"#068899"}}>-</div></div>}
-                 {this.state.phoneNo !==0 ? <div className="row p-2 m-1" > <div style={{color:"#0b498f"}}>PhoneNo : </div> <div className="pl-2" style={{color:"#068899"}}>{this.state.phoneNo}</div></div>:
-                      <div className="row p-2 m-1" > <div style={{color:"#0b498f"}}>PhoneNo : </div> <div className="pl-2" style={{color:"#068899"}}>-</div></div>}
+               <div className="row p-2 m-1"><div>HouseNo/FlatNo : </div> <div className="pl-2" style={{color:"black"}}>{this.state.HouseNo}</div></div>
+               <div className="row p-2 m-1"><div>Street : </div> <div className="pl-2" style={{color:"black"}}>{this.state.Street}</div></div>
+               <div className="row p-2 m-1"><div>LandMark : </div> <div className="pl-2" style={{color:"black"}}>{this.state.LandMark}</div></div>
+               <div className="row p-2 m-1"><div>Town : </div> <div className="pl-2" style={{color:"black"}}>{this.state.Town}</div></div>
+               <div className="row p-2 m-1"><div>District : </div> <div className="pl-2" style={{color:"black"}}>{this.state.District}</div></div>
+               {this.state.Pincode !==0 ? <div className="row p-2 m-1"><div>Pincode : </div> <div className="pl-2" style={{color:"black"}}>{this.state.Pincode}</div></div>:
+               <div className="row p-2 m-1"><div>Pincode : </div> <div className="pl-2" style={{color:"black"}}>-</div></div>}
+                 {this.state.phoneNo !==0 ? <div className="row p-2 m-1" > <div>PhoneNo : </div> <div className="pl-2" style={{color:"black"}}>{this.state.phoneNo}</div></div>:
+                      <div className="row p-2 m-1" > <div >PhoneNo : </div> <div className="pl-2" style={{color:"black"}}>-</div></div>}
 
                 </Card>
           }

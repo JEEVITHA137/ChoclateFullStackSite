@@ -96,7 +96,7 @@ class AdminProducts extends Component{
   render(){
     return (
       <div className="container">
-        <h3  className="mt-3" style={{color:"#0b498f"}}>Products</h3>
+        <h3  className="mt-3" >Products</h3>
         <div className="row d-flex justify-content-center">
         {
           this.state.products.length === 0  ? <div>No Products</div>
@@ -105,15 +105,15 @@ class AdminProducts extends Component{
                    <Card  key={i} className="col-md-3 m-3 card shadow bg-white text-center" >
                     <CardImg style={{height:"190px"}} className="p-3" src={`${hostname}${product.img}`} alt="product-img" />
                     <CardBody>
-                      <CardTitle tag="h5" style={{color:"#0c73c2"}}>{product.name}</CardTitle>
+                      <CardTitle tag="h5" style={{color:"#400080"}}>{product.name}</CardTitle>
                       <CardSubtitle tag="h6" className="mb-2 text-muted">{product.brand}</CardSubtitle>
                       <ButtonGroup className="m-2">
                         <div className="buton1" onClick={()=>{this.reduceProduct(product._id,i,product.quantity)}}>-</div>
-                        <div className="p-1" style={{color:"#0b498f"}}>{product.quantity}</div>
+                        <div className="p-1" style={{color:"#400080"}}>{product.quantity}</div>
                         <div className="buton1" onClick={()=>{this.addProduct(product._id,i)}}>+</div>    
                       </ButtonGroup>
                       <CardText><div>{product.flavour}</div>
-                                <h5 className="p-3" style={{color:"#068899"}}>₹ {product.cost}</h5>
+                                <h5 className="p-3" style={{color:"#400080"}}>₹ {product.cost}</h5>
                       </CardText>
                      
                     </CardBody>

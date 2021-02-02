@@ -92,7 +92,7 @@ class Login extends Component{
                 </div>
                 <div class="col-md-5 login-form-2">
                  <Form className="login" onSubmit={(e) => this.submit(e)}>
-                  <h3 className="pb-2" style={{color:"#0b498f"}} >Login</h3>
+                  <h3 className="pb-2">Login</h3>
 
                   <FormText>{this.state.loginError}</FormText>
                   
@@ -122,7 +122,7 @@ class Login extends Component{
                           <div className="buton" type = "submit" style={{width:"150px"}} onClick={this.submit}>Login</div>
                       </div>
                   </FormGroup>
-                  <h5 className="p-3">New user?<a href="/signin" style={{color:"#1a2980"}}> Signin</a></h5>
+                  <h5 className="p-3">New user?<a href="/signin" style={{color:"#400080"}}> Signin</a></h5>
                   </Form>
                 </div>
             </div>

@@ -270,10 +270,10 @@ class Products extends Component{
           <Card  key={i}  className="col-md-3 m-3 product text-center" onClick={()=>{this.viewProduct(product)}}>
           <CardImg className="p-3" style={{height:"190px"}} src={`${hostname}${product.img}`} alt="product-img" />
           <CardBody>
-            <CardTitle tag="h5" style={{color:"#0b498f"}}>{product.name}</CardTitle>
+            <CardTitle tag="h5" style={{color:"#400080"}}>{product.name}</CardTitle>
             <CardSubtitle tag="h6" className="text-muted">{product.brand}</CardSubtitle>
             <CardText><div>{product.flavour}</div>
-                      <h5 style={{color:"#0b498f"}}>₹ {product.cost}</h5></CardText>
+                      <h5 style={{color:"#400080"}}>₹ {product.cost}</h5></CardText>
           </CardBody>
           </Card>   
         )})

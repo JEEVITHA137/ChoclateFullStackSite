@@ -159,16 +159,16 @@ class ProductView extends Component{
   render(){
     return (
       <div className="container" style={{minHeight:'77vh'}} >
-        <h3 className="mt-3" style={{color:"#0c73c2"}}>Product View</h3>
+        <h3 className="mt-3">Product View</h3>
         <div className="row ">
         <Card className="col-md-5 p-3 m-3 shadow bg-white " >
         <CardImg  width="100%" style={{height:"350px"}} src={`${hostname}${this.props.viewproduct.img}`} alt="product-img" />
         </Card>  
         <CardBody>
-          <CardTitle tag="h5" style={{color:"#068899"}}>{this.props.viewproduct.name}</CardTitle>
+          <CardTitle tag="h5" style={{color:"#400080"}}>{this.props.viewproduct.name}</CardTitle>
           <CardSubtitle tag="h6" className="mb-2 text-muted">{this.props.viewproduct.brand}</CardSubtitle>
           <CardText><div>{this.props.viewproduct.flavour}</div>
-                    <div style={{color:"#0c73c2"}}>₹ {this.props.viewproduct.cost}</div></CardText>
+                    <div style={{color:"#400080"}}>₹ {this.props.viewproduct.cost}</div></CardText>
           {
           this.ispresentincart(this.props.viewproduct._id) === true ?
           <div disabled="true" className="cartbuton" >In Cart<img src='../cart.svg' alt="cart"  style={{width:"40px",height:"40px"}}></img></div> 
@@ -189,7 +189,7 @@ class ProductView extends Component{
                       <div key={i} className="m-2 pb-2">
                         <div className="d-flex">
                           <img src="./user.png" style={{width:"35px",height:"35px"}} alt="User"></img>
-                          <h6 className="p-2" style={{color:"#068899"}}>{review.user}</h6>
+                          <h6 className="p-2" style={{color:"#400080"}}>{review.user}</h6>
                         </div>
                         <h6 className="pl-4" style={{color:"grey"}}>{review.reviews}</h6>
                       </div>

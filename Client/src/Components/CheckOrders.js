@@ -54,9 +54,9 @@ class CheckOrders extends Component{
   render(){
     return (
       <div className="container">
-      <h4  className="mt-3" style={{color:"#0b498f"}}>CheckOrders</h4>
+      <h3  className="mt-3">CheckOrders</h3>
       <table class="table">
-      <thead   style={{color:"#26d0ce"}}>
+      <thead   style={{color:"#400080"}}>
         <tr>
           <th scope="col">SI.No</th>
           <th scope="col">User-ID</th>
@@ -66,7 +66,7 @@ class CheckOrders extends Component{
           <th scope="col">Address</th>
         </tr>
       </thead>
-      <tbody style={{color:"#0b498f"}}>
+      <tbody style={{color:"#6600cc"}}>
         {this.state.orders.map((orders,key)=>{
           return(
             <tr key = {key}>
@@ -74,7 +74,7 @@ class CheckOrders extends Component{
             <td>{orders.UserId}</td>
             <td>{orders.ProductId}</td>
             <td>{orders.quantity}</td>
-            {orders.Tracking === "delivered" ? <td>{orders.Tracking}</td> : <td><select style={{color:"#0b498f"}} value={orders.Tracking} onChange={(e)=>{this.trackingChange(e.target.value,orders._id,key)}}><option>packaged</option><option>ordered</option><option>delivered</option></select></td>}
+            {orders.Tracking === "delivered" ? <td>{orders.Tracking}</td> : <td><select style={{color:"#6600cc"}} value={orders.Tracking} onChange={(e)=>{this.trackingChange(e.target.value,orders._id,key)}}><option>packaged</option><option>ordered</option><option>delivered</option></select></td>}
             <td>{orders.Address.HouseNo} {orders.Address.Street},{orders.Address.LandMark},{orders.Address.Town},{orders.Address.District},{orders.Address.Pincode}</td>
             </tr>
           );

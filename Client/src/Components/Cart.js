@@ -298,14 +298,14 @@ class Cart extends Component{
   render(){
     return (
       <div className="container" style={{minHeight:'78vh'}}>
-        <h4 className="mt-3" style={{color:"#0b498f"}}>Cart</h4>
+        <h3 className="mt-3">Cart</h3>
 
-        <Modal className="m-2" isOpen={this.state.modal} toggle={this.toggle}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
         <div className="info" style={{fontSize:"20px"}} toggle={this.toggle}>You need to login to buy product</div>
           <div className="buton mb-2" style={{transform:"translateX(170%)"}} onClick={()=>{this.props.history.push('./login')}}>Login</div>{' '}
         </Modal>
 
-        <Modal className="m-2" isOpen={this.state.profilemodal} toggleprofile={this.toggleprofile} onClick={this.toggleprofile}>
+        <Modal isOpen={this.state.profilemodal} toggleprofile={this.toggleprofile} onClick={this.toggleprofile}>
         <div className="info" style={{fontSize:"20px"}}  toggleprofile={this.toggleprofile}>Add the address in profile</div>
           <div className="buton mb-2" style={{transform:"translateX(170%)"}} onClick={()=>{this.props.history.push('./profile')}}>Go to Profile</div>{' '}
         </Modal>
@@ -318,13 +318,13 @@ class Cart extends Component{
                     <Card  key={i} className="col-md-3 m-4 card shadow bg-white text-center" >
                     <CardImg style={{height:"190px"}} className="p-3" src={`${hostname}${product.img}`} alt="product-img" />
                     <CardBody>
-                      <CardTitle tag="h5" style={{color:"#0c73c2"}}>{product.name}</CardTitle>
+                      <CardTitle tag="h5" style={{color:"#400080"}}>{product.name}</CardTitle>
                       <CardSubtitle tag="h6" className="mb-2 text-muted">{product.brand}</CardSubtitle>
                       <CardText><div>{product.flavour}</div>
-                                <h5 className="p-3" style={{color:"#068899"}}>₹ {product.cost}</h5></CardText>
+                                <h5 className="p-3" style={{color:"#400080"}}>₹ {product.cost}</h5></CardText>
                         <ButtonGroup className="m-2">
                         <div className="buton1" onClick={()=>{this.availableMinus(i,product.quantity)}}>-</div>
-                        <div className="p-1" style={{color:"#0b498f"}}>{product.quantity}</div>
+                        <div className="p-1" style={{color:"#400080"}}>{product.quantity}</div>
                         <div className="buton1" onClick={()=>{this.availablePlus(product._id,i,product.quantity)}}>+</div>    
                         </ButtonGroup>
                         

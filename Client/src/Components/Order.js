@@ -94,7 +94,7 @@ class Order extends Component{
   render(){
     return (
       <div className="container" style={{minHeight:'78vh'}}> 
-        <h4 className="mt-3" style={{color:"#0b498f"}}>Your Orders</h4>
+        <h3 className="mt-3">Your Orders</h3>
         <div className="row">
         {
           this.state.orders.length === 0  ? <div>Order is Empty</div>
@@ -105,11 +105,11 @@ class Order extends Component{
                       <Card  key={i} className="col-md-3 m-4 card shadow bg-white text-center justify-content-center" >
                         <CardImg style={{height:"190px"}} className="p-3" src={`${hostname}${product[0].img}`} alt="product-img" />
                         <CardBody>
-                          <CardTitle tag="h5" style={{color:"#0c73c2"}}>{product[0].name}</CardTitle>
+                          <CardTitle tag="h5" style={{color:"#400080"}}>{product[0].name}</CardTitle>
                           <CardSubtitle tag="h6" className="mb-2 text-muted">{product[0].flavour}</CardSubtitle>
                           <CardText><div>Quantity : {order.quantity}</div>
-                          {order.Tracking !== "delivered" ?<ButtonGroup><div style={{color:"#0b498f"}}>{order.Tracking}<br/> <div className="buton" onClick={()=>{this.cancel(product[0]._id,order)}}>Cancel</div></div></ButtonGroup>:<div style={{color:"#0b498f"}}>{order.Tracking}</div>}
-                                <h5 className="p-3" style={{color:"#068899"}}>₹ {product[0].cost}</h5></CardText>
+                          {order.Tracking !== "delivered" ?<ButtonGroup><div style={{color:"#400080"}}>{order.Tracking}<br/> <div className="buton" onClick={()=>{this.cancel(product[0]._id,order)}}>Cancel</div></div></ButtonGroup>:<div style={{color:"#400080"}}>{order.Tracking}</div>}
+                                <h5 className="p-3" style={{color:"#400080"}}>₹ {product[0].cost}</h5></CardText>
                         </CardBody>
                       </Card>
                       :<div  key={i}></div>

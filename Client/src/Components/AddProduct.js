@@ -53,7 +53,7 @@ class AddProduct extends Component{
     return (
       <div className="container" style={{minHeight:'79vh'}}>
       <Form className="form profile" onSubmit={(e) => this.submitForm(e)}>
-          <h4 className="m-2" style={{color:"#0b498f"}}>Add Product</h4>
+          <h3 className="m-2">Add Product</h3>
 
           <FormGroup row className="p-2">
               <Label className="col-4 text-center" for="ProductName" >Product Name :</Label>

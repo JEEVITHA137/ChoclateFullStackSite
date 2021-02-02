@@ -169,7 +169,7 @@ class Menu extends Component{
               
                 <div className="row justify-content-center">             
                     <div className="col-auto m-0 mt-2">
-                        <p>Designed by <a  target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/jeevithavenkatesan137"  style={{color:"#0b498f"}}>Jeevitha Venkatesan</a></p>
+                        <p>Designed by <a  target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/jeevithavenkatesan137">Jeevitha Venkatesan</a></p>
                     </div>
                 </div>
             </div>

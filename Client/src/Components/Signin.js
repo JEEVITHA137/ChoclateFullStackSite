@@ -12,9 +12,6 @@ class Signin extends Component{
     PassError:"",
     signin:[],
     login:false,
-    EmailValid:"",
-    NameValud:"",
-    PassValid:"",
     type:"password"
   };
 
@@ -93,14 +90,12 @@ class Signin extends Component{
     if(this.state.mailId.length<5)
     {
       this.setState({
-      EmailError:"Email must be at the Correct format",
-      EmailValid:""
+      EmailError:"Email must be at the Correct format"
       })
     }
     else {
       this.setState({
       EmailError:"",
-      EmailValid:"valid"
       })
     }
 
@@ -114,14 +109,12 @@ class Signin extends Component{
     if(this.state.name.length<4)
     {
       this.setState({
-      NameError:"Username needs to be atleast 5 characters long",
-      NameValid:""
+      NameError:"Username needs to be atleast 5 characters long"
       })
     }
     else if(!(alph.test(this.state.name))){
       this.setState({
-      NameError:"Must be an alphabetics only",
-      NameValid:"",
+      NameError:"Must be an alphabetics only"
       })
     }
     else{
@@ -140,20 +133,17 @@ class Signin extends Component{
     if(this.state.pass.length<6)
     {
       this.setState({
-        PassError:"Must 6 letters",
-        PassValid:""
+        PassError:"Must 6 letters"
       })
     }
     else if(!(passRegex.test(this.state.pass))){
       this.setState({
-        PassError:"Must had Capital,Small and Numeric letters",
-        PassValid:""
+        PassError:"Must had Capital,Small and Numeric letters"
       })
     }
     else {
       this.setState({
-         PassError:"",
-         PassValid:"valid"
+         PassError:""
       })
     }
   }
@@ -168,7 +158,7 @@ class Signin extends Component{
           </div>
           <div class="col-md-5 login-form-2">
             <Form className="container" onSubmit={(e) => this.submit(e)}>
-            <h3 className="pb-2" style={{color:"#0b498f"}}>Signin</h3>
+            <h3 className="pb-2" >Signin</h3>
             
             <FormText color="white">{this.state.loginError}</FormText>
 
@@ -176,7 +166,7 @@ class Signin extends Component{
                 <Label className="col-4 text-center" for="EmailId" ><h5>Email-Id:</h5></Label>
                 <div className="col-8 col-md-7 justify-content-center">
                     <input type="string" style={{height:"2rem"}} placeholder="Give your Email Id"
-                      value={this.state.mailId} onChange={this.handleEmailChange} valid={this.state.EmailValid}/>
+                      value={this.state.mailId} onChange={this.handleEmailChange}/>
                     <FormText>{this.state.EmailError}</FormText>
                 </div>
             </FormGroup>
@@ -185,7 +175,7 @@ class Signin extends Component{
                 <Label className="col-4 text-center" for="Username" ><h5>Username:</h5></Label>
                 <div className="col-8 col-md-7 justify-content-center">
                     <input type="string" style={{height:"2rem"}} placeholder="Give your Username"
-                      value={this.state.name} onChange={this.handleNameChange} valid={this.state.NameValid}/>
+                      value={this.state.name} onChange={this.handleNameChange}/>
                     <FormText>{this.state.NameError}</FormText>
                 </div>
             </FormGroup>
@@ -195,7 +185,7 @@ class Signin extends Component{
                 <div className="col-8 col-md-7 justify-content-center">
                   <div className="pass-wrapper">
                     <input type={this.state.type} style={{height:"2rem"}} placeholder="Give your Password"
-                      value={this.state.pass} onChange={this.handlePassChange}  valid={this.state.PassValid}/>
+                      value={this.state.pass} onChange={this.handlePassChange}/>
                     <img src={this.state.type === "password" ? "./show-password1.png" : "./show-password.png"} alt="show" style={{height:"1.5rem"}} onClick={this.state.type === "password" ? () => {this.setState({type:"text"})} : ()=>{this.setState({type:"password"})} }></img>
                   </div>
                     <FormText>{this.state.PassError}</FormText>
@@ -206,7 +196,7 @@ class Signin extends Component{
                     <div className="buton" type = "submit" style={{width:"150px"}} onClick={this.submit}>Signin</div>
                 </div>
             </FormGroup>
-            <h5 className="p-3">Already user?<a href="/login" style={{color:"#1a2980"}}> Login</a></h5>
+            <h5 className="p-3">Already user?<a href="/login" style={{color:"#400080"}}> Login</a></h5>
             </Form>   
           </div>
          </div>
