@@ -18,6 +18,10 @@ class Signin extends Component{
     type:"password"
   };
 
+  componentDidMount(){
+    this.props.getLogin()
+  }
+
   submit= (e) =>{
     e.preventDefault();
     let error = 0;
@@ -156,48 +160,59 @@ class Signin extends Component{
 
   render(){
     return (
-      <div className="pl-2 pr-2" style={{height:'79vh',transform: "translateY(10%)" }} >
-      <Form className="login container" onSubmit={(e) => this.submit(e)}>
-          <h3 className="m-2 pt-3">Signin</h3>
-          
-          <FormText color="white">{this.state.loginError}</FormText>
+      <div className="background">
+      <img src="./logo.png" className="logo1" alt="Logo" onClick={() =>  this.props.history.push("/")}></img>
+      <div class="container login">
+        <div class="row justify-content-center m-2">
+          <div class="col-md-5 login-form-1">
+          </div>
+          <div class="col-md-5 login-form-2">
+            <Form className="container" onSubmit={(e) => this.submit(e)}>
+            <h3 className="pb-2" style={{color:"#0b498f"}}>Signin</h3>
+            
+            <FormText color="white">{this.state.loginError}</FormText>
 
-          <FormGroup row className="p-2">
-              <Label className="col-4 text-center" for="EmailId" ><h5>Email-Id:</h5></Label>
-              <div className="col-8 col-md-6 justify-content-center">
-                  <input type="string" style={{height:"2rem",color:"white"}} placeholder="Give your Email Id"
-                     value={this.state.mailId} onChange={this.handleEmailChange} valid={this.state.EmailValid}/>
-                  <FormText color="white">{this.state.EmailError}</FormText>
-              </div>
-          </FormGroup>
-        
-          <FormGroup row className="p-2">
-              <Label className="col-4 text-center" for="Username" ><h5>Username:</h5></Label>
-              <div className="col-8 col-md-6 justify-content-center">
-                  <input type="string" style={{height:"2rem",color:"white"}} placeholder="Give your Username"
-                     value={this.state.name} onChange={this.handleNameChange} valid={this.state.NameValid}/>
-                  <FormText color="white">{this.state.NameError}</FormText>
-              </div>
-          </FormGroup>
-          
-          <FormGroup row className="p-2">
-              <Label className="col-4 text-center" for="Password" ><h5>Password:</h5></Label>
-              <div className="col-8 col-md-6 justify-content-center">
-                <div className="pass-wrapper">
-                  <input type={this.state.type} style={{height:"2rem",color:"white"}} placeholder="Give your Password"
-                     value={this.state.pass} onChange={this.handlePassChange}  valid={this.state.PassValid}/>
-                  <img src={this.state.type === "password" ? "./show-password1.png" : "./show-password.png"} alt="show" style={{height:"1.5rem"}} onClick={this.state.type === "password" ? () => {this.setState({type:"text"})} : ()=>{this.setState({type:"password"})} }></img>
+            <FormGroup row className="p-2">
+                <Label className="col-4 text-center" for="EmailId" ><h5>Email-Id:</h5></Label>
+                <div className="col-8 col-md-7 justify-content-center">
+                    <input type="string" style={{height:"2rem"}} placeholder="Give your Email Id"
+                      value={this.state.mailId} onChange={this.handleEmailChange} valid={this.state.EmailValid}/>
+                    <FormText>{this.state.EmailError}</FormText>
                 </div>
-                  <FormText color="white">{this.state.PassError}</FormText>
-              </div>
-          </FormGroup>
-          <FormGroup className="row p-2">
-              <div className="col-4 offset-7">
-                  <div className="buton" type = "submit" onClick={this.submit}>Signin</div>
-              </div>
-          </FormGroup>
-          <h5 className="p-3">Already user?<a href="/login" style={{color:"#1a2980"}}> Login</a></h5>
-      </Form>
+            </FormGroup>
+          
+            <FormGroup row className="p-2">
+                <Label className="col-4 text-center" for="Username" ><h5>Username:</h5></Label>
+                <div className="col-8 col-md-7 justify-content-center">
+                    <input type="string" style={{height:"2rem"}} placeholder="Give your Username"
+                      value={this.state.name} onChange={this.handleNameChange} valid={this.state.NameValid}/>
+                    <FormText>{this.state.NameError}</FormText>
+                </div>
+            </FormGroup>
+            
+            <FormGroup row className="p-2">
+                <Label className="col-4 text-center" for="Password" ><h5>Password:</h5></Label>
+                <div className="col-8 col-md-7 justify-content-center">
+                  <div className="pass-wrapper">
+                    <input type={this.state.type} style={{height:"2rem"}} placeholder="Give your Password"
+                      value={this.state.pass} onChange={this.handlePassChange}  valid={this.state.PassValid}/>
+                    <img src={this.state.type === "password" ? "./show-password1.png" : "./show-password.png"} alt="show" style={{height:"1.5rem"}} onClick={this.state.type === "password" ? () => {this.setState({type:"text"})} : ()=>{this.setState({type:"password"})} }></img>
+                  </div>
+                    <FormText>{this.state.PassError}</FormText>
+                </div>
+            </FormGroup>
+            <FormGroup className="row p-2">
+                <div className="col-2 offset-4">
+                    <div className="buton" type = "submit" style={{width:"150px"}} onClick={this.submit}>Signin</div>
+                </div>
+            </FormGroup>
+            <h5 className="p-3">Already user?<a href="/login" style={{color:"#1a2980"}}> Login</a></h5>
+            </Form>   
+          </div>
+         </div>
+      </div>
+
+      
   
   </div>
     );

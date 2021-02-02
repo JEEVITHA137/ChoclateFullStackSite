@@ -14,6 +14,10 @@ class Login extends Component{
     type:"password"
   };
 
+  componentDidMount(){
+    this.props.getLogin()
+  }
+
   submit= (e) =>{   
     e.preventDefault();
     let error = 0;
@@ -79,43 +83,52 @@ class Login extends Component{
 
   render(){
     return (
-      
-      <div style={{height:'79vh',transform: "translateY(12%)"}} className="pl-2 pr-2">
-      <Form className="container login" onSubmit={(e) => this.submit(e)}>
-          <h3 className="m-2 pt-3" >Login</h3>
-
-          <FormText color="white">{this.state.loginError}</FormText>
-          
-          <FormGroup row className="p-2">
-              <Label className="col-4 text-center" for="EmailId"  ><h5>Email-Id:</h5></Label>
-              <div className="col-8 col-md-6 justify-content-center">
-                  <input type="string" style={{height:"2rem",color:"white"}} placeholder="Give your Email Id"
-                     value={this.state.mailId} onChange={this.handleEmailChange} />
-                  <FormText color="white">{this.state.EmailError}</FormText>
-              </div>
-          </FormGroup>
-          
-          <FormGroup row className="p-2">
-              <Label className="col-4 text-center" for="Password" ><h5>Password:</h5></Label>
-              <div className="col-8 col-md-6 justify-content-center">
-                <div className="pass-wrapper">
-                  <input  type={this.state.type} style={{height:"2rem",color:"white"}} placeholder="Give your Password"
-                     value={this.state.pass} onChange={this.handlePassChange}  /> 
-                  <img src={this.state.type === "password" ? "./show-password1.png" : "./show-password.png"} alt="show" style={{height:"1.5rem"}} onClick={this.state.type === "password" ? () => {this.setState({type:"text"})} : ()=>{this.setState({type:"password"})} }></img>
+      <div className="background" >
+      <img src="./logo.png" className="logo1" alt="Logo" onClick={() =>  this.props.history.push("/")}></img>
+      <div class="container login">
+            <div class="row justify-content-center m-2">
+                <div class="col-md-5 login-form-1">
+               
                 </div>
-                  <FormText color="white" className=" p-1">{this.state.PassError}</FormText>
-              </div>
-          </FormGroup>
+                <div class="col-md-5 login-form-2">
+                 <Form className="login" onSubmit={(e) => this.submit(e)}>
+                  <h3 className="pb-2" style={{color:"#0b498f"}} >Login</h3>
 
-          <FormGroup className="row p-2">
-              <div className="col-4 offset-7">
-                  <div className="buton" type = "submit" onClick={this.submit}>Login</div>
-              </div>
-          </FormGroup>
-          <h5 className="p-3">New user?<a href="/signin" style={{color:"#1a2980"}}> Signin</a></h5>
-      </Form>
-      
-  </div>
+                  <FormText>{this.state.loginError}</FormText>
+                  
+                  <FormGroup row className="p-2">
+                      <Label className="col-4 text-center" for="EmailId"  ><h5>Email-Id:</h5></Label>
+                      <div className="col-8 col-md-7 justify-content-center">
+                          <input type="string" style={{height:"2rem"}} placeholder="Give your Email Id"
+                            value={this.state.mailId} onChange={this.handleEmailChange} />
+                          <FormText>{this.state.EmailError}</FormText>
+                      </div>
+                  </FormGroup>
+                  
+                  <FormGroup row className="p-2">
+                      <Label className="col-4 text-center" for="Password" ><h5>Password:</h5></Label>
+                      <div className="col-8 col-md-7 justify-content-center">
+                        <div className="pass-wrapper">
+                          <input  type={this.state.type} style={{height:"2rem"}} placeholder="Give your Password"
+                            value={this.state.pass} onChange={this.handlePassChange}  /> 
+                          <img src={this.state.type === "password" ? "./show-password1.png" : "./show-password.png"} alt="show" style={{height:"1.5rem"}} onClick={this.state.type === "password" ? () => {this.setState({type:"text"})} : ()=>{this.setState({type:"password"})} }></img>
+                        </div>
+                          <FormText className=" p-1">{this.state.PassError}</FormText>
+                      </div>
+                  </FormGroup>
+
+                  <FormGroup className="row">
+                      <div className="col-2 offset-4">
+                          <div className="buton" type = "submit" style={{width:"150px"}} onClick={this.submit}>Login</div>
+                      </div>
+                  </FormGroup>
+                  <h5 className="p-3">New user?<a href="/signin" style={{color:"#1a2980"}}> Signin</a></h5>
+                  </Form>
+                </div>
+            </div>
+        </div>
+
+      </div>
     );
   }
 }

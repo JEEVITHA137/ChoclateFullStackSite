@@ -12,6 +12,8 @@ class AdminProducts extends Component{
   };
 
   componentDidMount(){
+    this.props.getNavBar();
+    
     const headers = {
         method:'GET'
     };
@@ -94,7 +96,7 @@ class AdminProducts extends Component{
   render(){
     return (
       <div className="container">
-        <h1>Products</h1>
+        <h3  className="mt-3" style={{color:"#0b498f"}}>Products</h3>
         <div className="row d-flex justify-content-center">
         {
           this.state.products.length === 0  ? <div>No Products</div>

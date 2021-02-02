@@ -12,21 +12,17 @@
   cursor: pointer;
 }
 
+.logo1
+{
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  margin: 35px;
+}
+
 .navbar-dark {
   background:linear-gradient(90deg,#1a2980,#26d0ce);
-}
-
-.bg
-{
-  background-image: url('./bg.jpg');
-  background-repeat: repeat;
-  position: relative;
-  height: 86.5vh;
-}
-
-.cardbackground
-{
-  background-color: url('./card.jpg');
+  overflow: hidden;
 }
 
 .buton{
@@ -85,13 +81,66 @@
     text-decoration: none;
 }
 
-.login{
+.background{
   font-family:  'Righteous', cursive;
-  background:  linear-gradient(90deg,#1a2980,#26d0ce);
-  box-shadow: 5px 5px 5px #aaaaaa;
-  text-align: center;
-  color: white;
+  background-image: url('./bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
+
+.login{
+  text-align: center;
+  padding: 2px;
+}
+
+.login-form-1{
+  background-image: url('./welcome.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5), 0 9px 26px 0 rgba(0, 0, 0, 0.5);
+}
+
+.login-form-2{
+  padding: 5%;
+  text-align: center;
+  background: white;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5), 0 9px 26px 0 rgba(0, 0, 0, 0.5);
+}
+
+.btnSubmit
+{
+  width: 50%;
+  border-radius: 1rem;
+  padding: 1.5%;
+  border: none;
+  cursor: pointer;
+}
+
+.login-form-1 .btnSubmit{
+  font-weight: 600;
+  color: #fff;
+  background-color: #0062cc;
+}
+
+.login-form-2 .btnSubmit{
+  font-weight: 600;
+  color: #0062cc;
+  background-color: #fff;
+}
+
+.login-form-2 .ForgetPwd{
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-form-1 .ForgetPwd{
+  color: #0062cc;
+  font-weight: 600;
+  text-decoration: none;
+}
+
 
 input{
   display: block;
@@ -123,7 +172,7 @@ input{
   bottom: 0;
   top: 20px;
   width: 100%;
-  background: linear-gradient(90deg,#1a2980,#26d0ce);         
+  background: linear-gradient(90deg,#1a2980,#26d0ce);   
 }
 
 .text-muted{

@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { hostname } from './hostname';
-import {Card, Form, FormGroup, Label,FormText} from 'reactstrap';
+import {Card, Form, FormGroup, Label,FormText } from 'reactstrap';
 
 class Profile extends Component{
   state = {

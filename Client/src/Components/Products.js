@@ -18,6 +18,7 @@ class Products extends Component{
   };
 
   componentDidMount(){
+    this.props.getNavBar()
     const headers = {
         method:'GET'
     };

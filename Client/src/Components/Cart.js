@@ -297,15 +297,15 @@ class Cart extends Component{
 
   render(){
     return (
-      <div className="container background" style={{minHeight:'78vh'}}>
+      <div className="container" style={{minHeight:'78vh'}}>
         <h4 className="mt-3" style={{color:"#0b498f"}}>Cart</h4>
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+        <Modal className="m-2" isOpen={this.state.modal} toggle={this.toggle}>
         <div className="info" style={{fontSize:"20px"}} toggle={this.toggle}>You need to login to buy product</div>
           <div className="buton mb-2" style={{transform:"translateX(170%)"}} onClick={()=>{this.props.history.push('./login')}}>Login</div>{' '}
         </Modal>
 
-        <Modal isOpen={this.state.profilemodal} toggleprofile={this.toggleprofile} onClick={this.toggleprofile}>
+        <Modal className="m-2" isOpen={this.state.profilemodal} toggleprofile={this.toggleprofile} onClick={this.toggleprofile}>
         <div className="info" style={{fontSize:"20px"}}  toggleprofile={this.toggleprofile}>Add the address in profile</div>
           <div className="buton mb-2" style={{transform:"translateX(170%)"}} onClick={()=>{this.props.history.push('./profile')}}>Go to Profile</div>{' '}
         </Modal>

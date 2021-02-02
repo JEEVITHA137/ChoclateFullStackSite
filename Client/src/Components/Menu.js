@@ -20,8 +20,21 @@ class Menu extends Component{
     user:"",
     viewproduct:[],
     isNavOpen: false,
-    cart:[]
+    cart:[],
+    display:"",
   };
+
+  getLogin = () =>{
+    this.setState({
+      display:"none"
+    })
+  }
+
+  getNavBar = () =>{
+    this.setState({
+      display:" "
+    })
+  }
 
   getEmail = (email,name) => {
     this.setState({
@@ -107,7 +120,7 @@ class Menu extends Component{
   render(){
     return (
       <div>   
-        <Navbar dark expand="md">
+        <Navbar dark expand="md" style={{display:`${this.state.display}`}}>
             <div className="container">
             <NavbarBrand className="mr-auto" onClick={() =>  this.props.history.push("/")} ><img src="./logo.png" className="logo" alt="Logo"></img></NavbarBrand>
             <NavbarToggler onClick={() => this.toggleNav()} />
@@ -139,19 +152,19 @@ class Menu extends Component{
       </div>
       </Navbar>
       
-            <Route exact path="/signin" render={(props) => <Signin {...props}  getEmail={this.getEmail} addToCart={this.addToCart}/>}></Route>
-            <Route exact path="/login" render={(props) => <Login {...props}  getEmail={this.getEmail} addToCart={this.addToCart} />}></Route>
+            <Route exact path="/signin" render={(props) => <Signin {...props}  getEmail={this.getEmail} addToCart={this.addToCart} getLogin={this.getLogin}/>}></Route>
+            <Route exact path="/login" render={(props) => <Login {...props}  getEmail={this.getEmail} addToCart={this.addToCart} getLogin={this.getLogin}/>}></Route>
   
-            <Route exact path="/"  render={(props) => <Products {...props}  emailId={this.state.emailId} getViewProduct={this.getViewProduct}/>}></Route>
+            <Route exact path="/"  render={(props) => <Products {...props}  emailId={this.state.emailId} getViewProduct={this.getViewProduct}  getNavBar={this.getNavBar}/>}></Route>
             <Route exact path="/addproducts" render={(props) => <AddProducts {...props}  emailId={this.state.emailId} />}></Route>
             <Route exact path="/view" render={(props) => <ProductView {...props}  emailId={this.state.emailId} cart={this.state.cart} user={this.state.user} getCart={this.getCart} viewproduct={this.state.viewproduct}/>}></Route>
             <Route exact path="/cart" render={(props) => <Cart {...props}  emailId={this.state.emailId} cart={this.state.cart}/>}></Route>
             <Route exact path="/profile" render={(props) => <Profile {...props}  emailId={this.state.emailId}/>}></Route>
             <Route exact path="/orders" render={(props) => <Order {...props}  emailId={this.state.emailId}/>}></Route>
-            <Route exact path="/adminproducts" render={(props) => <AdminProducts {...props}  emailId={this.state.emailId}/>}></Route>
+            <Route exact path="/adminproducts" render={(props) => <AdminProducts {...props}  emailId={this.state.emailId} getNavBar={this.getNavBar}/>}></Route>
             <Route exact path="/checkorders" render={(props) => <CheckOrders {...props}  emailId={this.state.emailId}/>}></Route>
       
-            <div className="footer mt-auto">
+            <div className="footer mt-auto" style={{display:`${this.state.display}`}}>
             <div className="container">       
               
                 <div className="row justify-content-center">             
