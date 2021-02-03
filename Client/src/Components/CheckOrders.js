@@ -55,8 +55,9 @@ class CheckOrders extends Component{
     return (
       <div className="container">
       <h3  className="mt-3">CheckOrders</h3>
+      <div  class="table-responsive">
       <table class="table">
-      <thead   style={{color:"#400080"}}>
+      <thead style={{color:"#400080"}}>
         <tr>
           <th scope="col">SI.No</th>
           <th scope="col">User-ID</th>
@@ -70,7 +71,7 @@ class CheckOrders extends Component{
         {this.state.orders.map((orders,key)=>{
           return(
             <tr key = {key}>
-            <th scope="row">{key}</th>
+            <th scope="row">{key+1}</th>
             <td>{orders.UserId}</td>
             <td>{orders.ProductId}</td>
             <td>{orders.quantity}</td>
@@ -82,6 +83,7 @@ class CheckOrders extends Component{
       }
       </tbody>
       </table>
+      </div>
     </div>
     );
   }
