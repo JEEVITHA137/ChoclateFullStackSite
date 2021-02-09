@@ -122,7 +122,7 @@ class Login extends Component{
                           <div className="buton" type = "submit" style={{width:"150px"}} onClick={this.submit}>Login</div>
                       </div>
                   </FormGroup>
-                  <h5 className="p-3">New user?<a href="/signin" style={{color:"#400080"}}> Signin</a></h5>
+                  <h5 className="p-3">New user?<a href="/signin" style={{color:"#400080"}}> Signup</a></h5>
                   </Form>
                 </div>
             </div>

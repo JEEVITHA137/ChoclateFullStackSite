@@ -158,7 +158,7 @@ class Signin extends Component{
           </div>
           <div class="col-md-5 login-form-2">
             <Form className="container" onSubmit={(e) => this.submit(e)}>
-            <h3 className="pb-2" >Signin</h3>
+            <h3 className="pb-2" >Signup</h3>
             
             <FormText color="white">{this.state.loginError}</FormText>
 
